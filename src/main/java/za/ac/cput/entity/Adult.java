@@ -8,7 +8,7 @@ public class Adult extends Customer{
     private boolean isEmployed;
     private String jobDescription;
 
-    public Adult(Builder b){
+    private Adult(Builder b){
         super(b);
         this.isPensioner = b.isPensioner;
         this.isEmployed = b.isEmployed;
