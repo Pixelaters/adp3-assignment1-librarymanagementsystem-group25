@@ -1,5 +1,8 @@
 package za.ac.cput.entity;
-
+/*
+    Breyton Ernstzen (217203027)
+    Date: 26 March 2022
+ */
 public class Adult extends Customer{
     private boolean isPensioner;
     private boolean isEmployed;
@@ -38,8 +41,7 @@ public class Adult extends Customer{
 
     @Override
     public String toString() {
-        super.toString();
-        return "Adult{" +
+        return super.toString() + "Adult{" +
                 "isPensioner=" + isPensioner +
                 ", isEmployed=" + isEmployed +
                 ", jobDescription='" + jobDescription + '\'' +

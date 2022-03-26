@@ -1,5 +1,8 @@
 package za.ac.cput.entity;
-
+/*
+  Breyton Ernstzen (217203027)
+  Date: 26 March 2022
+ */
 public class Student extends Customer{
     private long studentNumber;
     private String course;
@@ -50,9 +53,8 @@ public class Student extends Customer{
 
     @Override
     public String toString() {
-        super.toString();
-        return "Student{" +
-                "studentNumber=" + studentNumber +
+        return super.toString() +
+                "studentNumber= " + studentNumber +
                 ", course='" + course + '\'' +
                 ", highSchool=" + highSchool +
                 ", university=" + university +
