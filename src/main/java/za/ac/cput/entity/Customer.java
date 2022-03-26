@@ -11,7 +11,7 @@ public class Customer {
     private long cellNo;
 
     //Private constructor comes here
-    private Customer(Builder b){
+    public Customer(Builder b){
         this.customerID = b.customerID;
         this.customerName = b.customerName;
         this.customerSurname = b.customerSurname;
