@@ -11,7 +11,7 @@ public class Book {
     private  String name;
     private  String publisher;
     private  String available;
-//   private final String supplierId;
+    private  Supplier supplierId;
 
     /* Constructor for the book class
     which uses BookBuilder to instantiate fields
@@ -21,9 +21,10 @@ public class Book {
         this.name = bookBuilder.name;
         this.publisher = bookBuilder.publisher;
         this.available = bookBuilder.available;
+        this.supplierId = bookBuilder.supplierId;
     }
 
-//    Gettes and Setters for the Book attributes
+//    Getters and Setters for the Book attributes
     public String getBookCode() {
         return bookCode;
     }
@@ -56,7 +57,15 @@ public class Book {
         this.available = available;
     }
 
-//    toString method used to convert object attributes to  string data type
+    public Supplier getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Supplier supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    //    toString method used to convert object attributes to  string data type
     @Override
     public String toString() {
         return "Book{" +
@@ -64,19 +73,28 @@ public class Book {
                 ", name='" + name + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", available='" + available + '\'' +
+                ", supplierId='" + supplierId.getName() + '\'' +
                 '}';
     }
 
-//    Builder class used to implement the Builder patter
+//    Builder class used to implement the Builder pattern
     public static class BookBuilder{
         private  String  bookCode;
         private  String name;
         private  String publisher;
         private  String available;
+        private  Supplier supplierId;
 
+    /* Constructor for the Book Builder Class
+      bookCode should be available on each object instantiation
+   */
         public BookBuilder(String bookCode) {
             this.bookCode = bookCode;
         }
+    public BookBuilder supplierOfBook(Supplier supplier){
+        this.supplierId = supplier;
+        return this;
+    }
 
         public BookBuilder nameOfBook(String name){
             this.name = name;
@@ -93,7 +111,7 @@ public class Book {
             return this;
         }
 
-//        method for creating the instance of the book class
+//        method for creating/building the instance of the book class
         public Book build(){
             Book book = new Book(this);
             return  book;
