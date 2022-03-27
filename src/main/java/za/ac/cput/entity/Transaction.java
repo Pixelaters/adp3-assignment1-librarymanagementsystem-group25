@@ -1,5 +1,9 @@
 package main.java.za.ac.cput.entity;
-
+/**
+ * Raeece Samuels (217283764)
+ * ADP3 - Assignment1: Group 25
+ * Date: 27 March 2022
+ */
 import java.util.Date;
 
 public class Transaction {
