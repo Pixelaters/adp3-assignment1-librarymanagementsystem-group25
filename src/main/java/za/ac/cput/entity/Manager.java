@@ -15,7 +15,7 @@ public class Manager extends Staff {
     private Boolean availability;
 
 
-    public Manager(Builder b) {
+    public Manager(ManagerBuilder b) {
         super(b);
         this.managerCode = b.managerCode;
         this.availability = b.availability;
@@ -45,21 +45,21 @@ public class Manager extends Staff {
                 '}';
     }
 
-    public static class Builder extends Staff.Builder{
+    public static class ManagerBuilder extends Staff.StaffBuilder{
         private String managerCode;
         private Boolean availability;
 
-        public Builder setManagerCode(String managerCode) {
+        public ManagerBuilder setManagerCode(String managerCode) {
             this.managerCode = managerCode;
             return this;
         }
 
-        public Builder setAvailability(Boolean availability) {
+        public ManagerBuilder setAvailability(Boolean availability) {
             this.availability = availability;
             return this;
         }
 
-        public Builder copy(Manager m){
+        public ManagerBuilder copy(Manager m){
             this.managerCode = m.managerCode;
             this.availability = m.availability;
             return this;
