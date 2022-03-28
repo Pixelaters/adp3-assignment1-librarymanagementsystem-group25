@@ -10,7 +10,7 @@ public class Librarian extends Staff{
     private String position;
     private boolean availability;
 
-    public Librarian(Builder b) {
+    public Librarian(LibrarianBuilder b) {
         super(b);
         this.librarianCode = b.librarianCode;
         this.position = b.position;
@@ -43,7 +43,7 @@ public class Librarian extends Staff{
 
     @Override
     public String toString() {
-        return "Librarian{" +
+        return super.toString() +"Librarian{" +
                 "librarianCode='" + librarianCode + '\'' +
                 ", position='" + position + '\'' +
                 ", availability=" + availability +
@@ -51,27 +51,27 @@ public class Librarian extends Staff{
     }
 
 
-    public static class Builder extends Staff.Builder{
+    public static class LibrarianBuilder extends Staff.StaffBuilder{
         private String librarianCode;
         private String position;
         private boolean availability;
 
-        public Builder setLibrarianCode(String librarianCode) {
+        public LibrarianBuilder setLibrarianCode(String librarianCode) {
             this.librarianCode = librarianCode;
             return this;
         }
 
-        public Builder setPosition(String position) {
+        public LibrarianBuilder setPosition(String position) {
             this.position = position;
             return this;
         }
 
-        public Builder setAvailability(boolean availability) {
+        public LibrarianBuilder setAvailability(boolean availability) {
             this.availability = availability;
             return this;
         }
 
-        public Builder copy(Librarian l){
+        public LibrarianBuilder copy(Librarian l){
             this.librarianCode = l.librarianCode;
             this.position = l.position;
             this.availability = l.availability;

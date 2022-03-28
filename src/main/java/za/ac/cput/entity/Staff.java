@@ -14,7 +14,7 @@ public class Staff {
     private String homeAddress;
     private long cellPhone;
 
-    public Staff(Builder b) {
+    public Staff(StaffBuilder b) {
         this.staffMember_ID = b.staffMember_ID;
         this.firstName = b.firstName;
         this.lastName = b.lastName;
@@ -75,39 +75,39 @@ public class Staff {
     }
 
 
-    public static class Builder{
+    public static class StaffBuilder{
         private long staffMember_ID;
         private String firstName;
         private String lastName;
         private String homeAddress;
         private long cellPhone;
 
-        public Builder setStaffMember_ID(long staffMember_ID) {
+        public StaffBuilder setStaffMember_ID(long staffMember_ID) {
             this.staffMember_ID = staffMember_ID;
             return this;
         }
 
-        public Builder setFirstName(String firstName) {
+        public StaffBuilder setFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public Builder setLastName(String lastName) {
+        public StaffBuilder setLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public Builder setHomeAddress(String homeAddress) {
+        public StaffBuilder setHomeAddress(String homeAddress) {
             this.homeAddress = homeAddress;
             return this;
         }
 
-        public Builder setCellPhone(long cellPhone) {
+        public StaffBuilder setCellPhone(long cellPhone) {
             this.cellPhone = cellPhone;
             return this;
         }
 
-        public Builder copy(Staff s){
+        public StaffBuilder copy(Staff s){
             this.staffMember_ID = s.staffMember_ID;
             this.firstName = s.firstName;
             this.lastName = s.lastName;
