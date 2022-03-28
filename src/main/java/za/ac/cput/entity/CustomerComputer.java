@@ -1,49 +1,88 @@
 package za.ac.cput.entity;
 
+
+/*
+   Ethan George (218008430)
+   ADP3 - Assignment 1: Group 25
+   Date: 28 March 2022
+ */
+
+
 public class CustomerComputer extends Computer {
 
-    private String customerId;
-    private String customerActivity;
+    private String computerId;
+    private Long customerId;
+    private String activity;
 
-    public CustomerComputer(String computerId, String customerId,String computerBrand, String computerStatus , String computerActivity) {
-        super(computerId, computerBrand, computerStatus);
-
+    public CustomerComputer(Object libraryId) {
+        super(libraryId);
+        this.computerId = computerId;
         this.customerId = customerId;
-        this.customerActivity = customerActivity;
+        this.activity = activity;
+
 
     }
 
+    @Override
+    public String getComputerId() {
+        return computerId;
+    }
 
-    public String getCustomerId() {
+    @Override
+    public void setComputerId(String computerId) {
+        this.computerId = computerId;
+    }
+
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public String getCustomerActivity() {
-        return customerActivity;
+    public String getActivity() {
+        return activity;
     }
 
-    public void setCustomerActivity(String customerActivity) {
-        this.customerActivity = customerActivity;
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Computer{" +
-         "CustomerComputer{" +
-                "customerId='" + customerId + '\'' +
-                ", customerActivity='" + customerActivity + '\'' +
+        return super.toString() +  "CustomerComputer{" +
+                "computerId='" + computerId + '\'' +
+                ", customerId=" + customerId +
+                ", activity='" + activity + '\'' +
                 '}';
     }
 
+    public static class Builder extends Computer.Builder{
+
+        private String computerId;
+        private Long customerId;
+        private String activity;
 
 
+        @Override
+        public Computer.Builder setComputerId(String computerId) {
+            this.computerId = computerId;
+            return null;
+        }
 
-    public Computer build(){
-        return new Computer(this);
+        public Builder setCustomerId(Long customerId) {
+            this.customerId = customerId;
+            return this;
+        }
+
+        public Builder setActivity(String activity) {
+            this.activity = activity;
+            return this;
+        }
+
+        public CustomerComputer build(){
+            return  new CustomerComputer(this );
+        }
     }
-
 }
