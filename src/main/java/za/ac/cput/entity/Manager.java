@@ -3,6 +3,12 @@ import za.ac.cput.entity.Staff;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+/*
+   Ziyaad Petersen (219083479)
+   ADP3 - Assignment 1: Group 25
+   Date: 28 March 2022
+ */
+
 public class Manager extends Staff {
 
     private String managerCode;
