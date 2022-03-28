@@ -1,5 +1,10 @@
 package za.ac.cput.entity;
 
+/*
+   Ziyaad Petersen (219083479)
+   ADP3 - Assignment 1: Group 25
+   Date: 28 March 2022
+ */
 public class Librarian extends Staff{
     private String librarianCode;
     private String position;
