@@ -55,7 +55,7 @@ class StudentFactoryTest {
     }
 
     @Test
-    @Disabled
+    //@Disabled
     public void testObjectIdentity(){
         //Test for object identity
         Student student1 = StudentFactory.createStudent(100,"Jane","Rice","Cat Ave",
