@@ -61,7 +61,7 @@ class CustomerFactoryTest {
     }
 
   @Test
-  @Disabled
+  //@Disabled
     public void fail(String message){
     }
 
