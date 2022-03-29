@@ -25,9 +25,6 @@
       <version>5.4.0</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/junit/junit -->
-
   </dependencies>
 
   <build>
