@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.entity.Customer;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerFactoryTest {
@@ -56,7 +58,6 @@ class CustomerFactoryTest {
         assertEquals(testViewCustomer2,testViewCustomer4);
             System.out.println("Test passed!...");
 
-            //fail("Failed test");
     }
 
   @Test
