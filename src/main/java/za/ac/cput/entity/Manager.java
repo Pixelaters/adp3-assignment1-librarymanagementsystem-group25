@@ -1,7 +1,4 @@
 package za.ac.cput.entity;
-import za.ac.cput.entity.Staff;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /*
    Ziyaad Petersen (219083479)
