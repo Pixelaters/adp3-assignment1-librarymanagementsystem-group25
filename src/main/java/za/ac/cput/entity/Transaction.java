@@ -1,5 +1,6 @@
-package main.java.za.ac.cput.entity;
+package za.ac.cput.entity;
 /**
+ * Transaction.java
  * Raeece Samuels (217283764)
  * ADP3 - Assignment1: Group 25
  * Date: 27 March 2022
@@ -49,7 +50,7 @@ public class Transaction {
                 ", details='" + details + '\'' +
                 '}';
     }
-    private static class TransactionBuilder{
+    public static class TransactionBuilder{
         private String transaction_ID;
         private Date date;
         private String details;
@@ -65,7 +66,7 @@ public class Transaction {
         }
 
         public TransactionBuilder setDetails(String details) {
-            details = details;
+            this.details = details;
             return this;
         }
 
