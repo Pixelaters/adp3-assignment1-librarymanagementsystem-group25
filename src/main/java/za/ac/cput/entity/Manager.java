@@ -12,7 +12,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 public class Manager extends Staff {
 
     private String managerCode;
-    private Boolean availability;
+    private boolean availability;
 
 
     public Manager(ManagerBuilder b) {
@@ -29,11 +29,11 @@ public class Manager extends Staff {
         this.managerCode = managerCode;
     }
 
-    public Boolean getAvailability() {
+    public boolean getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Boolean availability) {
+    public void setAvailability(boolean availability) {
         this.availability = availability;
     }
 
@@ -47,14 +47,14 @@ public class Manager extends Staff {
 
     public static class ManagerBuilder extends Staff.StaffBuilder{
         private String managerCode;
-        private Boolean availability;
+        private boolean availability;
 
         public ManagerBuilder setManagerCode(String managerCode) {
             this.managerCode = managerCode;
             return this;
         }
 
-        public ManagerBuilder setAvailability(Boolean availability) {
+        public ManagerBuilder setAvailability(boolean availability) {
             this.availability = availability;
             return this;
         }
