@@ -24,6 +24,15 @@ public class Book {
         this.supplierId = bookBuilder.supplierId;
     }
 
+    public Book copy(Book book){
+        setBookCode(book.getBookCode());
+        setName(book.getName());
+        setPublisher(book.getPublisher());
+        setAvailable(book.getAvailable());
+        setSupplierId(book.getSupplierId());
+        return this;
+    }
+
 //    Getters and Setters for the Book attributes
     public String getBookCode() {
         return bookCode;
