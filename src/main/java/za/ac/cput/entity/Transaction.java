@@ -5,11 +5,13 @@ package za.ac.cput.entity;
  * ADP3 - Assignment1: Group 25
  * Date: 27 March 2022
  */
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date.*;
 
 public class Transaction {
     private String transaction_ID;
-    private Date date;
+    private LocalDate date= java.time.LocalDate.now();
     private String details;
 
     private Transaction(TransactionBuilder tb){
@@ -26,11 +28,11 @@ public class Transaction {
         this.transaction_ID = transaction_ID;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -52,7 +54,7 @@ public class Transaction {
     }
     public static class TransactionBuilder{
         private String transaction_ID;
-        private Date date;
+        private LocalDate date;
         private String details;
 
         public TransactionBuilder setTransaction_ID(String transaction_ID) {
@@ -60,7 +62,7 @@ public class Transaction {
             return this;
         }
 
-        public TransactionBuilder setDate(Date date) {
+        public TransactionBuilder setDate(LocalDate date) {
             this.date = date;
             return this;
         }
