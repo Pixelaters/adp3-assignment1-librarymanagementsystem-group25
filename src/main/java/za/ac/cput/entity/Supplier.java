@@ -20,6 +20,14 @@ public class Supplier {
         this.city = supplierBuilder.city;
     }
 
+    public Supplier copy(Supplier supplier){
+        setSupplierId(supplier.getSupplierId());
+        setName(supplier.getName());
+        setCity(supplier.getCity());
+        setLibraryId(supplier.getLibraryId());
+        return this;
+    }
+
     //    Getters and Setters for the Supplier attributes
     public String getSupplierId() {
         return supplierId;
@@ -69,6 +77,7 @@ public class Supplier {
         public SupplierBuilder(String supplierId) {
             this.supplierId = supplierId;
         }
+
 
         public SupplierBuilder nameOfSupplier(String name){
             this.name = name;
