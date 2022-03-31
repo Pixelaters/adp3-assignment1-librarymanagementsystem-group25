@@ -13,6 +13,9 @@ public class Book {
     private  String available;
     private  Supplier supplierId;
 
+    //default Constructor
+    public Book(){}
+
     /* Constructor for the book class
     which uses BookBuilder to instantiate fields
      */
