@@ -13,6 +13,9 @@ public class Book {
     private  String available;
     private  Supplier supplierId;
 
+    //default Constructor
+    public Book(){}
+
     /* Constructor for the book class
     which uses BookBuilder to instantiate fields
      */
@@ -22,6 +25,15 @@ public class Book {
         this.publisher = bookBuilder.publisher;
         this.available = bookBuilder.available;
         this.supplierId = bookBuilder.supplierId;
+    }
+
+    public Book copy(Book book){
+        setBookCode(book.getBookCode());
+        setName(book.getName());
+        setPublisher(book.getPublisher());
+        setAvailable(book.getAvailable());
+        setSupplierId(book.getSupplierId());
+        return this;
     }
 
 //    Getters and Setters for the Book attributes

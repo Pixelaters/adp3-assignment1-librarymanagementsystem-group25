@@ -10,14 +10,28 @@ public class Supplier {
     private String supplierId;
     private String name;
     private String city;
+    private Library libraryId;
+
+    //default constructor
+    public Supplier() {
+    }
 
     /* Constructor for the supplier class
-   which uses SupplierBuilder to instantiate fields
-    */
+       which uses SupplierBuilder to instantiate fields
+        */
     public Supplier(SupplierBuilder supplierBuilder) {
         this.supplierId = supplierBuilder.supplierId;
         this.name = supplierBuilder.name;
         this.city = supplierBuilder.city;
+        this.libraryId = supplierBuilder.libraryId;
+    }
+
+    public Supplier copy(Supplier supplier){
+        setSupplierId(supplier.getSupplierId());
+        setName(supplier.getName());
+        setCity(supplier.getCity());
+        setLibraryId(supplier.getLibraryId());
+        return this;
     }
 
     //    Getters and Setters for the Supplier attributes
@@ -45,6 +59,14 @@ public class Supplier {
         this.city = city;
     }
 
+    public Library getLibraryId() {
+        return libraryId;
+    }
+
+    public void setLibraryId(Library libraryId) {
+        this.libraryId = libraryId;
+    }
+
     //    toString method used to convert object attributes to  string data type
     @Override
     public String toString() {
@@ -52,6 +74,7 @@ public class Supplier {
                 "supplierId='" + supplierId + '\'' +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
+                ", library='" + libraryId.getName() + '\'' +
                 '}';
     }
 
@@ -62,6 +85,7 @@ public class Supplier {
         private String supplierId;
         private String name;
         private String city;
+        private Library libraryId;
 
         /* Constructor for the Supplier BuilderClass
            supplierId should be available on each object instantiation
@@ -70,12 +94,18 @@ public class Supplier {
             this.supplierId = supplierId;
         }
 
+
         public SupplierBuilder nameOfSupplier(String name){
             this.name = name;
             return this;
         }
 
-        public SupplierBuilder cityWhereIsLocated(String city){
+        public SupplierBuilder library(Library library){
+            this.libraryId = library;
+            return this;
+        }
+
+        public SupplierBuilder cityWhereSupplierIsLocated(String city){
             this.city = city;
             return this;
         }
