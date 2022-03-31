@@ -1,36 +1,26 @@
-/* Library.java
-Entity for Library
-Author: Ethan George(218008430)
-Date: 28 March 2022
-*/
-
 package za.ac.cput.entity;
 
+/*
+   Ethan George (218008430)
+   ADP3 - Assignment 1: Group 25
+   Date: 28 March 2022
+ */
+
 public class Library {
-
+    
     private String libraryId;
-    private String libraryName;
-    private String libraryLocation;
-    private String libraryAddress;
+    private String name;
+    private String location;
+    private String address;
 
-    public Library( String libraryId , String libraryName , String libraryLocation , String libraryAddress){
-
-       this.libraryId = libraryId;
-       this.libraryName =  libraryName;
-       this.libraryLocation = libraryLocation;
-       this.libraryAddress = libraryAddress;
+    public Library(String libraryId, String name, String location, String address) {
+        this.libraryId = libraryId;
+        this.name = name;
+        this.location = location;
+        this.address = address;
     }
 
-    public Library(Library library) {
-    }
-
-
-    public String getLibraryName() {
-        return libraryName;
-    }
-
-    public void setLibraryName(String libraryName) {
-        this.libraryName = libraryName;
+    public Library(Builder builder) {
     }
 
     public String getLibraryId() {
@@ -41,47 +31,78 @@ public class Library {
         this.libraryId = libraryId;
     }
 
-    public String getLibraryLocation() {
-        return libraryLocation;
+    public String getName() {
+        return name;
     }
 
-    public void setLibraryLocation(String libraryLocation) {
-        this.libraryLocation = libraryLocation;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLibraryAddress() {
-        return libraryAddress;
+    public String getLocation() {
+        return location;
     }
 
-    public void setLibraryAddress(String libraryAddress) {
-        this.libraryAddress = libraryAddress;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "Library{" +
                 "libraryId='" + libraryId + '\'' +
-                ", libraryName='" + libraryName + '\'' +
-                ", libraryLocation='" + libraryLocation + '\'' +
-                ", libraryAddress='" + libraryAddress + '\'' +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
-
-
-    public static class LibraryBuilder{
-
+    
+    public static class Builder{
+        
         private String libraryId;
-        private String libraryName;
-        private String libraryLocation;
-        private String libraryAddress;
-    }
+        private String name;
+        private String location;
+        private String address;
 
+        public Builder Library(String libraryId, String name, String location, String address) {
+            this.libraryId = libraryId;
+            this.name = name;
+            this.location = location;
+            this.address = address;
+            
+            return this;
+        }
 
+        public Builder setLibraryId(String libraryId) {
+            this.libraryId = libraryId;
+            return this;
+        }
 
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
 
+        public Builder setLocation(String location) {
+            this.location = location;
+            return this;
+        }
 
-    public Library build(){
-        Library library = new Library(  this);
-        return library;
+        public Builder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+        
+        public Library build(){
+            return new Library( this);
+        }
     }
 }
