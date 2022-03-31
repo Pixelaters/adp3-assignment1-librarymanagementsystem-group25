@@ -9,7 +9,7 @@
 package za.ac.cput.entity;
 
 public class Printer {
-        private  int printerCode;
+        private String printerCode;
         private String brandName;
         private String status;
         private int libraryId;
@@ -23,11 +23,11 @@ public class Printer {
         }
             //getters and setters
 
-            public int getPrinterCode() {
+            public String getPrinterCode() {
             return printerCode;
         }
 
-            public void setPrinterCode(int printerCode) {
+            public void setPrinterCode(String printerCode) {
             this.printerCode = printerCode;
         }
 
@@ -65,12 +65,12 @@ public class Printer {
         }
             //Builder class
             public static class Builder{
-                private  int printerCode;
+                private  String printerCode;
                 private String brandName;
                 private String status;
                 private int libraryId;
 
-                public Builder setPrinterCode(int printerCode) {
+                public Builder setPrinterCode(String printerCode) {
                     this.printerCode = printerCode;
                     return this;
                 }
