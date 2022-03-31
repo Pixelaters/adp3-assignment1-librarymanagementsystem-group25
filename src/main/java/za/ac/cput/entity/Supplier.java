@@ -12,9 +12,13 @@ public class Supplier {
     private String city;
     private Library libraryId;
 
+    //default constructor
+    public Supplier() {
+    }
+
     /* Constructor for the supplier class
-   which uses SupplierBuilder to instantiate fields
-    */
+       which uses SupplierBuilder to instantiate fields
+        */
     public Supplier(SupplierBuilder supplierBuilder) {
         this.supplierId = supplierBuilder.supplierId;
         this.name = supplierBuilder.name;
