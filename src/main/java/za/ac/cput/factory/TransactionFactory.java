@@ -7,8 +7,8 @@ package za.ac.cput.factory;
  */
 import za.ac.cput.entity.Transaction;
 
-
-
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 public class TransactionFactory {
 
@@ -16,7 +16,7 @@ public class TransactionFactory {
         return UUID.randomUUID().toString();
     }
 
-    public static Transaction addTransaction(String transaction_ID, String date, String details){
+    public static Transaction addTransaction(String transaction_ID, LocalDate date, String details){
          Transaction newTransaction = new Transaction.TransactionBuilder()
                  .setTransaction_ID(transaction_ID)
                  .setDate(date)

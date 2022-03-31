@@ -19,7 +19,7 @@ public class TransactionTest {
     @Test
     public void addTransaction(){
         //test to add a new transaction
-        Transaction testNewTransaction = TransactionFactory.addTransaction("217","21/02/2022", "123");
+        Transaction testNewTransaction = TransactionFactory.addTransaction("217",java.time.LocalDate.now(), "123");
         System.out.println("Transaction successfully processed...");
         assertNotNull(testNewTransaction);
     }
@@ -27,7 +27,7 @@ public class TransactionTest {
     @Test
     public void showTransaction(){
         //test to show transaction
-        Transaction testNewDisplayTransaction = TransactionFactory.addTransaction("217","21/02/2022", "123");
+        Transaction testNewDisplayTransaction = TransactionFactory.addTransaction("217",java.time.LocalDate.now(), "123");
         System.out.println("Transaction successfully processed...");
         assertNotNull(testNewDisplayTransaction);
     }
@@ -35,8 +35,8 @@ public class TransactionTest {
     @Test
     public void testTransactionIdentity(){
         //testing Identity of Transaction
-        Transaction testTransactionDisplay1 = TransactionFactory.addTransaction("218","25/12/2022","2017");
-        Transaction testTransactionDisplay2 = TransactionFactory.addTransaction("200","24/09/2022","21");
+        Transaction testTransactionDisplay1 = TransactionFactory.addTransaction("218",java.time.LocalDate.now(),"2017");
+        Transaction testTransactionDisplay2 = TransactionFactory.addTransaction("200",java.time.LocalDate.now(),"21");
         Transaction testTransactionDisplay3 = testTransactionDisplay1;
 
         assertSame(testTransactionDisplay1,testTransactionDisplay3);
@@ -48,8 +48,8 @@ public class TransactionTest {
     @Test
     public void testAccountEquality(){
         //test Transaction equality
-        Transaction testTransactionDisplay1 = TransactionFactory.addTransaction("280","14/02/2022","201");
-        Transaction testTransactionDisplay2 = TransactionFactory.addTransaction("195","15/05/2022","55");
+        Transaction testTransactionDisplay1 = TransactionFactory.addTransaction("280",java.time.LocalDate.now(),"201");
+        Transaction testTransactionDisplay2 = TransactionFactory.addTransaction("195",java.time.LocalDate.now(),"55");
         Transaction testTransactionDisplay3 = testTransactionDisplay1;
         Transaction testTransactionDisplay4 = testTransactionDisplay2;
 
@@ -60,8 +60,8 @@ public class TransactionTest {
 
     @Test
     //Disabled
-    public void unsuccessful(){
-
+    public void unsuccessful(String msg){
+        System.out.println("There was an error in processing.Please retry...");
     }
 }
 
