@@ -1,5 +1,11 @@
 package za.ac.cput.factory;
 
+/* SupplierFactory.java
+Factory class for the Supplier
+Author: Ongezwa Gwaza (211272183)
+Date: 31 March 2022
+*/
+
 import za.ac.cput.entity.Library;
 import za.ac.cput.entity.Student;
 import za.ac.cput.entity.Supplier;

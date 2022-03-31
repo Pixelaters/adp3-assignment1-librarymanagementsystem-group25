@@ -1,5 +1,11 @@
 package za.ac.cput.factory;
 
+/* BookFactoryTest.java
+Test class for the Book
+Author: Ongezwa Gwaza (211272183)
+Date: 31 March 2022
+*/
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
