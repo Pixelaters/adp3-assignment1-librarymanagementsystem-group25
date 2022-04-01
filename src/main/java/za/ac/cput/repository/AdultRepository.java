@@ -59,12 +59,18 @@ public class AdultRepository implements AdultRepositoryInterface{
     }
 
     @Override
-    public boolean delete(Integer integer) {
-        return false;
+    public boolean delete(Integer adultID) {
+        Adult deleteCustomer = read(adultID);
+
+        if(deleteCustomer == null)
+            return false;
+            adultDB.remove(deleteCustomer);
+            return true;
+
     }
 
     @Override
     public Set<Adult> getAll() {
-        return null;
+        return adultDB;
     }
 }
