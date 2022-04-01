@@ -30,8 +30,13 @@ public class CustomerRepository implements CustomerRepositoryInterface{
     }
 
     @Override
-    public Customer create(Customer customer) {
-        return null;
+    public Customer create(Customer createCustomer) {
+        boolean success = customerDB.add(createCustomer);
+
+        if(!success) //if not a success then still add new customer
+            return null;
+            return createCustomer;
+
     }
 
     @Override
