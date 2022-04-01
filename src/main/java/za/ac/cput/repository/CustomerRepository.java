@@ -44,6 +44,7 @@ public class CustomerRepository implements CustomerRepositoryInterface{
     @Override
     public Customer read(Integer customerID) {
 
+        //Loops through the set and search for the customer ID, then see if it matches the ID in the database that is looking for
         for(Customer customer: customerDB){
             if(customer.getCustomerID() == customerID)
             return customer;
@@ -51,9 +52,17 @@ public class CustomerRepository implements CustomerRepositoryInterface{
         return null;
     }
 
+    //Updates customer data
     @Override
-    public Customer update(Customer customer) {
-        return null;
+    public Customer update(Customer updateCustomer) {
+        Customer oldCustomer = read(updateCustomer.getCustomerID()); //first read from the database and see if the customer id is there
+
+        if(oldCustomer != null){ //if the customer data is not empty
+            customerDB.remove(oldCustomer); //removes old customer data
+            customerDB.add(updateCustomer); //replace it with the updated data
+            return updateCustomer; //updates customer data
+        }
+            return null;
     }
 
     @Override
