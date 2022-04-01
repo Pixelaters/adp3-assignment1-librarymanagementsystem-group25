@@ -77,6 +77,6 @@ public class CustomerRepository implements CustomerRepositoryInterface{
 
     @Override
     public Set<Customer> getAll() {
-        return null;
+        return customerDB;
     }
 }
