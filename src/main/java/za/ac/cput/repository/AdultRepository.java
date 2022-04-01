@@ -44,8 +44,17 @@ public class AdultRepository implements AdultRepositoryInterface{
         return null;
     }
 
+    //update adults data on the database
     @Override
-    public Adult update(Adult adult) {
+    public Adult update(Adult updateAdult) {
+        Adult oldAdult = read(updateAdult.getCustomerID());
+
+        if(oldAdult != null){ //if adult data is not empty
+            adultDB.remove(oldAdult);//removes the old data
+            adultDB.add(updateAdult);//replace the removed data
+            return updateAdult;//updates
+
+        }
         return null;
     }
 
