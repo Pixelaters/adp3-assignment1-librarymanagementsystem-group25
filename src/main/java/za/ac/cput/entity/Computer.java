@@ -16,11 +16,11 @@ public class Computer {
     private Object libraryId;
 
 
-    public Computer(Object libraryId) {
-        this.computerId = computerId;
-        this.brandName = brandName;
-        this.status = status;
-        this.libraryId = libraryId;
+    public Computer(Builder b) {
+        this.computerId = b.computerId;
+        this.brandName = b.brandName;
+        this.status = b.status;
+
     }
 
     public String getComputerId() {
@@ -72,7 +72,7 @@ public class Computer {
         private String computerId;
         private String brandName;
         private String status;
-        private Object libraryId;
+
 
         public Builder setComputerId(String computerId) {
             this.computerId = computerId;
@@ -89,16 +89,13 @@ public class Computer {
             return this;
         }
 
-        public Builder setLibraryId(Object libraryId) {
-            this.libraryId = libraryId;
-            return this;
-        }
 
-        public Builder Computer(String computerId, String brandName, String status, Object libraryId) {
-            this.computerId = computerId;
-            this.brandName = brandName;
-            this.status = status;
-            this.libraryId = libraryId;
+
+        public Builder ComputerCopy(Computer c) {
+            this.computerId = c.computerId;
+            this.brandName = c.brandName;
+            this.status = c.status;
+
 
             return this;
         }
@@ -106,5 +103,7 @@ public class Computer {
         public Computer build(){
             return new Computer(this);
         }
+
+
     }
 }
