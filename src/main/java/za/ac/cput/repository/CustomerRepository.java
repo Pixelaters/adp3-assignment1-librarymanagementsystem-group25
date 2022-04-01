@@ -29,6 +29,7 @@ public class CustomerRepository implements CustomerRepositoryInterface{
         return customerRepository;
     }
 
+    //adds a new customer to the database
     @Override
     public Customer create(Customer createCustomer) {
         boolean success = customerDB.add(createCustomer);
@@ -39,8 +40,14 @@ public class CustomerRepository implements CustomerRepositoryInterface{
 
     }
 
+    //read from the database
     @Override
-    public Customer read(Integer integer) {
+    public Customer read(Integer customerID) {
+
+        for(Customer customer: customerDB){
+            if(customer.getCustomerID() == customerID)
+            return customer;
+        }
         return null;
     }
 
