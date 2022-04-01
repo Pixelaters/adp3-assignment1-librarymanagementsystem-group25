@@ -12,6 +12,7 @@ import za.ac.cput.entity.Student;
 import za.ac.cput.factory.StudentFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class StudentRepositoryTest {
     private static StudentRepository studentRepository = StudentRepository.getInstance();
@@ -64,6 +65,21 @@ class StudentRepositoryTest {
 
         System.out.println("Student details has been updated...");
         System.out.println(studentRepository.update(updateStudent1));
+        System.out.println();
+    }
+
+    @Test
+    void e_DeleteStudentTest(){
+        boolean success = StudentRepository.getInstance().delete(student_a.getCustomerID());
+        assertNotNull(success);
+        System.out.println("Delete success?: " + success);
+        System.out.println();
+    }
+
+    @Test
+    void d_getAllStudents(){
+        System.out.println("Getting all...");
+        System.out.println(studentRepository.getAll());
         System.out.println();
     }
 }
