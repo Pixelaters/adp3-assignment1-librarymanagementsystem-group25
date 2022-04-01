@@ -48,4 +48,22 @@ class StudentRepositoryTest {
         System.out.println(studentRepository.read(121));
         System.out.println();
     }
+
+    @Test
+    void c_UpdateStudentTest(){
+        Student updateStudent1 = (Student) new Student.Builder().copy(student_a)
+                .setCourse("App Development")
+                .setAddress("Green ave")
+                .build();
+        Student identicalStudent = updateStudent1;
+
+        assertNotNull(updateStudent1);
+        assertNotNull(identicalStudent);
+        assertSame(updateStudent1,identicalStudent);
+        assertNotSame(student_a,updateStudent1);
+
+        System.out.println("Student details has been updated...");
+        System.out.println(studentRepository.update(updateStudent1));
+        System.out.println();
+    }
 }
