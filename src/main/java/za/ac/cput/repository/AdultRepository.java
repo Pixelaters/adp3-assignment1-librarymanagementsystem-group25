@@ -58,6 +58,7 @@ public class AdultRepository implements AdultRepositoryInterface{
         return null;
     }
 
+    //removes an adult from the database
     @Override
     public boolean delete(Integer adultID) {
         Adult deleteCustomer = read(adultID);
@@ -69,6 +70,7 @@ public class AdultRepository implements AdultRepositoryInterface{
 
     }
 
+    //get all adults from the database
     @Override
     public Set<Adult> getAll() {
         return adultDB;
