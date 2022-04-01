@@ -14,11 +14,11 @@ public class CustomerComputer extends Computer {
     private Long customerId;
     private String activity;
 
-    public CustomerComputer(Object libraryId) {
-        super(libraryId);
-        this.computerId = computerId;
-        this.customerId = customerId;
-        this.activity = activity;
+    public CustomerComputer(Builder b) {
+        super(b);
+        this.computerId = b.computerId;
+        this.customerId = b.customerId;
+        this.activity = b.activity;
 
 
     }
@@ -79,6 +79,14 @@ public class CustomerComputer extends Computer {
         public Builder setActivity(String activity) {
             this.activity = activity;
             return this;
+        }
+
+        public  Builder copy(CustomerComputer c){
+            this.computerId = c.computerId;
+            this.customerId = c.customerId;
+            this.activity = c.activity;
+            return this;
+
         }
 
         public CustomerComputer build(){
