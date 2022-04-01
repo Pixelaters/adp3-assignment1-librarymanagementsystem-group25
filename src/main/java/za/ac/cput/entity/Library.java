@@ -7,7 +7,7 @@ package za.ac.cput.entity;
  */
 
 public class Library {
-    
+
     private String libraryId;
     private String name;
     private String location;
@@ -64,9 +64,9 @@ public class Library {
                 ", address='" + address + '\'' +
                 '}';
     }
-    
+
     public static class Builder{
-        
+
         private String libraryId;
         private String name;
         private String location;
@@ -77,7 +77,7 @@ public class Library {
             this.name = name;
             this.location = location;
             this.address = address;
-            
+
             return this;
         }
 
@@ -100,7 +100,7 @@ public class Library {
             this.address = address;
             return this;
         }
-        
+
         public Library build(){
             return new Library( this);
         }
