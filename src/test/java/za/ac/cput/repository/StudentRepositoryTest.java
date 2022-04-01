@@ -34,4 +34,18 @@ class StudentRepositoryTest {
         System.out.println();
 
     }
+
+    @Test
+    void b_ReadCustomerTest(){
+        Student showStudent = studentRepository.read(student_a.getCustomerID());
+        Student showsStudent2 = showStudent;
+
+        assertNotNull(showStudent);
+        assertSame(showStudent,showsStudent2);
+        assertEquals(student_a.getCustomerID(),showStudent.getCustomerID());
+
+        System.out.println("Read from student list...");
+        System.out.println(studentRepository.read(121));
+        System.out.println();
+    }
 }
