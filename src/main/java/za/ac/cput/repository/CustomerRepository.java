@@ -66,8 +66,13 @@ public class CustomerRepository implements CustomerRepositoryInterface{
     }
 
     @Override
-    public boolean delete(Integer integer) {
-        return false;
+    public boolean delete(Integer customerID) {
+        Customer deleteCustomer = read(customerID);//read through the database
+
+        if(deleteCustomer == null)
+            return false;
+            customerDB.remove(deleteCustomer); //removes customer
+            return true;
     }
 
     @Override
