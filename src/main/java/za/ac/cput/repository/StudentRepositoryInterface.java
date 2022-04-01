@@ -8,7 +8,7 @@ import za.ac.cput.entity.Student;
 
 import java.util.Set;
 
-public interface StudentRepositoryInterface {
+public interface StudentRepositoryInterface extends IRepository<Student, Integer>{
 
     public Set<Student> getAll();
 }
