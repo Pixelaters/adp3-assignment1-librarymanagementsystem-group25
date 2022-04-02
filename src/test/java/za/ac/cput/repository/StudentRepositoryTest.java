@@ -90,6 +90,7 @@ class StudentRepositoryTest {
     void e_DeleteStudentTest(){
         boolean success = StudentRepository.getInstance().delete(student_a.getCustomerID());
         assertNotNull(success);
+        assertNotSame(success,student_a);
         System.out.println("Delete success?: " + success);
         System.out.println();
     }
@@ -97,6 +98,8 @@ class StudentRepositoryTest {
     @Test
     void d_getAllStudents(){
         System.out.println("Getting all...");
+        assertNotNull(studentRepository.getAll());
+        //assertNull(studentRepository.getAll()); //fails test
         System.out.println(studentRepository.getAll());
         System.out.println();
     }
