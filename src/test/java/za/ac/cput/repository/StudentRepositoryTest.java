@@ -27,7 +27,9 @@ class StudentRepositoryTest {
                 263404840,211202101,"",true,false);
 
         assertEquals(student_a.getCustomerID(),student1.getCustomerID());
+        assertSame(student_a.isHighSchool(),student1.isHighSchool());
         assertSame(student1,student2);
+        assertNotSame(student_a.getCustomerID(),student3.getCustomerID());
         assertNotSame(student1,student3);
         assertNotNull(student_a);
         //assertNull(student_a); //fail test
