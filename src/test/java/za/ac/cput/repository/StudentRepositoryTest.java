@@ -53,8 +53,15 @@ class StudentRepositoryTest {
     @Test
     void c_UpdateStudentTest(){
         Student updateStudent1 = (Student) new Student.Builder().copy(student_a)
+                .setStudentNumber(student_a.getStudentNumber())
                 .setCourse("App Development")
+                .setHighSchool(student_a.isHighSchool())
+                .setUniversity(student_a.isUniversity())
+                .setCustomerID(student_a.getCustomerID())
+                .setCustomerName(student_a.getCustomerName())
+                .setCustomerSurname(student_a.getCustomerSurname())
                 .setAddress("Green ave")
+                .setCellNo(student_a.getCellNo())
                 .build();
         Student identicalStudent = updateStudent1;
 
