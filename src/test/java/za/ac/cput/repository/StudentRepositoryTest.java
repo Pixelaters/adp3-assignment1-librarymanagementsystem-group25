@@ -77,6 +77,9 @@ class StudentRepositoryTest {
         assertNotNull(identicalStudent);
         assertSame(updateStudent1,identicalStudent);
         assertNotSame(student_a,updateStudent1);
+        assertNotSame(student_a.getCourse(),updateStudent1.getCourse());
+        assertNotSame(student_a.getAddress(),updateStudent1.getAddress());
+        assertEquals(student_a.getCustomerID(),updateStudent1.getCustomerID());
 
         System.out.println("Student details has been updated...");
         System.out.println(studentRepository.update(updateStudent1));
