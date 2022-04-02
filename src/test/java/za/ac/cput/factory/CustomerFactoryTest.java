@@ -40,6 +40,8 @@ class CustomerFactoryTest {
         Customer testViewCustomer3 = testViewCustomer1;
 
             assertSame(testViewCustomer1,testViewCustomer3);
+            assertNotSame(testViewCustomer1.getCustomerID(),testViewCustomer2.getCustomerID());
+            assertNotSame(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
             assertNotSame(testViewCustomer1, testViewCustomer2);
             assertNotSame(testViewCustomer2, testViewCustomer1);
             assertNotSame(testViewCustomer2, testViewCustomer3);
@@ -56,13 +58,11 @@ class CustomerFactoryTest {
 
         assertEquals(testViewCustomer1,testViewCustomer3);
         assertEquals(testViewCustomer2,testViewCustomer4);
+        assertEquals(testViewCustomer1.getCustomerName(),testViewCustomer3.getCustomerName());
+        assertNotEquals(testViewCustomer1.getCustomerID(),testViewCustomer2.getCustomerID());
+        assertNotEquals(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
             System.out.println("Test passed!...");
 
-    }
-
-  @Test
-  //@Disabled
-    public void fail(String message){
     }
 
 }
