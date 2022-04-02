@@ -21,7 +21,7 @@ class AdultRepositoryTest {
 
     //Test to add an adult customer to the LMS
     @Test
-    void a_CreateAdult(){
+    void a_CreateAdultTest(){
         Adult newAdult1 = adultRepository.create(adult_a);
         Adult newAdult2 = adultRepository.create(adult_b);
         Adult newAdult3 = newAdult1;
@@ -43,7 +43,7 @@ class AdultRepositoryTest {
 
     //Read a specific adult customer from the database
     @Test
-    void b_ReadAdult(){
+    void b_ReadAdultTest(){
        Adult readAdult = adultRepository.read(adult_a.getCustomerID());
        Adult anotherAdult = readAdult;
 
@@ -63,7 +63,7 @@ class AdultRepositoryTest {
 
     //test to update a specific adult customer details
     @Test
-    void c_UpdateAdult(){
+    void c_UpdateAdultTest(){
 
     }
 
