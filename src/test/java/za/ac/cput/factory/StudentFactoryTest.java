@@ -67,8 +67,12 @@ class StudentFactoryTest {
         //assertSame(student1,student2); //failed test
         assertSame(student1,student3);
         assertSame(student3,student1);
+        assertSame(student1.isHighSchool(),student2.isHighSchool());
+        assertSame(student1.isUniversity(),student2.isUniversity());
 
         //assertNotSame(student1,student3);//failed test
+        assertNotSame(student1.getCustomerID(),student2.getCustomerID());
+        assertNotSame(student1.getStudentNumber(),student2.getStudentNumber());
         assertNotSame(student1,student2);
         assertNotSame(student2,student1);
         assertNotSame(student2,student3);
