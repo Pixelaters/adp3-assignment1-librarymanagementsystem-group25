@@ -24,14 +24,21 @@ class StudentRepositoryTest {
         Student student1 = studentRepository.create(student_a);
         Student student2 = student1;
         Student student3 = StudentFactory.createStudent(174,"Sam","Sung","Nest street",
-                263404840,211202101,"",true,false);
+                263404840,211202101,null,true,false);
 
         assertEquals(student_a.getCustomerID(),student1.getCustomerID());
         assertSame(student_a.isHighSchool(),student1.isHighSchool());
+        assertNotSame(student1.isUniversity(),student3.isUniversity());
+        assertNotSame(student1.getStudentNumber(),student3.getStudentNumber());
+        assertNotSame(student1.getCourse(),student3.getCourse());
         assertSame(student1,student2);
+        assertNull(student3.getCourse());
         assertNotSame(student_a.getCustomerID(),student3.getCustomerID());
         assertNotSame(student1,student3);
         assertNotNull(student_a);
+        assertNotNull(student1);
+        assertNotNull(student2);
+        assertNotNull(student3);
         //assertNull(student_a); //fail test
         System.out.println("Student created...");
         System.out.println();
