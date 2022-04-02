@@ -50,13 +50,19 @@ class StudentRepositoryTest {
         Student showStudent = studentRepository.read(student_a.getCustomerID());
         Student showsStudent2 = showStudent;
         Student student3 = StudentFactory.createStudent(174,"Sam","Sung","Nest street",
-                263404840,211202101,"",true,false);
+                263404840,211202101,null,true,false);
 
         assertNotNull(showStudent);
         assertNotNull(showsStudent2);
+        assertNull(student3.getCourse());
+        assertEquals(student_a.getCustomerID(),showStudent.getCustomerID());
+        assertSame(student_a.isHighSchool(),showStudent.isHighSchool());
         assertSame(showStudent,showsStudent2);
         assertSame(student_a.getCustomerID(),showStudent.getCustomerID());
         assertNotSame(showStudent.getStudentNumber(),student3.getStudentNumber());
+        assertNotSame(showStudent.isUniversity(),student3.isUniversity());
+        assertNotSame(showStudent.getStudentNumber(),student3.getStudentNumber());
+        assertNotSame(showStudent.getCourse(),student3.getCourse());
         assertNotSame(showStudent.getCustomerID(),student3.getCustomerID());
         assertEquals(student_a.getCustomerID(),showStudent.getCustomerID());
 
