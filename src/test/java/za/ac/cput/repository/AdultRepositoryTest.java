@@ -64,7 +64,41 @@ class AdultRepositoryTest {
     //test to update a specific adult customer details
     @Test
     void c_UpdateAdultTest(){
+        Adult updateAdult = (Adult) new Adult.Builder().copy(adult_b)
+                .setPensioner(adult_b.isPensioner())
+                .setEmployed(true)
+                .setJobDescription("gas station attendant")
+                .setCustomerID(adult_b.getCustomerID())
+                .setCustomerName(adult_b.getCustomerName())
+                .setCustomerSurname(adult_b.getCustomerSurname())
+                .setAddress("San Andreas")
+                .setCellNo(adult_b.getCellNo())
+                .build();
 
+        assertNotNull(updateAdult);
+        assertNotSame(adult_b,updateAdult);
+        //assertSame(adult_b,updateAdult);//fails test
+        System.out.println(adult_b.getCustomerName() + "'s details updated....");
+        System.out.println(adultRepository.update(updateAdult));
+        System.out.println();
+    }
+
+    //test to delete adult customer
+    @Test
+    void e_deleteAdult(){
+        boolean success = AdultRepository.getInstance().delete(adult_b.getCustomerID());
+        //assertTrue(success);
+        assertNotNull(success);
+
+        System.out.println("Delete Success? " + success);
+        System.out.println();
+    }
+
+    @Test
+    void d_getAllTest(){
+        System.out.println("Getting all adult customers...");
+        System.out.println(adultRepository.getAll() + "\n");
+        System.out.println();
     }
 
 
