@@ -95,6 +95,10 @@ class StudentFactoryTest {
         assertEquals(student4,student2);
         assertEquals(student2,student4);
 
+        assertNotEquals(student1.getCustomerID(),student2.getCustomerID());
+        assertNotEquals(student1.getStudentNumber(),student2.getStudentNumber());
+        assertNotEquals(student1.getCellNo(),student2.getCellNo());
+
         assertEquals(true,student1.isUniversity());
         //assertEquals(true,student1.isHighSchool()); //failed test
         assertEquals(false,student1.isHighSchool());
