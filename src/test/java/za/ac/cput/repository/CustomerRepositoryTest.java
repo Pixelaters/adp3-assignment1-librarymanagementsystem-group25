@@ -27,9 +27,14 @@ class CustomerRepositoryTest {
                 123456789);
 
         assertEquals(customer_a.getCustomerID(),customer1.getCustomerID());
+        assertSame(customer_a.getCustomerID(),customer1.getCustomerID());
+        assertNotSame(customer1.getCustomerID(),customer_b.getCustomerID());
+        assertNotSame(customer2.getCellNo(),customer_b.getCellNo());
         assertSame(customer1,customer2);
         assertNotSame(customer1,customer_b);
         assertNotNull(customer_a);
+        assertNotNull(customer2);
+        assertNotNull(customer_b);
         //assertNull(customer_a); //test fails
         System.out.println("Customer(s) added...");
         System.out.println();
