@@ -73,6 +73,7 @@ class CustomerRepositoryTest {
         assertNotNull(updateCustomer1);
         assertNotNull(identicalCustomer);
         assertSame(updateCustomer1,identicalCustomer);
+        assertEquals(customer_a.getCustomerID(),updateCustomer1.getCustomerID());
         assertNotSame(customer_a,updateCustomer1);
         assertNotSame(customer_a.getCustomerSurname(),updateCustomer1.getCustomerSurname());
         assertNotSame(customer_a.getAddress(),updateCustomer1.getAddress());
@@ -88,6 +89,7 @@ class CustomerRepositoryTest {
         boolean success = CustomerRepository.getInstance().delete((customer_a.getCustomerID()));
         assertNotNull(success);
         assertNotSame(customer_a,success);
+        //assertSame(customer_a,success); //fails test because the deletion has been success, and therefore it is not the same
         System.out.println("Delete success? " + success);
         System.out.println();
     }
