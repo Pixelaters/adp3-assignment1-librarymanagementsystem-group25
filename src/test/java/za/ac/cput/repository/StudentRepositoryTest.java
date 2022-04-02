@@ -89,10 +89,19 @@ class StudentRepositoryTest {
         assertNotNull(updateStudent1);
         assertNotNull(identicalStudent);
         assertSame(updateStudent1,identicalStudent);
+        assertSame(student_a.getCustomerID(),updateStudent1.getCustomerID());
+        assertSame(student_a.getCustomerName(),updateStudent1.getCustomerName());
+        assertSame(student_a.getCustomerSurname(),updateStudent1.getCustomerSurname());
+        assertSame(student_a.isHighSchool(),updateStudent1.isHighSchool());
         assertNotSame(student_a,updateStudent1);
         assertNotSame(student_a.getCourse(),updateStudent1.getCourse());
         assertNotSame(student_a.getAddress(),updateStudent1.getAddress());
         assertEquals(student_a.getCustomerID(),updateStudent1.getCustomerID());
+        assertEquals(student_a.getCustomerName(),updateStudent1.getCustomerName());
+        assertEquals(student_a.getCustomerSurname(),updateStudent1.getCustomerSurname());
+        assertEquals(student_a.getCellNo(),updateStudent1.getCellNo());
+        assertEquals(student_a.getStudentNumber(),updateStudent1.getStudentNumber());
+        assertEquals(student_a.isHighSchool(),updateStudent1.isHighSchool());
 
         System.out.println("Student details has been updated...");
         System.out.println(studentRepository.update(updateStudent1));
