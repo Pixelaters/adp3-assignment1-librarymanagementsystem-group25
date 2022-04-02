@@ -45,10 +45,17 @@ class CustomerRepositoryTest {
     void b_ReadCustomerTest(){
         Customer showCustomer1 = customerRepository.read(customer_a.getCustomerID());
         Customer showCustomer2 = showCustomer1;
+        Customer showCustomer3 = CustomerFactory.addCustomer(202,"Will","Smith",
+                "Disney street",240202221);
 
         assertNotNull(showCustomer1);
+        assertNotNull(showCustomer3);
+        assertNotSame(showCustomer1.getCustomerID(),showCustomer3.getCustomerID());
+        assertNotSame(showCustomer1,showCustomer3);
+        assertSame(showCustomer1.getCustomerID(),customer_a.getCustomerID());
         assertSame(showCustomer1,showCustomer2);
         assertEquals(customer_a.getCustomerID(),showCustomer1.getCustomerID());
+
         System.out.println("Read from list...");
         System.out.println(customerRepository.read(4));
         System.out.println();
@@ -67,6 +74,8 @@ class CustomerRepositoryTest {
         assertNotNull(identicalCustomer);
         assertSame(updateCustomer1,identicalCustomer);
         assertNotSame(customer_a,updateCustomer1);
+        assertNotSame(customer_a.getCustomerSurname(),updateCustomer1.getCustomerSurname());
+        assertNotSame(customer_a.getAddress(),updateCustomer1.getAddress());
         //assertSame(customer_a,updateCustomer1); //fails the test
         System.out.println("Customer details updated...");
         System.out.println(customerRepository.update(updateCustomer1));
