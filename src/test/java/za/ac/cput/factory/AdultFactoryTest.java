@@ -72,6 +72,10 @@ class AdultFactoryTest {
         //assertSame(adult1,adult2); //failed test
 
         //assertNotSame(student1,student3);//failed test
+        assertNotSame(adult1.getCustomerID(),adult2.getCustomerID());
+        assertNotSame(adult1.getCellNo(),adult2.getCellNo());
+        assertNotSame(adult1.isEmployed(),adult2.isEmployed());
+        assertNotSame(adult1.isPensioner(),adult2.isPensioner());
         assertNotSame(adult1,adult2);
         assertNotSame(adult2,adult1);
         assertNotSame(adult2,adult3);
@@ -90,6 +94,10 @@ class AdultFactoryTest {
         Adult adult4 = adult2;
 
        // assertEquals(adult1,adult2); //fail test
+        assertEquals(adult1.getCustomerID(),adult3.getCustomerID());
+        assertEquals(adult1.getCellNo(),adult3.getCellNo());
+        assertEquals(adult2.getCustomerID(),adult4.getCustomerID());
+        assertEquals(adult2.getCellNo(),adult4.getCellNo());
         assertEquals(adult1,adult3);
         assertEquals(adult3,adult1);
         assertEquals(adult4,adult2);
