@@ -77,6 +77,10 @@ class AdultRepositoryTest {
 
         assertNotNull(updateAdult);
         assertNotSame(adult_b,updateAdult);
+        assertNotSame(adult_b.getJobDescription(),updateAdult.getJobDescription());
+        assertNotSame(adult_b.isEmployed(),updateAdult.isEmployed());
+        assertNotSame(adult_b.getAddress(),updateAdult.getAddress());
+        assertEquals(adult_b.getCustomerID(),updateAdult.getCustomerID());
         //assertSame(adult_b,updateAdult);//fails test
         System.out.println(adult_b.getCustomerName() + "'s details updated....");
         System.out.println(adultRepository.update(updateAdult));
