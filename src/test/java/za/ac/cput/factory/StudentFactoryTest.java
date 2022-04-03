@@ -98,24 +98,26 @@ class StudentFactoryTest {
         Student student4 = student2;
 
         //assertEquals(student1,student2); //fail test
-        assertEquals(student1,student3);
-        assertEquals(student3,student1);
-        assertEquals(student4,student2);
-        assertEquals(student2,student4);
-
         assertNotEquals(student1.getCustomerID(),student2.getCustomerID());
+        assertNotEquals(student1.getCustomerName(),student2.getCustomerName());
+        assertNotEquals(student1.getCustomerSurname(),student2.getCustomerSurname());
+        assertNotEquals(student1.getAddress(),student2.getAddress());
         assertNotEquals(student1.getStudentNumber(),student2.getStudentNumber());
         assertNotEquals(student1.getCellNo(),student2.getCellNo());
+        assertNotEquals(student1.getStudentNumber(),student2.getStudentNumber());
 
         assertEquals(true,student1.isUniversity());
         //assertEquals(true,student1.isHighSchool()); //failed test
         assertEquals(false,student1.isHighSchool());
         //assertEquals(false,student1.isUniversity()); //failed test
-
         assertEquals(true,student2.isUniversity());
         //assertEquals(true,student2.isHighSchool()); //failed test
         assertEquals(false,student2.isHighSchool());
         //assertEquals(false,student2.isUniversity()); //failed test
+        assertEquals(student1,student3);
+        assertEquals(student3,student1);
+        assertEquals(student4,student2);
+        assertEquals(student2,student4);
 
         System.out.println("All tests passed...");
     }
