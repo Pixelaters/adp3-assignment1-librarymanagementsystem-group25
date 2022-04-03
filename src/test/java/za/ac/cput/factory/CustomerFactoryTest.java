@@ -61,7 +61,7 @@ class CustomerFactoryTest {
         assertEquals(testViewCustomer1.getCustomerName(),testViewCustomer3.getCustomerName());
         assertNotEquals(testViewCustomer1.getCustomerID(),testViewCustomer2.getCustomerID());
         assertNotEquals(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
-            System.out.println("Test passed!...");
+        System.out.println("Test passed!...");
 
     }
 
