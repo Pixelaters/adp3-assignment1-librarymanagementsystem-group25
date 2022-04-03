@@ -40,6 +40,12 @@ class CustomerFactoryTest {
         Customer testViewCustomer3 = testViewCustomer1;
 
             assertSame(testViewCustomer1,testViewCustomer3);
+
+            assertNotSame(testViewCustomer1.getCustomerID(),testViewCustomer2.getCustomerID());
+            assertNotSame(testViewCustomer1.getCustomerName(),testViewCustomer2.getCustomerName());
+            assertNotSame(testViewCustomer1.getCustomerSurname(),testViewCustomer2.getCustomerSurname());
+            assertNotSame(testViewCustomer1.getAddress(),testViewCustomer2.getAddress());
+            assertNotSame(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
             assertNotSame(testViewCustomer1, testViewCustomer2);
             assertNotSame(testViewCustomer2, testViewCustomer1);
             assertNotSame(testViewCustomer2, testViewCustomer3);
@@ -56,13 +62,20 @@ class CustomerFactoryTest {
 
         assertEquals(testViewCustomer1,testViewCustomer3);
         assertEquals(testViewCustomer2,testViewCustomer4);
-            System.out.println("Test passed!...");
+        assertEquals(testViewCustomer1.getCustomerID(),testViewCustomer3.getCustomerID());
+        assertEquals(testViewCustomer1.getCustomerName(),testViewCustomer3.getCustomerName());
+        assertEquals(testViewCustomer1.getCustomerSurname(),testViewCustomer3.getCustomerSurname());
+        assertEquals(testViewCustomer1.getAddress(),testViewCustomer3.getAddress());
+        assertEquals(testViewCustomer1.getCellNo(),testViewCustomer3.getCellNo());
 
-    }
+        assertNotEquals(testViewCustomer1.getCustomerID(),testViewCustomer2.getCustomerID());
+        assertNotEquals(testViewCustomer1.getCustomerName(),testViewCustomer2.getCustomerName());
+        assertNotEquals(testViewCustomer1.getCustomerSurname(),testViewCustomer2.getCustomerSurname());
+        assertNotEquals(testViewCustomer1.getAddress(),testViewCustomer2.getAddress());
+        assertNotEquals(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
+        assertNotEquals(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
+        System.out.println("Test passed!...");
 
-  @Test
-  //@Disabled
-    public void fail(String message){
     }
 
 }
