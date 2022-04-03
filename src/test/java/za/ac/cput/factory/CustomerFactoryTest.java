@@ -41,6 +41,9 @@ class CustomerFactoryTest {
 
             assertSame(testViewCustomer1,testViewCustomer3);
             assertNotSame(testViewCustomer1.getCustomerID(),testViewCustomer2.getCustomerID());
+            assertNotSame(testViewCustomer1.getCustomerName(),testViewCustomer2.getCustomerName());
+            assertNotSame(testViewCustomer1.getCustomerSurname(),testViewCustomer2.getCustomerSurname());
+            assertNotSame(testViewCustomer1.getAddress(),testViewCustomer2.getAddress());
             assertNotSame(testViewCustomer1.getCellNo(),testViewCustomer2.getCellNo());
             assertNotSame(testViewCustomer1, testViewCustomer2);
             assertNotSame(testViewCustomer2, testViewCustomer1);
