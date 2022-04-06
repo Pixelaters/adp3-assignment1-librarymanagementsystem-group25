@@ -5,6 +5,13 @@ import za.ac.cput.entity.Staff;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+    StaffRepository.java
+    Ziyaad Petersen (219083479)
+    ADP3 - Assignment 1: Group 25
+    Date: 26 April 2022
+ */
+
 public class StaffRepository implements StaffRepositoryInterface {
 
     private static StaffRepository staffRepository= null;
