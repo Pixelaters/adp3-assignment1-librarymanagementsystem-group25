@@ -132,4 +132,9 @@ public class BookRepository implements BookRepositoryInterface{
         //book not found
         return null;
     }
+
+    @Override
+    public void deleteAll(){
+        booksDB.clear();
+    }
 }

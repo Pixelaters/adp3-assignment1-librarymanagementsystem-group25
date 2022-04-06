@@ -132,4 +132,9 @@ public class SupplierRepository implements SupplierRepositoryInterface{
         //supplier not found
         return null;
     }
+
+    @Override
+    public void deleteAll() {
+        suppliersDB.clear();
+    }
 }

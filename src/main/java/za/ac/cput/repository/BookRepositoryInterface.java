@@ -16,4 +16,5 @@ public interface BookRepositoryInterface extends IRepository<Book,String>{
     Book getBookByName(String name);
     Book getBookByPublisher(String publisher);
     Book getBookBySupplier(Supplier supplier);
+    void deleteAll();
 }
