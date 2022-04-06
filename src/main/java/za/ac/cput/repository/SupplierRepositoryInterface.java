@@ -15,4 +15,5 @@ public interface SupplierRepositoryInterface extends IRepository<Supplier,String
     Supplier getSupplierByName(String name);
     Supplier getSupplierByCity(String publisher);
     Supplier getSupplierByLibrary(Library library);
+    void deleteAll();
 }
