@@ -5,6 +5,13 @@ import za.ac.cput.entity.Librarian;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+    LibrarianRepository.java
+    Ziyaad Petersen (219083479)
+    ADP3 - Assignment 1: Group 25
+    Date: 6 April 2022
+ */
+
 public class LibrarianRepository implements  LibrarianRepositoryInterface {
 
     private static IRepository IR= null;
