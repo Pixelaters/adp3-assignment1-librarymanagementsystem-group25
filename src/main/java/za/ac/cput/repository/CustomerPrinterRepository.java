@@ -1,3 +1,11 @@
+/*
+ * This is CustomerPrinterRepository.java class.
+ * Nondumiso Gaga (220430853)
+ * Date:06/04/2022
+
+
+ */
+
 package za.ac.cput.repository;
 
 
@@ -37,9 +45,11 @@ public class CustomerPrinterRepository implements ICustomerPrinterRepository {
 
     @Override
     public CustomerPrinter read(String printerCode) {
-       CustomerPrinter custPrinter = custpDB.stream().filter(e -> e.getPrinterCode().equals(printerCode)).findAny().orElse(null);
-        return custPrinter;
-
+      for(CustomerPrinter customerPrinter: custpDB){
+          if (customerPrinter.getPrinterCode().equals(printerCode))
+              return customerPrinter;
+      }
+     return null;
     }
 
     @Override

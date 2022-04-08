@@ -40,10 +40,11 @@ public static PrinterRepository getRepo(){
     @Override
     public Printer read( String printerCode) {
 
-    Printer printer = printerDb.stream().filter(e -> e.getPrinterCode().
-            equals(printerCode)).findAny().orElse(null);
+    for(Printer printer : printerDb){
+        if(printer.getPrinterCode().equals(printerCode))
             return printer;
-
+    }
+    return  null;
     }
 
 
