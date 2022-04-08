@@ -1,4 +1,9 @@
 package za.ac.cput.repository;
+/* BookRepositoryTest.java
+Repository test class for the Book
+Author: Ongezwa Gwaza (211272183)
+Date: 4 April 2022
+*/
 
 import org.junit.jupiter.api.*;
 import za.ac.cput.entity.Book;
@@ -7,8 +12,6 @@ import za.ac.cput.entity.Supplier;
 
 
 import java.util.Set;
-import java.util.function.BooleanSupplier;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
