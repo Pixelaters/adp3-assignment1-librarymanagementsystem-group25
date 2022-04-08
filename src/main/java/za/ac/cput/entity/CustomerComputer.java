@@ -58,6 +58,14 @@ public class CustomerComputer extends Computer {
                 '}';
     }
 
+    public Object isActive() {
+        return null;
+    }
+
+    public Object isBrandName() {
+        return null;
+    }
+
     public static class Builder extends Computer.Builder{
 
         private String computerId;

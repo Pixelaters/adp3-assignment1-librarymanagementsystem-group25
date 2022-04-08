@@ -65,6 +65,14 @@ public class Library {
                 '}';
     }
 
+    public Object isAddress() {
+        return null;
+    }
+
+    public Object isLocation() {
+        return null;
+    }
+
     public static class Builder{
 
         private String libraryId;
