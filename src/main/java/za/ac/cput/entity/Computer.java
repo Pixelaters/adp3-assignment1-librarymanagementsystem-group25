@@ -65,6 +65,14 @@ public class Computer {
                 '}';
     }
 
+    public Object isStatus() {
+        return null;
+    }
+
+    public Object isBrandName() {
+        return null;
+    }
+
 
     public static  class Builder{
 
@@ -103,6 +111,7 @@ public class Computer {
         public Computer build(){
             return new Computer(this);
         }
+
 
 
     }
