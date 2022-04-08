@@ -1,5 +1,9 @@
 package za.ac.cput.repository;
-
+/* SupplierRepositoryTest.java
+Repository test class for the Supplier
+Author: Ongezwa Gwaza (211272183)
+Date: 4 April 2022
+*/
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
