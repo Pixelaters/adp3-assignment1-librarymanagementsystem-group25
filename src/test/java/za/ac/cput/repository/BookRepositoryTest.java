@@ -84,6 +84,9 @@ public class BookRepositoryTest {
         Set<Book> books = bookRepository.getAll();
         System.out.println(books);
         Boolean booksIsEmpty = books.isEmpty();
+        // if(booksIsEmpty = true){
+        //          System.out.println(booksIsEmpty + "Database is empty as there are not items in the database");
+        // }
         assertTrue(booksIsEmpty,"Database is empty as there are not items in the database");
         System.out.println("Test passed : Database is empty");
 
