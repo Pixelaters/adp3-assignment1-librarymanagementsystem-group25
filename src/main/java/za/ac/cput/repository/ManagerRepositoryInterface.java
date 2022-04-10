@@ -11,6 +11,6 @@ import java.util.Set;
     Date: 26 April 2022
  */
 
-public interface ManagerRepositoryInterface extends  IRepository<Manager, String>{
+public interface ManagerRepositoryInterface extends  IRepository<Manager, Long>{
     public Set<Manager> getAll();
 }

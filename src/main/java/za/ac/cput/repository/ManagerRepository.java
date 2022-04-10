@@ -39,18 +39,20 @@ public class ManagerRepository implements  ManagerRepositoryInterface {
     }
 
     @Override
-    public Manager read(String managerCode) {
-       for (Manager manager: man){
-           if (manager.getManagerCode().equals(managerCode)){
-            return manager;
-           }
-       }
-       return null;
+    public Manager read(Long staffID) {
+        for (Manager manager : man) {
+            if (manager.getStaffMember_ID() == staffID) {
+                return manager;
+            }
+        }
+        return null;
     }
+
+
 
     @Override
     public Manager update(Manager manager) {
-        Manager oldManager = read((manager.getManagerCode()));
+        Manager oldManager = read((manager.getStaffMember_ID()));
         if (oldManager != null){
             man.remove(oldManager);
             man.add(manager);
@@ -60,14 +62,15 @@ public class ManagerRepository implements  ManagerRepositoryInterface {
     }
 
     @Override
-    public boolean delete(String managerCode) {
-        Manager deleteManager= read(managerCode);
+    public boolean delete(Long StaffId) {
+        Manager deleteManager= read(StaffId);
         if (deleteManager == null){
             return false;
         }
         man.remove(deleteManager);
         return true;
     }
+
 
     @Override
     public Set<Manager> getAll() {
