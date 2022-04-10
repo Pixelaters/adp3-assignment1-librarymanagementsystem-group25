@@ -53,10 +53,12 @@ public class StaffRepositoryTest {
         Staff showst2 = showst;
         Staff showst3 = StaffFactory.addStaff(111, "Ziyaad", "Petersen", "33 Michigan Way", 833806377);
 
-        assertNull(showst);
+        assertNotNull(showst);
         System.out.println("test 1 passed");
         assertNotNull(showst3);
-        assertNotSame(showst.getStaffMember_ID(),showst3.getStaffMember_ID());
+        System.out.println("test 2 passed");
+        assertSame(showst.getStaffMember_ID(),showst3.getStaffMember_ID());
+        System.out.println("test 3 passed");
         assertNotSame(showst,showst3);
         assertSame(showst.getStaffMember_ID(),accountA.getStaffMember_ID());
         assertSame(showst,showst2);

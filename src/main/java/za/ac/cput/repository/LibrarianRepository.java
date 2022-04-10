@@ -37,10 +37,11 @@ public class LibrarianRepository implements  LibrarianRepositoryInterface {
         return librarian;
     }
 
+
     @Override
-    public Librarian read(String librarianCode) {
+    public Librarian read(Long staffID) {
         for (Librarian librarian: lbrarian){
-            if (librarian.getLibrarianCode().equals(librarianCode)){
+            if (librarian.getStaffMember_ID()== staffID){
                 return librarian;
             }
 
@@ -50,7 +51,7 @@ public class LibrarianRepository implements  LibrarianRepositoryInterface {
 
     @Override
     public Librarian update(Librarian librarian) {
-        Librarian oldLibrarian = read((librarian.getLibrarianCode()));
+        Librarian oldLibrarian = read((librarian.getStaffMember_ID()));
         if (oldLibrarian != null){
             lbrarian.remove(oldLibrarian);
             lbrarian.add(librarian);
@@ -60,7 +61,7 @@ public class LibrarianRepository implements  LibrarianRepositoryInterface {
     }
 
     @Override
-    public boolean delete(String librarianCode) {
+    public boolean delete(Long librarianCode) {
         Librarian deleteLibrarian= read(librarianCode);
         if (deleteLibrarian== null){
             return false;

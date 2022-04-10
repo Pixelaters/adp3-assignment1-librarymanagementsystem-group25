@@ -1,6 +1,8 @@
 package za.ac.cput.repository;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.entity.Librarian;
 import za.ac.cput.factory.LibrarianFactory;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     Date: 26 April 2022
  */
 
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class LibrarianRepositoryTest {
     private static final Librarian accountA = LibrarianFactory.createLibrarian(111, "Ziyaad", "Petersen", "33 Michigan Way", 833806377,"214", "Librarian", true );
 
@@ -23,11 +26,11 @@ public class LibrarianRepositoryTest {
         Librarian st2 = st1;
         Librarian accountB = LibrarianFactory.createLibrarian(112, "Breyton", "Raeece", "33 Avenue", 874592332, "213", "Librarian", true);
 
-        assertEquals(accountA.getLibrarianCode(),st1.getLibrarianCode());
+        assertEquals(accountA.getStaffMember_ID(),st1.getStaffMember_ID());
         System.out.println("test 1 is equal");
-        assertNotSame(accountB.getLibrarianCode(),st1.getLibrarianCode());
+        assertNotSame(accountB.getStaffMember_ID(),st1.getStaffMember_ID());
         System.out.println("test 2 is same");
-        assertNotSame(st1.getLibrarianCode(),accountB.getLibrarianCode());
+        assertNotSame(st1.getStaffMember_ID(),accountB.getStaffMember_ID());
         System.out.println("test 3 is not same");
         assertNotSame(st2.getHomeAddress(),accountB.getHomeAddress());
         System.out.println("test 4 is not same");
@@ -47,22 +50,24 @@ public class LibrarianRepositoryTest {
 
     @Test
     void bReadStaffTest(){
-        Librarian showst = LibrarianRepository.getInstance().read(accountA.getLibrarianCode());
+        Librarian showst = LibrarianRepository.getInstance().read(accountA.getStaffMember_ID());
         Librarian showst2 = showst;
         Librarian showst3 = LibrarianFactory.createLibrarian(111, "Ziyaad", "Petersen", "33 Michigan Way", 833806377,"214", "Librarian", true);
 
-        assertNull(showst);
+        assertNotNull(showst);
         System.out.println("test 1 passed");
         assertNotNull(showst3);
-        assertNotSame(showst.getLibrarianCode(),showst3.getLibrarianCode());
+        System.out.println("test 2 passed");
+        assertSame(showst.getStaffMember_ID(),showst3.getStaffMember_ID());
+        System.out.println("test 3 passed");
         assertNotSame(showst,showst3);
-        assertSame(showst.getLibrarianCode(),accountA.getLibrarianCode());
+        assertSame(showst.getStaffMember_ID(),accountA.getStaffMember_ID());
         assertSame(showst,showst2);
-        assertEquals(accountA.getLibrarianCode(),showst.getLibrarianCode());
+        assertEquals(accountA.getStaffMember_ID(),showst.getStaffMember_ID());
 
 
         System.out.println("Processing accounts...");
-        System.out.println(LibrarianRepository.getInstance().read("214"));
+        System.out.println(LibrarianRepository.getInstance().read(214L));
         System.out.println();
     }
 
@@ -76,16 +81,16 @@ public class LibrarianRepositoryTest {
         assertNotNull(updateSt1);
         assertNotNull(updateSt1);
         assertSame(updateSt1, updateSt1);
-        assertNotEquals(accountA.getLibrarianCode(),updateSt1.getLibrarianCode());
+        assertNotEquals(accountA.getStaffMember_ID(),updateSt1.getStaffMember_ID());
         assertNotSame(accountA,updateSt1);
         assertNotSame(accountA.getHomeAddress(),updateSt1.getHomeAddress());
-        assertNotSame(accountA.getLibrarianCode(),updateSt1.getLibrarianCode());
+        assertNotSame(accountA.getStaffMember_ID(),updateSt1.getStaffMember_ID());
         System.out.println("Library Account details updated...");
     }
 
     @Test
     void fDeleteStaffTest(){
-        boolean success = LibrarianRepository.getInstance().delete((accountA.getLibrarianCode()));
+        boolean success = LibrarianRepository.getInstance().delete((accountA.getStaffMember_ID()));
         assertNotNull(success);
         assertNotSame(accountA,success);
         System.out.println("Delete success? " + success);

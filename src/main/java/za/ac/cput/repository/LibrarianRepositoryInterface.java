@@ -11,6 +11,6 @@ import java.util.Set;
     Date: 26 April 2022
  */
 
-public interface LibrarianRepositoryInterface extends IRepository<Librarian, String> {
+public interface LibrarianRepositoryInterface extends IRepository<Librarian, Long> {
     public Set<Librarian> getAll();
 }
