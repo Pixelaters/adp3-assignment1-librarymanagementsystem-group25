@@ -1,15 +1,14 @@
 package za.ac.cput.repository;
-
-import za.ac.cput.entity.Customer;
-
-import java.util.HashSet;
-import java.util.Set;
-
 /*
     Breyton Ernstzen (217203027)
     ADP3 - Assignment 1: Group 25
     Date: April 2022
  */
+import za.ac.cput.entity.Customer;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class CustomerRepository implements CustomerRepositoryInterface{
     private static CustomerRepository customerRepository = null;
     private Set<Customer> customerDB = null;
