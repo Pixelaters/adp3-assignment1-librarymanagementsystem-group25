@@ -6,5 +6,5 @@ UML for our Library management system
 
 ---
 
-![UML](BRONZElibrarymamagementsystem_Final UML.jpg)
+![UML](BRONZElibrarymamagementsystem_FinalUML.jpg)
 
