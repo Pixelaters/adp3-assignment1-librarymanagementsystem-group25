@@ -1,6 +1,9 @@
 package za.ac.cput.repository;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import za.ac.cput.entity.Adult;
 import za.ac.cput.entity.Manager;
 import za.ac.cput.factory.ManagerFactory;
 
@@ -13,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
     Date: 26 April 2022
  */
 
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class ManagerRepositoryTest {
     private static final Manager accountA = ManagerFactory.createManager(111, "Ziyaad", "Petersen", "33 Michigan Way", 833806377,"214", true);
 
@@ -22,11 +26,11 @@ public class ManagerRepositoryTest {
         Manager st2 = st1;
         Manager accountB = ManagerFactory.createManager(112, "Breyton", "Raeece", "33 Avenue", 874592332, "213", true);
 
-        assertEquals(accountA.getManagerCode(),st1.getManagerCode());
+        assertEquals(accountA.getStaffMember_ID(),st1.getStaffMember_ID());
         System.out.println("test 1 is equal");
-        assertNotSame(accountB.getManagerCode(),st1.getManagerCode());
+        assertNotSame(accountB.getStaffMember_ID(),st1.getStaffMember_ID());
         System.out.println("test 2 is same");
-        assertNotSame(st1.getManagerCode(),accountB.getManagerCode());
+        assertNotSame(st1.getStaffMember_ID(),accountB.getStaffMember_ID());
         System.out.println("test 3 is not same");
         assertNotSame(st2.getHomeAddress(),accountB.getHomeAddress());
         System.out.println("test 4 is not same");
@@ -46,24 +50,31 @@ public class ManagerRepositoryTest {
 
     @Test
     void bReadStaffTest(){
-        Manager showst = ManagerRepository.getInstance().read(accountA.getManagerCode());
+        Manager showst = ManagerRepository.getInstance().read(accountA.getStaffMember_ID());
         Manager showst2 = showst;
         Manager showst3 = ManagerFactory.createManager(111, "Ziyaad", "Petersen", "33 Michigan Way", 833806377,"214",  true);
 
-        assertNull(showst);
+        assertNotNull(showst);
         System.out.println("test 1 passed");
         assertNotNull(showst3);
-        assertNotSame(showst.getManagerCode(),showst3.getManagerCode());
+        System.out.println("test 2 passed");
+        assertSame(showst.getStaffMember_ID(),showst3.getStaffMember_ID());
+        System.out.println("test 3 passed");
         assertNotSame(showst,showst3);
-        assertSame(showst.getManagerCode(),accountA.getManagerCode());
+        System.out.println("test 4 passed");
+        assertSame(showst.getStaffMember_ID(),accountA.getStaffMember_ID());
+        System.out.println("test 5 passed");
         assertSame(showst,showst2);
-        assertEquals(accountA.getManagerCode(),showst.getManagerCode());
+        System.out.println("test 6 passed");
+        assertEquals(accountA.getStaffMember_ID(),showst.getStaffMember_ID());
+        System.out.println("test 7 passed");
 
 
         System.out.println("Processing accounts...");
-        System.out.println(ManagerRepository.getInstance().read("214"));
+        System.out.println(ManagerRepository.getInstance().read(214L));
         System.out.println();
     }
+
 
     @Test
     void cUpdateStaffTest(){
@@ -75,16 +86,16 @@ public class ManagerRepositoryTest {
         assertNotNull(updateSt1);
         assertNotNull(updateSt1);
         assertSame(updateSt1, updateSt1);
-        assertNotEquals(accountA.getManagerCode(),updateSt1.getManagerCode());
+        assertNotEquals(accountA.getStaffMember_ID(),updateSt1.getStaffMember_ID());
         assertNotSame(accountA,updateSt1);
         assertNotSame(accountA.getHomeAddress(),updateSt1.getHomeAddress());
-        assertNotSame(accountA.getManagerCode(),updateSt1.getManagerCode());
+        assertNotSame(accountA.getStaffMember_ID(),updateSt1.getStaffMember_ID());
         System.out.println("Library Account details updated...");
     }
 
     @Test
     void fDeleteStaffTest(){
-        boolean success = ManagerRepository.getInstance().delete((accountA.getManagerCode()));
+        boolean success = ManagerRepository.getInstance().delete((accountA.getStaffMember_ID()));
         assertNotNull(success);
         assertNotSame(accountA,success);
         System.out.println("Delete success? " + success);
