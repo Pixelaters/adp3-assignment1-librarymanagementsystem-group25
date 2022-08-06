@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Client {
     private String id;
     private Name name;
-    //private Book book;
+    private Book book;
     private boolean isRented;
 
     protected Client(){
@@ -19,7 +19,7 @@ public class Client {
     private Client(Builder b){
         this.id = b.id;
         this.name = b.name;
-        //this.book = b.book;
+        this.book = b.book;
         this.isRented = b.isRented;
     }
 
@@ -31,9 +31,9 @@ public class Client {
         return name;
     }
 
-   /* public Book getBook(){
-
-    }*/
+   public Book getBook(){
+        return book;
+    }
 
     public boolean isRented() {
         return isRented;
@@ -63,7 +63,7 @@ public class Client {
     public static class Builder{
         private String id;
         private Name name;
-        //private Book book;
+        private Book book;
         private boolean isRented;
 
         public Builder id(String id){
@@ -77,9 +77,10 @@ public class Client {
             return this;
         }
 
-       /*public Builder book(Book book){
-
-        }*/
+       public Builder book(Book book){
+            this.book = book;
+            return this;
+        }
 
         public Builder isRented(boolean isRented){
             this.isRented = isRented;
@@ -89,7 +90,7 @@ public class Client {
         public Builder copy(Client c){
             this.id = c.id;
             this.name = c.name;
-            //this.book = c.book;
+            this.book = c.book;
             this.isRented = c.isRented;
             return this;
         }
