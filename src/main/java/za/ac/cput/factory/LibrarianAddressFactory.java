@@ -11,8 +11,10 @@ import za.ac.cput.domain.LibrarianAddress;
  * Date: 2022/08/06
  * */
 public class LibrarianAddressFactory {
-    public static LibrarianAddress build(String librarianId, Address address){
+    public static LibrarianAddress createLibrarianAddress(String librarianId, Address address){
+        if (librarianId.isEmpty())
+            throw new IllegalArgumentException("librarianId must have a value");
         StringHelper.checkStringParam("1234",librarianId);
-        return new LibrarianAddress.LibrarianAddressBuilder().librarianId(librarianId).address(address).build();
+        return new LibrarianAddress.LibrarianAddressBuilder().librarianId(librarianId).address(address).createLibrarianAddress();
     }
 }
