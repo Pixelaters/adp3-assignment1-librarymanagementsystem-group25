@@ -17,7 +17,7 @@ public class StringHelper {
             return StringUtils.EMPTY;
         return str;
     }
-    public static void setStringParam(String paramName, String paramValue){
+    public static void checkStringParam(String paramName, String paramValue){
         if (isEmptyorNull(paramValue))
             throw new IllegalArgumentException(String.format("Invalid value for param %s",paramName));
     }
