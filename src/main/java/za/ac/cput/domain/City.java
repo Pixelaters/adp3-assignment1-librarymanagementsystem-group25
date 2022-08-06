@@ -65,7 +65,7 @@ public class City {
 
         }
 
-        public City build(){
+        public City createCity(){
             return new City(this);
         }
     }

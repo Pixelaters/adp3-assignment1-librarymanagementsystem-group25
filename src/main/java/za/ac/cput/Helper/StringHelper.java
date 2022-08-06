@@ -7,6 +7,8 @@ package za.ac.cput.Helper;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Pattern;
+
 public class StringHelper {
     public static boolean isEmptyorNull(String str){
         return StringUtils.isEmpty(str);
@@ -20,5 +22,9 @@ public class StringHelper {
     public static void checkStringParam(String paramName, String paramValue){
         if (isEmptyorNull(paramValue))
             throw new IllegalArgumentException(String.format("Invalid value for param %s",paramName));
+    }
+    public static void checkEmail(String email){
+        if(!Pattern.matches("^(.+)@(.+)$",email))
+            throw new IllegalArgumentException("Some details missing or invalid email(add '@' into your email)");
     }
 }
