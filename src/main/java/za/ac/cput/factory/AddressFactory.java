@@ -12,7 +12,7 @@ import za.ac.cput.domain.Address;
 import za.ac.cput.domain.City;
 
 public class AddressFactory {
-    public static Address build(String unitNumber, String complexName, String streetNumber, String streetName, int postalCode, City city){
+    public static Address createAddress(String unitNumber, String complexName, String streetNumber, String streetName, int postalCode, City city){
         StringHelper.setEmptyIfNull(unitNumber);
         StringHelper.setEmptyIfNull(complexName);
         StringHelper.checkStringParam("123",streetNumber);
@@ -21,7 +21,7 @@ public class AddressFactory {
             throw new IllegalArgumentException("Postal code must be 4 digits");
         }
 
-        return new Address.AddressBuilder().unitNumber(unitNumber).complexName(complexName).streetNumber(streetNumber).streetName(streetName).postalCode(postalCode).City(city).build();
+        return new Address.AddressBuilder().unitNumber(unitNumber).complexName(complexName).streetNumber(streetNumber).streetName(streetName).postalCode(postalCode).City(city).createAddress();
     }
 
 }
