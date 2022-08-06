@@ -10,11 +10,13 @@ import za.ac.cput.Helper.StringHelper;
 import za.ac.cput.domain.City;
 
 public class CityFactory {
-    public static City build(String id,String name, String suburb){
+    public static City createCity(String id, String name, String suburb){
+        if (id.isEmpty())
+            throw new IllegalArgumentException("Id must have a value");
         StringHelper.checkStringParam("12345",id);
         StringHelper.checkStringParam("Cape Town",name);
         StringHelper.checkStringParam("Kuilsriver",suburb);
-        return new City.CityBuilder().Id(id).Name(name).Suburb(suburb).build();
+        return new City.CityBuilder().Id(id).Name(name).Suburb(suburb).createCity();
 
     }
 }
