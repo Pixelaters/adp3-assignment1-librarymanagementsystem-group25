@@ -102,5 +102,9 @@ public class Address {
             this.city = a.city;
             return this;
        }
+
+       public Address build(){
+            return new Address(this);
+       }
     }
 }
