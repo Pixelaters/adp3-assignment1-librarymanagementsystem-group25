@@ -9,7 +9,7 @@ import za.ac.cput.domain.ClientAddress;
 
 public class ClientAddressFactory {
 
-    public static ClientAddress builder(String clientId, Address address){
+    public static ClientAddress createClientAddress(String clientId, Address address){
 
         if(clientId.isEmpty())
             throw new IllegalArgumentException("Id cannot be null");
