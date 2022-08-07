@@ -41,17 +41,17 @@ public class Book {
         private String author;
         private String genre;
 
-        public Builder setBookName(String bookName) {
+        public Builder BookName(String bookName) {
             this.bookName = bookName;
             return this;
         }
 
-        public Builder setAuthor(String author) {
+        public Builder Author(String author) {
             this.author = author;
             return this;
         }
 
-        public Builder setGenre(String genre) {
+        public Builder Genre(String genre) {
             this.genre = genre;
             return this;
         }
@@ -63,7 +63,7 @@ public class Book {
             return this;
         }
 
-        public Book createBook() {
+        public Book build() {
             return new Book(this);
         }
     }

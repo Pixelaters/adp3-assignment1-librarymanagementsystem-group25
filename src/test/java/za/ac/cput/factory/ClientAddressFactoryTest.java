@@ -11,13 +11,13 @@ class ClientAddressFactoryTest {
 
     @BeforeEach
     void setUp() {
-        ca1 = ClientAddressFactory.createClientAddress("1", AddressFactory.build("123",
+        ca1 = ClientAddressFactory.createClientAddress("1", AddressFactory.createAddress("123",
                 "McTominay Estate","123","Kruger Ave",7798,
-                CityFactory.build("A12","Cape Town","Wynberg")));
+                CityFactory.createCity("A12","Cape Town","Wynberg")));
 
-        ca2 = ClientAddressFactory.createClientAddress("2", AddressFactory.build("123",
+        ca2 = ClientAddressFactory.createClientAddress("2", AddressFactory.createAddress("123",
                 "Bergkruine","123","Voortrekker rd",7798,
-                CityFactory.build("CT12","Cape Town","Vanguard")));
+                CityFactory.createCity("CT12","Cape Town","Vanguard")));
 
     }
 
