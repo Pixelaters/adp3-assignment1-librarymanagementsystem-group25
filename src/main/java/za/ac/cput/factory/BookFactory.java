@@ -4,12 +4,13 @@ import za.ac.cput.Helper.StringHelper;
 import za.ac.cput.domain.Book;
 
 public class BookFactory {
-    public static Book CreateBook(String bookName, String author, String genre){
+    public static Book CreateBook(String bookId, String bookName, String author, String genre){
+        StringHelper.checkStringParam("bookId", bookId);
         StringHelper.checkStringParam("bookName", bookName);
         StringHelper.checkStringParam("author", author);
         StringHelper.checkStringParam("genre", genre);
 
-        return new Book.Builder().BookName(bookName).Author(author).Genre(genre).build();
+        return new Book.Builder().BookId(bookId).BookName(bookName).Author(author).Genre(genre).build();
 
 
     }
