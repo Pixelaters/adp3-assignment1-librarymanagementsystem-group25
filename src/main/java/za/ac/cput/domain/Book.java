@@ -1,6 +1,7 @@
 package za.ac.cput.domain;
 
 public class Book {
+    private String bookId;
     private String bookName;
     private String author;
     private String genre;
@@ -10,9 +11,14 @@ public class Book {
     }
 
     public Book(Builder builder) {
+        this.bookId = builder.bookId;
         this.bookName = builder.bookName;
         this.author = builder.author;
         this.genre = builder.genre;
+    }
+
+    public String getBookId() {
+        return bookId;
     }
 
     public String getBookName() {
@@ -30,16 +36,23 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "bookName='" + bookName + '\'' +
+                "bookId='" + bookId + '\'' +
+                ", bookName='" + bookName + '\'' +
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
                 '}';
     }
 
     public static class Builder {
+        private String bookId;
         private String bookName;
         private String author;
         private String genre;
+
+        public Builder BookId(String bookId) {
+            this.bookId = bookId;
+            return this;
+        }
 
         public Builder BookName(String bookName) {
             this.bookName = bookName;
@@ -57,6 +70,7 @@ public class Book {
         }
 
         public Builder copy(Book book){
+            this.bookId= bookId;
             this.bookName= bookName;
             this.author= author;
             this.genre= genre;
