@@ -21,7 +21,7 @@ public class AddressFactory {
             throw new IllegalArgumentException("Postal code must be 4 digits");
         }
 
-        return new Address.AddressBuilder().unitNumber(unitNumber).complexName(complexName).streetNumber(streetNumber).streetName(streetName).postalCode(postalCode).City(city).createAddress();
+        return new Address.AddressBuilder().unitNumber(unitNumber).complexName(complexName).streetNumber(streetNumber).streetName(streetName).postalCode(postalCode).City(city).build();
     }
 
 }
