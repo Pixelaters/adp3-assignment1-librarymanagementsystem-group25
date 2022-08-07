@@ -16,7 +16,7 @@ public class CityFactory {
         StringHelper.checkStringParam("12345",id);
         StringHelper.checkStringParam("Cape Town",name);
         StringHelper.checkStringParam("Kuilsriver",suburb);
-        return new City.CityBuilder().Id(id).Name(name).Suburb(suburb).createCity();
+        return new City.CityBuilder().Id(id).Name(name).Suburb(suburb).build();
 
     }
 }

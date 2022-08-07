@@ -103,7 +103,7 @@ public class Address {
             return this;
        }
 
-       public Address createAddress(){
+       public Address build(){
             return new Address(this);
        }
     }
