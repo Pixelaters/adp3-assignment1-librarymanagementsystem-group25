@@ -11,6 +11,7 @@ public class ClientAddressFactory {
 
     public static ClientAddress createClientAddress(String clientId, Address address){
 
+        //this statement should throw an exception if the below-mentioned fields are empty
         if(clientId.isEmpty() || address.getStreetName().isEmpty() || address.getCity().getSuburb().isEmpty())
             throw new IllegalArgumentException("Please complete all fields");
 
