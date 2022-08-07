@@ -55,7 +55,7 @@ public class Contact {
             return this;
         }
 
-        public Contact createContact() {
+        public Contact build() {
             return new Contact(this);
         }
     }

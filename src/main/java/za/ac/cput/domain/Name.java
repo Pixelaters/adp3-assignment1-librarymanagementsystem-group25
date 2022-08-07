@@ -43,17 +43,17 @@ public class Name implements Serializable {
         private String middleName;
         private String lastName;
 
-        public Builder setFirstName(String firstName) {
+        public Builder FirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public Builder setMiddleName(String middleName) {
+        public Builder MiddleName(String middleName) {
             this.middleName = middleName;
             return this;
         }
 
-        public Builder setLastName(String lastName) {
+        public Builder LastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
@@ -65,7 +65,7 @@ public class Name implements Serializable {
             return this;
         }
 
-        public Name createName() {
+        public Name build() {
             return new Name(this);
         }
     }

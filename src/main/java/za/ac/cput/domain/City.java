@@ -5,7 +5,6 @@ package za.ac.cput.domain;
  * Entity: City class
  * Date: 2022/08/06
  * */
-import java.util.Locale;
 
 public class City {
     private String id, name, suburb;
@@ -65,7 +64,7 @@ public class City {
 
         }
 
-        public City createCity(){
+        public City build(){
             return new City(this);
         }
     }

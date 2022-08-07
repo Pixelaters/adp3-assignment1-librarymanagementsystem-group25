@@ -15,6 +15,6 @@ public class LibrarianAddressFactory {
         if (librarianId.isEmpty())
             throw new IllegalArgumentException("librarianId must have a value");
         StringHelper.checkStringParam("1234",librarianId);
-        return new LibrarianAddress.LibrarianAddressBuilder().librarianId(librarianId).address(address).createLibrarianAddress();
+        return new LibrarianAddress.LibrarianAddressBuilder().librarianId(librarianId).address(address).build();
     }
 }
