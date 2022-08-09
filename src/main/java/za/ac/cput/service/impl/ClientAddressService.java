@@ -5,12 +5,14 @@ package za.ac.cput.service.impl;
     Capstone Project
  */
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientAddress;
 import za.ac.cput.repository.ClientAddressIRepository;
 
 import java.util.List;
 
+@Service
 public class ClientAddressService implements ClientAddressIService{
 
     private final ClientAddressIRepository clientAddressIRepository;
