@@ -6,13 +6,24 @@ package za.ac.cput.domain;
  * Date: 2022/08/06
  * */
 
-public class City {
-    private String id, name, suburb;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class City implements Serializable {
+    @Id
+    private String id;
+    private String name, suburb;
 
     City(CityBuilder cb){
         this.id=cb.id;
         this.name = cb.name;
         this.suburb = cb.suburb;
+    }
+
+    public City() {
+
     }
 
     public String getId() {
