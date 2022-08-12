@@ -6,11 +6,17 @@ package za.ac.cput.domain;
 * Date: 2022/08/06
 * */
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
 
+@Embeddable
 public class Address {
 
     private String unitNumber, complexName, streetNumber, streetName;
     private int postalCode;
+
+    @ManyToOne
     private City city;
 
     public Address(AddressBuilder ab){
@@ -21,6 +27,10 @@ public class Address {
         this.postalCode = ab.postalCode;
         this.city = ab.city;
 
+
+    }
+
+    public Address() {
 
     }
 
