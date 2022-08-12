@@ -1,18 +1,30 @@
 package za.ac.cput.domain;
+
+import javax.persistence.*;
+
 /*
  * Name: Raeece Samuels
  * Project: Library Management
  * Entity: Librarian class (Didn't have to do this)
  * Date: 2022/08/06
  * */
+@Entity
 public class Librarian {
-    private String staffId, position;
+    @Id
+    private String staffId;
+    private String position;
+
+
     private Name name;
 
     private Librarian(LibrarianBuilder lb) {
         this.staffId = lb.staffId;
         this.position = lb.position;
         this.name = lb.name;
+    }
+
+    public Librarian() {
+
     }
 
     public String getStaffId() {

@@ -1,17 +1,29 @@
 package za.ac.cput.domain;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /*
  * Name: Raeece Samuels
  * Project: Library Management
  * Entity: LibrarianAddress class
  * Date: 2022/08/06
  * */
+@Entity
 public class LibrarianAddress {
+    @Id
     private String librarianId;
+    @Embedded
     private Address address;
 
     private LibrarianAddress(LibrarianAddressBuilder lab) {
         this.librarianId = lab.librarianId;
         this.address = lab.address;
+    }
+
+    public LibrarianAddress() {
+
     }
 
     public String getLibrarianId() {

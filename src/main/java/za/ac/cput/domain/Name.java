@@ -1,6 +1,10 @@
 package za.ac.cput.domain;
 
+import lombok.Getter;
+
+import javax.persistence.Embeddable;
 import java.io.Serializable;
+
 
 public class Name implements Serializable {
     private String firstName;
