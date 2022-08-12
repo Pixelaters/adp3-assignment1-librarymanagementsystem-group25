@@ -8,6 +8,11 @@ package za.ac.cput.service.impl;
 import za.ac.cput.domain.Client;
 import za.ac.cput.service.IService;
 
+import java.util.List;
+
 public interface ClientIService extends IService<Client, String> {
 
+    public List<Client> getAll();
+
+    public Client findClientById(String id);//this may cause errors for the findClientById method in the ClientService class
 }

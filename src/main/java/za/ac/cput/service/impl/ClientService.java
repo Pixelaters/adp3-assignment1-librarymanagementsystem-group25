@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Client;
 import za.ac.cput.repository.ClientIRepository;
 
+import java.util.List;
+
 @Service
 public class ClientService implements ClientIService{
 
@@ -21,21 +23,31 @@ public class ClientService implements ClientIService{
 
     @Override
     public Client create(Client client) {
-        return null;
+        return this.clientIRepository.save(client);
     }
 
     @Override
-    public Client read(String s) {
-        return null;
+    public Client read(String clientId) {
+        return this.clientIRepository.getReferenceById(clientId);
     }
 
     @Override
-    public Client update(Client client) {
-        return null;
+    public Client update(Client updateClient) {
+        return this.clientIRepository.save(updateClient);
     }
 
     @Override
-    public void delete(String s) {
+    public void delete(String clientId) {
+        this.clientIRepository.deleteById(clientId);
+    }
 
+    @Override
+    public List<Client> getAll() {
+        return this.clientIRepository.findAll();
+    }
+
+    @Override
+    public Client findClientById(String id) {
+        return this.clientIRepository.findClientById(id);
     }
 }
