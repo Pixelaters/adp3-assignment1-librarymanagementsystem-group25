@@ -55,6 +55,14 @@ public class Contact {
             return this;
         }
 
+        public Builder copy(Contact c){
+            this.contactId = c.contactId;
+            this.email = c.email;
+            this.cell = c.cell;
+            this.nextOfKin = c.nextOfKin;
+            return this;
+        }
+
         public Contact build() {
             return new Contact(this);
         }
