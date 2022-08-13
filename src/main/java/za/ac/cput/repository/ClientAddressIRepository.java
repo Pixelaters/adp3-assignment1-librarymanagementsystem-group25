@@ -12,5 +12,5 @@ import za.ac.cput.domain.ClientAddress;
 @Repository
 public interface ClientAddressIRepository extends JpaRepository<ClientAddress,String> {
 
-    public ClientAddressIRepository findClientAddressByClientId(String clientId);
+    ClientAddress findClientAddressByClientId(String clientId);
 }
