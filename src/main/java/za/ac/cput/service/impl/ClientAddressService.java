@@ -47,4 +47,9 @@ public class ClientAddressService implements ClientAddressIService{
         return this.clientAddressIRepository.findAll();
 
     }
+
+    public ClientAddress findClientAddressByClientId(String clientId){
+        return this.clientAddressIRepository.findClientAddressByClientId(clientId);
+    }
+
 }
