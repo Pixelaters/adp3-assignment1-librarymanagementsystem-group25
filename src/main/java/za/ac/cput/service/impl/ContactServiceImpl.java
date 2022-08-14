@@ -61,16 +61,16 @@ public class ContactServiceImpl implements ContactIService {
         return contact;
     }
 
-    public List<Contact> findByEmail(String email){
-        List<Contact> subSet= this.contactIRepository.findByEmail(email);
-        System.out.println(subSet);
-        List<Contact> contactList= new ArrayList<>();
-        for (Contact c: subSet){
-            contactList.add(c.getClass())
-        }
-        Collections.sort(contactList);
-        return contactList;
-    }
+//    public List<Contact> findByEmail(String email){
+//        List<Contact> subSet= this.contactIRepository.findByEmail(email);
+//        System.out.println(subSet);
+//        List<Contact> contactList= new ArrayList<>();
+//        for (Contact c: subSet){
+//            contactList.add(c.getClass());
+//        }
+//        Collections.sort(contactList);
+//        return contactList;
+//    }
 
     public Contact findByContactId(String contactId){
         Contact contact= this.contactIRepository.findByContactId(contactId);

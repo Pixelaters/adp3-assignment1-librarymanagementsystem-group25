@@ -120,7 +120,7 @@ class ClientAddressServiceTest {
 
     @Test
     void f_findClientAddressByClientId(){
-        testClientAddressIRepository.findClientAddressByClientId(updateClientAddress1.getClientId());
+        testClientAddressIRepository.findClientAddressByClientId("1");
 
         assertAll(
                 () -> assertNotNull(updateClientAddress1)
@@ -128,4 +128,5 @@ class ClientAddressServiceTest {
 
         System.out.println("Client id: " + updateClientAddress1.getClientId());
     }
+
 }
