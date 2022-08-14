@@ -51,7 +51,7 @@ class ClientAddressServiceTest {
 
     @Test
     void a_create() {
-        testClientAddressIRepository.save(clientAddress1);
+        clientAddressService.create(clientAddress1);
 
         assertAll(
                 () -> assertNotNull(clientAddress1),
@@ -67,7 +67,7 @@ class ClientAddressServiceTest {
 
     @Test
     void b_read() {
-        testClientAddressIRepository.getReferenceById(clientAddress1.getClientId());
+        clientAddressService.read(clientAddress1.getClientId());
 
         assertAll(
                 () -> assertNotNull(clientAddress1)
@@ -80,7 +80,7 @@ class ClientAddressServiceTest {
 
     @Test
     void c_update() {
-        testClientAddressIRepository.save(updateClientAddress1);
+        clientAddressService.update(updateClientAddress1);
 
         assertAll(
                 () -> assertNotSame(clientAddress1.getAddress().getUnitNumber(),updateClientAddress1.getAddress().getUnitNumber()),
@@ -95,8 +95,8 @@ class ClientAddressServiceTest {
     }
 
     @Test
-    void d_delete() {
-        testClientAddressIRepository.deleteById(updateClientAddress1.getClientId());
+    void f_delete() {
+        clientAddressService.delete(updateClientAddress1.getClientId());
 
         assertAll(
                 () -> assertNotNull(updateClientAddress1)
@@ -108,24 +108,25 @@ class ClientAddressServiceTest {
 
     @Test
     void e_getAll() {
-        testClientAddressIRepository.findAll();
+        clientAddressService.getAll();
 
         assertAll(
-                () -> assertNotNull(testClientAddressIRepository.findAll())
+                () -> assertNotNull(clientAddressService.getAll())
         );
 
-        System.out.println(testClientAddressIRepository.findAll());
+        System.out.println(clientAddressService.getAll());
         System.out.println();
     }
 
     @Test
-    void f_findClientAddressByClientId(){
-        testClientAddressIRepository.findClientAddressByClientId(updateClientAddress1.getClientId());
+    void d_findClientAddressByClientId(){
+        System.out.println(clientAddressService.findClientAddressByClientId("1"));
 
         assertAll(
                 () -> assertNotNull(updateClientAddress1)
         );
 
-        System.out.println("Client id: " + updateClientAddress1.getClientId());
+
     }
+
 }
