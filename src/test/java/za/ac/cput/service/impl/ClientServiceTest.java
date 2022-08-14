@@ -12,9 +12,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import za.ac.cput.domain.Client;
 import za.ac.cput.factory.BookFactory;
 import za.ac.cput.factory.NameFactory;
+import za.ac.cput.repository.ClientAddressIRepository;
 import za.ac.cput.repository.ClientIRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,15 +25,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 class ClientServiceTest {
     @Mock
-    private ClientIRepository testClientIRepository;
+    ClientIRepository clientIRepository;
 
+    @Autowired
     ClientService clientService;
 
     private static Client client1, updateClient1;
 
     @BeforeEach
     void setUp() {
-        clientService = new ClientService(testClientIRepository);
+        clientService = new ClientService(clientIRepository);
 
         client1 = new Client.Builder()
                 .id("1")
@@ -48,7 +51,7 @@ class ClientServiceTest {
 
     @Test
     void a_create() {
-        testClientIRepository.save(client1);
+        clientService.create(client1);
 
         assertAll(
                 () -> assertNotNull(client1),
@@ -65,7 +68,7 @@ class ClientServiceTest {
 
     @Test
     void b_read() {
-        testClientIRepository.getReferenceById(client1.getId());
+        clientService.read(client1.getId());
 
         assertAll(
                 () -> assertNotNull(client1)
@@ -77,7 +80,7 @@ class ClientServiceTest {
 
     @Test
     void c_update() {
-        testClientIRepository.save(updateClient1);
+        clientService.create(updateClient1);
 
         assertAll(
                 () -> assertNotSame(client1.isRented(),updateClient1.isRented()),
@@ -92,8 +95,8 @@ class ClientServiceTest {
     }
 
     @Test
-    void d_delete() {
-        testClientIRepository.deleteById(updateClient1.getId());
+    void f_delete() {
+       clientService.delete(updateClient1.getId());
 
         assertAll(
                 () -> assertNotNull(updateClient1),
@@ -108,10 +111,10 @@ class ClientServiceTest {
 
     @Test
     void e_getAll() {
-        System.out.println(testClientIRepository.findAll());
+        System.out.println(clientService.getAll());
 
         assertAll(
-                () -> assertNotNull(testClientIRepository.findAll())
+                () -> assertNotNull(clientService.getAll())
         );
 
         System.out.println();
@@ -119,13 +122,13 @@ class ClientServiceTest {
     }
 
     @Test
-    void f_findClientById() {
-        testClientIRepository.findClientById(updateClient1.getId());
+    void d_findClientById() {
+        clientService.findClientById("1");
 
         assertAll(
                 () -> assertNotNull(updateClient1)
         );
 
-        System.out.println("Client id: " + updateClient1.getId());
+        System.out.println(clientService.findClientById("1"));
     }
 }
