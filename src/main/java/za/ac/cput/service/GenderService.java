@@ -4,14 +4,12 @@ import za.ac.cput.domain.Gender;
 
 import java.util.List;
 
-public interface GenderService {
+public interface GenderService extends IService<Gender , String> {
+
+
     Gender create(Gender gender);
 
     Gender update(Gender gender);
 
-    Gender read(String id);
-
-    void delete(String id);
-
-    List<Gender> getAll();
+    public List<Gender> getAll();
 }
