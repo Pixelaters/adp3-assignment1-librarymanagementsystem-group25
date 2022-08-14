@@ -21,7 +21,7 @@ public class ClientContact {
         return contactId;
     }
 
-    public String getLibrarianId() {
+    public String getClientId() {
         return clientId;
     }
 
