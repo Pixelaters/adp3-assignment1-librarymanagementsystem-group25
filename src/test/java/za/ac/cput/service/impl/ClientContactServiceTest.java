@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.ClientContact;
 import za.ac.cput.repository.ClientContactIRepository;
@@ -20,6 +21,7 @@ class ClientContactServiceTest {
 
     private ClientContactIRepository clientContactIRepository;
 
+    @Autowired
     ClientContactService clientContactService;
 
     private static ClientContact contact1 ,contact2;
@@ -27,6 +29,7 @@ class ClientContactServiceTest {
     @BeforeEach
     void setUp() {
         clientContactService = new ClientContactService(clientContactIRepository);
+
         contact1 = new ClientContact.Builder().ContactId("324").ClientId("4569").createClientCont();
 
         contact2 = new ClientContact.Builder().ContactId("424").Copy(contact1).createClientCont();
@@ -35,7 +38,7 @@ class ClientContactServiceTest {
 
     @Test
     void a_create() {
-        clientContactIRepository.save(contact1);
+        clientContactService.create(contact1);
         assertNotNull(contact1);
         System.out.println("Contact created successfully!");
 
@@ -43,14 +46,14 @@ class ClientContactServiceTest {
 
     @Test
     void b_read() {
-        clientContactIRepository.getReferenceById(contact1.getContactId());
+        clientContactService.read(contact1.getContactId());
         assertNotNull(contact1);
         System.out.println(contact1);
     }
 
     @Test
     void c_update() {
-        clientContactIRepository.save(contact2);
+        clientContactService.create(contact2);
 
 
                 assertNotSame(contact1.getContactId(),contact2.getContactId());
@@ -63,7 +66,7 @@ class ClientContactServiceTest {
 
     @Test
     void e_delete() {
-        clientContactIRepository.deleteById(contact2.getContactId());
+        clientContactService.delete(contact2.getContactId());
         assertAll(
                 () -> assertNotNull(contact2),
                 () -> assertSame("324",contact1.getContactId()),
@@ -74,10 +77,10 @@ class ClientContactServiceTest {
 
     @Test
     void d_getAll() {
-        System.out.println(clientContactIRepository.findAll());
+        System.out.println(clientContactService.getAll());
 
         assertAll(
-                () -> assertNotNull(clientContactIRepository.findAll())
+                () -> assertNotNull(clientContactService.getAll())
         );
     }
 }
