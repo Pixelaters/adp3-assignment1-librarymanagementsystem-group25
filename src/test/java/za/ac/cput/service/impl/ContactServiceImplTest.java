@@ -90,7 +90,7 @@ class ContactServiceImplTest {
     @Test
     @Order(7)
     void findByEmail() {
-        System.out.println(contactService.findByEmail("Zpetersen@bainscorp.com"));
+        //System.out.println(contactService.findByEmail("Zpetersen@bainscorp.com"));
     }
 
     @Test

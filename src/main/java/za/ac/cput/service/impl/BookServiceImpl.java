@@ -57,19 +57,19 @@ public class BookServiceImpl implements BookIService {
         return this.bookRepository.findAll().stream().collect(Collectors.toSet());
     }
 
-    public List<Book> findBookById(String bookId){
-        List<Book> subSet= this.bookRepository.findByBookId(bookId);
-
-        System.out.println(subSet);
-        List<Book> bookList= new ArrayList<>();
-        for (Book b: subSet){
-            bookList.add(b.getBookName()); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
-
-        }
-        Collections.sort(bookList);
-        return bookList;
-
-    }
+//    public List<Book> findBookById(String bookId){
+//        List<Book> subSet= this.bookRepository.findByBookId(bookId);
+//
+//        System.out.println(subSet);
+//        List<Book> bookList= new ArrayList<>();
+//        for (Book b: subSet){
+//            bookList.add(b.getBookName()); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
+//
+//        }
+//        Collections.sort(bookList);
+//        return bookList;
+//
+//    }
 
     public List<String> findByBookName(String bookName){
         List<Book> subSet= this.bookRepository.findByBookName(bookName);

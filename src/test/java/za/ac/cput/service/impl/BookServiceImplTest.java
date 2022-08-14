@@ -74,7 +74,7 @@ class BookServiceImplTest {
     @Test
     @Order(6)
     void findBookById() {
-        System.out.println(bookService.findBookById("1"));
+        //System.out.println(bookService.findBookById("1"));
     }
 
     @Test
