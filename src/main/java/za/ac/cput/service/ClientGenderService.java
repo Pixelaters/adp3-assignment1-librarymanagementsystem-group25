@@ -1,17 +1,15 @@
 package za.ac.cput.service;
 
 import za.ac.cput.domain.ClientGender;
+import za.ac.cput.domain.Gender;
 
 import java.util.List;
 
-public interface ClientGenderService {
+public interface ClientGenderService extends IService<ClientGenderService , String> {
+
     ClientGender create(ClientGender clientGender);
 
     ClientGender update(ClientGender clientGender);
 
-    ClientGender read(String id);
-
-    void delete(String id);
-
-    List<ClientGender> getAll();
+    public List<ClientGender> getAll();
 }

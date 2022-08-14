@@ -34,7 +34,14 @@ public class GenderServiceImpl implements GenderService {
 
     @Override
     public void delete(String id){
-         this.genderRepository.deleteById(id);
+        if (this.genderRepository.existsById(id)){
+            this.genderRepository.deleteById(id);
+            System.out.println("Deleted Successfully");
+        }else {
+            System.out.println("Gender ID doesnt exist");
+        }
+
+
     }
 
     @Override
@@ -42,7 +49,7 @@ public class GenderServiceImpl implements GenderService {
         return this.genderRepository.findAll();
     }
 
-    public Gender findGenderById(String genderId){
-        return this.genderRepository.findGenderById(genderId);
-    }
+//    public Gender findGenderById(String genderId){
+//        return this.genderRepository.findGenderById(genderId);
+//    }
 }
