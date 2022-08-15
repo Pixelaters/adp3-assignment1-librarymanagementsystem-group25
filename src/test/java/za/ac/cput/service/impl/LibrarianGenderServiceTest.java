@@ -83,13 +83,20 @@ class LibrarianGenderServiceTest {
 
    );
 
-        System.out.println(librariangenderService.getAll());
-        assertAll(
-                ()  -> assertNotNull(librariangenderService.getAll())
+        System.out.println("updated");
 
 
-        );
+
 
     }
+    @Test
+    void getAll() {
 
+        System.out.println(librariangenderService.getAll());
+        assertAll(
+                () -> assertNotNull(librariangenderService.getAll())
+
+        );
+        System.out.println();
+}
 }
