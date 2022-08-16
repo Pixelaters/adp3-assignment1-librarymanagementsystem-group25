@@ -1,5 +1,8 @@
 package za.ac.cput.domain;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Book {
     private String bookId;
     private String bookName;
@@ -15,6 +18,22 @@ public class Book {
         this.bookName = builder.bookName;
         this.author = builder.author;
         this.genre = builder.genre;
+    }
+
+    private void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
+
+    private void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    private void setAuthor(String author) {
+        this.author = author;
+    }
+
+    private void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getBookId() {
