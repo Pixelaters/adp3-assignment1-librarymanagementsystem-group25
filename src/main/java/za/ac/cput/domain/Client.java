@@ -4,12 +4,22 @@
  */
 package za.ac.cput.domain;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+@Entity
 public class Client {
+
+    @Id
     private String id;
+    @Embedded
     private Name name;
+    @Embedded
     private Book book;
+    @NotNull
     private boolean isRented;
 
     protected Client(){
