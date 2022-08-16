@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-
+@Embeddable
 public class Name implements Serializable {
     private String firstName;
     private String middleName;
@@ -19,6 +19,18 @@ public class Name implements Serializable {
         this.firstName = builder.firstName;
         this.middleName = builder.middleName;
         this.lastName = builder.lastName;
+    }
+
+    private void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    private void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    private void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
