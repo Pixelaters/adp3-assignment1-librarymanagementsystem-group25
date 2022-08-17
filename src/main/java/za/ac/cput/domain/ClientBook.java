@@ -1,23 +1,27 @@
 package za.ac.cput.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@IdClass(ClientBookId.class)
 public class ClientBook implements Serializable {
     @Id
+    @Column(name= "clientId")
     private String clientId;
     @Id
+    @Column(name= "bookId")
     private String bookId;
 
-    @OneToOne
-    @JoinColumn(name="bookId",referencedColumnName = "bookId")
+    @Id
+    @Column(name="clientBookId")
+    private String clientBookId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name="bookId",referencedColumnName = "bookId")
     private Book book;
-    @OneToOne
-    @JoinColumn(name="clientId",referencedColumnName = "clientId")
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
     private Client client;
 
     protected ClientBook(){
