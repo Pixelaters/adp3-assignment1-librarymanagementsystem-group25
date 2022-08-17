@@ -23,7 +23,7 @@ public class Librarian {
         this.name = lb.name;
     }
 
-    public Librarian() {
+    protected Librarian() {
 
     }
 
