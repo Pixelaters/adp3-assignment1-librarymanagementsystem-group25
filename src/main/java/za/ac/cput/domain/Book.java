@@ -1,12 +1,10 @@
 package za.ac.cput.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Book implements Serializable {
@@ -19,6 +17,9 @@ public class Book implements Serializable {
     private String author;
     @NotNull
     private String genre;
+
+    @OneToMany(mappedBy = "book")
+    private Set<ClientBook> clientBookSet;
 
     protected Book(){
 

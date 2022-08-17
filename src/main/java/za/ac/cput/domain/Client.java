@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Client implements Serializable {
@@ -20,6 +21,9 @@ public class Client implements Serializable {
 
     @NotNull
     private boolean isRented;
+
+    @OneToMany(mappedBy = "client")
+    private Set<ClientBook> clientBookSet;
 
     protected Client(){
         //empty constructor
