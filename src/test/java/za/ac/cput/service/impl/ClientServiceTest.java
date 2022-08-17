@@ -39,7 +39,6 @@ class ClientServiceTest {
         client1 = new Client.Builder()
                 .id("1")
                 .name(NameFactory.createName("Breyton","Sean","Ernstzen"))
-                .book(BookFactory.CreateBook("AZ1","Finding Gobby","Ralf Witzel","fiction"))
                 .isRented(true)
                 .build();
 
@@ -56,7 +55,6 @@ class ClientServiceTest {
         assertAll(
                 () -> assertNotNull(client1),
                 () -> assertSame("1",client1.getId()),
-                () -> assertSame("AZ1",client1.getBook().getBookId()),
                 () -> assertTrue(client1.isRented())
         );
 

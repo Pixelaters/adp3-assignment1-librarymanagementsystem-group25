@@ -30,11 +30,6 @@ public class Book implements Serializable {
         this.genre = builder.genre;
     }
 
-    private void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
-
-    @Id
     public String getBookId() {
         return bookId;
     }
@@ -61,8 +56,17 @@ public class Book implements Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return bookId.equals(book.bookId) && bookName.equals(book.bookName) && author.equals(book.author) && genre.equals(book.genre);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookId, bookName, author, genre);
+    }
 
     public static class Builder {
         private String bookId;

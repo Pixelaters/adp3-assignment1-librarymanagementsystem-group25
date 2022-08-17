@@ -38,8 +38,7 @@ class ClientControllerTest {
         assertNotNull(clientController);
 
         this.client1 = ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean",
-                "Ernstzen"), BookFactory.CreateBook("AA20","Finding Gobby","Anne Lange",
-                        "fiction"),true);
+                "Ernstzen"),true);
 
         this.urlBase = "http://localhost:" + this.portNumber + "/librarymanagementsystem/client/";
 

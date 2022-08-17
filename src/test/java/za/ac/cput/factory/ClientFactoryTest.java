@@ -16,11 +16,9 @@ class ClientFactoryTest {
     @BeforeEach
     void setUp(){
         client1 = ClientFactory.createClient("1",NameFactory.createName("Breyton","Sean",
-                "Ernstzen"),BookFactory.CreateBook("A123","Happy Feet","Harry Lange",
-                        "Fiction"), true);
+                "Ernstzen"), true);
 
         client2 = ClientFactory.createClient("2",NameFactory.createName("Ziyaad","Petersen"),
-                BookFactory.CreateBook("B141","My Neighbour Totoro","Kim Jeen","Fiction"),
                 true);
     }
 
