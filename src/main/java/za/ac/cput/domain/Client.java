@@ -25,6 +25,9 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client")
     private Set<ClientBook> clientBookSet;
 
+    @OneToMany(mappedBy = "client")
+    private Set<ClientContact> clientContactSet;
+
     protected Client(){
         //empty constructor
     }
