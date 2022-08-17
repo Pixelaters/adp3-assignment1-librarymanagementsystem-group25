@@ -6,13 +6,14 @@ package za.ac.cput.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Client {
+public class Client implements Serializable {
 
     @Id
-    @Column(name="client_id")
+    @Column(name="clientId")
     private String id;
     @Embedded
     private Name name;

@@ -4,19 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class ClientBook {
+public class ClientBook implements Serializable {
     @Id
     private String clientId;
     @Id
     private String bookId;
 
     @OneToOne
-    @JoinColumn(name="book_id",referencedColumnName = "book_id")
+    @JoinColumn(name="bookId",referencedColumnName = "bookId")
     private Book book;
     @OneToOne
-    @JoinColumn(name="client_id",referencedColumnName = "client_id")
+    @JoinColumn(name="clientId",referencedColumnName = "clientId")
     private Client client;
 
     protected ClientBook(){

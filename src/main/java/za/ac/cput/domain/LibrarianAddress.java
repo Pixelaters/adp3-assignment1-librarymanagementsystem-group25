@@ -3,6 +3,7 @@ package za.ac.cput.domain;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /*
  * Name: Raeece Samuels
@@ -11,7 +12,7 @@ import javax.persistence.Id;
  * Date: 2022/08/06
  * */
 @Entity
-public class LibrarianAddress {
+public class LibrarianAddress implements Serializable {
     @Id
     private String librarianId;
     @Embedded
