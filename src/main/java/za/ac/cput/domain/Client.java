@@ -8,31 +8,35 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Client implements Serializable {
 
     @Id
     @Column(name="clientId")
-    private String id;
+    private String clientId;
     @Embedded
     private Name name;
 
     @NotNull
     private boolean isRented;
 
+    @OneToMany(mappedBy = "client")
+    private Set<ClientBook> clientBookSet;
+
     protected Client(){
         //empty constructor
     }
 
     private Client(Builder b){
-        this.id = b.id;
+        this.clientId = b.id;
         this.name = b.name;
         this.isRented = b.isRented;
     }
 
-    public String getId() {
-        return id;
+    public String getClientId() {
+        return clientId;
     }
 
     public Name getName() {
@@ -47,7 +51,7 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         return "Client{" +
-                "id='" + id + '\'' +
+                "id='" + clientId + '\'' +
                 ", name=" + name +
                 ", isRented=" + isRented +
                 '}';
@@ -57,12 +61,12 @@ public class Client implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Client client)) return false;
-        return id.equals(client.id);
+        return clientId.equals(client.clientId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(clientId);
     }
 
     public static class Builder{
@@ -87,7 +91,7 @@ public class Client implements Serializable {
         }
 
         public Builder copy(Client c){
-            this.id = c.id;
+            this.id = c.clientId;
             this.name = c.name;
             this.isRented = c.isRented;
             return this;
