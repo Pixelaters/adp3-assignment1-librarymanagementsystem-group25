@@ -1,7 +1,13 @@
 package za.ac.cput.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class LibrarianContact {
+    @Id
     private String contactId;
+    @Id
     private String librarianId;
 
    protected LibrarianContact(){

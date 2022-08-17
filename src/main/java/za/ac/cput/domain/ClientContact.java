@@ -5,9 +5,15 @@ Nondumiso Gaga(220430853)
 package za.ac.cput.domain;
 
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class ClientContact {
+    @Id
     private String contactId;
+
+    @Id
     private String clientId;
 
     protected ClientContact(){

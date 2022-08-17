@@ -1,12 +1,22 @@
 package za.ac.cput.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-@Embeddable
-public class Book {
+@Entity
+public class Book implements Serializable {
+    @Id
+    @Column(name = "book_id")
     private String bookId;
+    @NotNull
     private String bookName;
+    @NotNull
     private String author;
+    @NotNull
     private String genre;
 
     protected Book(){
@@ -24,18 +34,7 @@ public class Book {
         this.bookId = bookId;
     }
 
-    private void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    private void setAuthor(String author) {
-        this.author = author;
-    }
-
-    private void setGenre(String genre) {
-        this.genre = genre;
-    }
-
+    @Id
     public String getBookId() {
         return bookId;
     }
@@ -61,6 +60,9 @@ public class Book {
                 ", genre='" + genre + '\'' +
                 '}';
     }
+
+
+
 
     public static class Builder {
         private String bookId;

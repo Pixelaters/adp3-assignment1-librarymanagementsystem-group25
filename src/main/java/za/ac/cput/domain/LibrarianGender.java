@@ -5,8 +5,14 @@ Ongezwa Gwaza 211272183
 
 package za.ac.cput.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class LibrarianGender {
+    @Id
     private String librarianId;
+    @Id
     private String genderId;
 
     protected LibrarianGender(){
