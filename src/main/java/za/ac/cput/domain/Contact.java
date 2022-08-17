@@ -1,10 +1,20 @@
 package za.ac.cput.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Contact {
+    @Id
     private String contactId;
+
     private String email;
     private String cell;
     private String nextOfKin;
+
+    protected Contact() {
+
+    }
 
     public Contact(Builder builder) {
         this.contactId = builder.contactId;
