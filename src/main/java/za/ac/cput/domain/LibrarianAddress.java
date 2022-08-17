@@ -22,7 +22,7 @@ public class LibrarianAddress {
         this.address = lab.address;
     }
 
-    public LibrarianAddress() {
+    protected LibrarianAddress() {
 
     }
 

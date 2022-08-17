@@ -1,16 +1,22 @@
 package za.ac.cput.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class Book {
+public class Book implements Serializable {
     @Id
+    @Column(name = "book_id")
     private String bookId;
+    @NotNull
     private String bookName;
+    @NotNull
     private String author;
+    @NotNull
     private String genre;
 
     protected Book(){

@@ -7,13 +7,21 @@ package za.ac.cput.domain;
  Date : 2022/08/08
  */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class ClientGender {
 
+    @Id
     private String clientId;
 
+    @Id
     private String genderId;
+
+    protected ClientGender() {
+    }
 
     private ClientGender(Builder b){
 

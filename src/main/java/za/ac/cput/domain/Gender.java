@@ -7,15 +7,22 @@ package za.ac.cput.domain;
  Project: Library Management
  Date : 2022/08/08
  */
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Gender {
 
+    @Id
     private String genderId;
 
     private String name;
 
     private String other;
+
+    protected Gender() {
+    }
 
     private Gender(Builder b){
 

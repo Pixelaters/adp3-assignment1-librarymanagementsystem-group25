@@ -6,6 +6,7 @@ package za.ac.cput.domain;
  * Date: 2022/08/06
  * */
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Entity
 public class City implements Serializable {
     @Id
+    @Column(name = "CityId")
     private String id;
     private String name, suburb;
 
@@ -22,7 +24,7 @@ public class City implements Serializable {
         this.suburb = cb.suburb;
     }
 
-    public City() {
+    protected City() {
 
     }
 
