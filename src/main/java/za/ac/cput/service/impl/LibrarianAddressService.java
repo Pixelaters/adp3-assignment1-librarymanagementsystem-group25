@@ -48,6 +48,6 @@ public class LibrarianAddressService implements LibrarianAddressIService {
 
     @Override
     public LibrarianAddress findLibrarianAddressByLibrarianId(String librarianId) {
-        return this.librarianAddressIRepository.findLibrarianAddressById(librarianId);
+        return this.librarianAddressIRepository.findLibrarianAddressByLibrarianId(librarianId);
     }
 }
