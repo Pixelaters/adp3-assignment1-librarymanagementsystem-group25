@@ -46,8 +46,15 @@ public class ClientGender implements Serializable {
     }
 
     @Override
-    public int hashCode(){
-        return Objects.hash(clientId);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientGender that)) return false;
+        return clientId.equals(that.clientId) && genderId.equals(that.genderId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientId, genderId);
     }
 
     public static class Builder{
