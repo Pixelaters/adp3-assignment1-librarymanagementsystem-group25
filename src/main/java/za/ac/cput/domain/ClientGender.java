@@ -9,10 +9,11 @@ package za.ac.cput.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class ClientGender {
+public class ClientGender implements Serializable {
 
     @Id
     private String clientId;

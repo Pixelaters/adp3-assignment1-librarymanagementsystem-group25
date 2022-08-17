@@ -6,11 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Book implements Serializable {
     @Id
-    @Column(name = "book_id")
+    @Column(name = "bookId")
     private String bookId;
     @NotNull
     private String bookName;
