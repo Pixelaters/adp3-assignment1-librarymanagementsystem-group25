@@ -3,6 +3,7 @@ package za.ac.cput.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class LibrarianContact implements Serializable {
@@ -34,6 +35,19 @@ public class LibrarianContact implements Serializable {
                 ", librarianId='" + librarianId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LibrarianContact that)) return false;
+        return contactId.equals(that.contactId) && librarianId.equals(that.librarianId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contactId, librarianId);
+    }
+
     public static class Builder{
         private String contactId;
         private String librarianId;

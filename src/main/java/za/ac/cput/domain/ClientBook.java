@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class ClientBook implements Serializable {
@@ -46,6 +47,17 @@ public class ClientBook implements Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientBook that)) return false;
+        return clientId.equals(that.clientId) && bookId.equals(that.bookId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientId, bookId);
+    }
 
     public static class Builder {
         private String clientId;
