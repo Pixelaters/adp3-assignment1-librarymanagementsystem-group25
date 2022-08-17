@@ -2,6 +2,7 @@ package za.ac.cput.domain;
 
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class ClientBookId implements Serializable {
 
@@ -13,7 +14,7 @@ public class ClientBookId implements Serializable {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    private void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
@@ -21,7 +22,19 @@ public class ClientBookId implements Serializable {
         return bookId;
     }
 
-    public void setBookId(String bookId) {
+    private void setBookId(String bookId) {
         this.bookId = bookId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientBookId that)) return false;
+        return clientBookId.equals(that.clientBookId) && clientId.equals(that.clientId) && bookId.equals(that.bookId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientBookId, clientId, bookId);
     }
 }
