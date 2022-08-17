@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ClientBookIRepository extends JpaRepository<ClientBook,String> {
-    public List<Book> findClientBooksByClientId(String clientId);
+    List<ClientBook> findClientBooksByClientId(String clientId);
 }

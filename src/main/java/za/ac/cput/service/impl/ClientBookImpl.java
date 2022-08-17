@@ -45,4 +45,9 @@ public class ClientBookImpl implements ClientBookIService {
     public List<ClientBook> getAll() {
         return this.clientBookIRepository.findAll();
     }
+
+    @Override
+    public List<ClientBook> findClientBooksByClientId(String clientId) {
+        return this.clientBookIRepository.findClientBooksByClientId(clientId);
+    }
 }

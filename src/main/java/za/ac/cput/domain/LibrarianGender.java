@@ -8,6 +8,7 @@ package za.ac.cput.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class LibrarianGender implements Serializable {
@@ -43,6 +44,19 @@ public class LibrarianGender implements Serializable {
                 ", genderId='" + genderId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LibrarianGender that)) return false;
+        return librarianId.equals(that.librarianId) && genderId.equals(that.genderId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(librarianId, genderId);
+    }
+
     public static class Builder{
         private String librarianId;
         private String genderId;
