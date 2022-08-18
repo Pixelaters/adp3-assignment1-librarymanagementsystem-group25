@@ -1,16 +1,31 @@
 package za.ac.cput.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@IdClass(LibrarianContact.class)
 public class LibrarianContact implements Serializable {
     @Id
-    private String contactId;
+    @Column(name = "librarianContactId")
+    private String librarianContactId;
+
     @Id
+    @Column(name = "contactId")
+    private String contactId;
+
+    @Id
+    @Column(name = "librarianId")
     private String librarianId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "contactId",referencedColumnName = "contactId")
+    private Contact contact;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "librarianId",referencedColumnName = "librarianId")
+    private Librarian librarian;
 
    protected LibrarianContact(){
 
