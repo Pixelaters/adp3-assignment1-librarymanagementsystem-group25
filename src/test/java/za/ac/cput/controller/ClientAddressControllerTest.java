@@ -16,6 +16,9 @@ import za.ac.cput.factory.AddressFactory;
 import za.ac.cput.factory.CityFactory;
 import za.ac.cput.factory.ClientAddressFactory;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
@@ -66,19 +69,63 @@ class ClientAddressControllerTest {
 
     @Test
     void b_read() {
+        String url = urlBase + "readClientAddress/" + clientAddress.getClientId();
+        System.out.println(url);
 
+        ResponseEntity<ClientAddress> responseEntity = this.restTemplate
+                .getForEntity(url,ClientAddress.class);
+        System.out.println(responseEntity);
+
+        assertAll(
+                () -> assertNotNull(responseEntity),
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity.getBody())
+        );
 
     }
 
     @Test
     void c_update() {
+        String url = urlBase + "update_ClientAddress";
+        System.out.println(url);
+
+        ResponseEntity<ClientAddress> responseEntity = this.restTemplate
+                .postForEntity(url,this.updatedClientAddress,ClientAddress.class);
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity.getBody())
+        );
+        System.out.println("Client address updated");
     }
 
     @Test
     void d_delete() {
+        String url = urlBase + "deleteClientAddress/" + updatedClientAddress.getClientId();
+        System.out.println(url);
+
+        this.restTemplate.delete(url);
+
+        assertAll(
+                () -> assertSame("1",updatedClientAddress.getClientId())
+        );
+
+        System.out.println("Client address deleted");
     }
 
     @Test
     void e_getAll() {
+        String url = urlBase + "getAll_ClientAddresses";
+        System.out.println(url);
+
+        ResponseEntity<ClientAddress[]> responseEntity = this.restTemplate
+                .getForEntity(url,ClientAddress[].class);
+        System.out.println(Arrays.asList(Objects.requireNonNull(responseEntity.getBody())));
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertTrue(responseEntity.getBody().length == 0),
+                () -> assertNotNull(responseEntity)
+        );
     }
 }
