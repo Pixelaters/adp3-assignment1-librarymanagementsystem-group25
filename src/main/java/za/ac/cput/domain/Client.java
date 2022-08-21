@@ -4,45 +4,60 @@
  */
 package za.ac.cput.domain;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Client {
-    private String id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
+public class Client implements Serializable {
+
+    @Id
+    @Column(name="clientId")
+    private String clientId;
+    @Embedded
+    @Column(name="name")
     private Name name;
-    private Book book;
+
+    @JsonProperty("isRented")
     private boolean isRented;
+
+    @OneToMany(mappedBy = "client")
+    private Set<ClientBook> clientBookSet;
+
+    @OneToMany(mappedBy = "client")
+    private Set<ClientContact> clientContactSet;
 
     protected Client(){
         //empty constructor
     }
 
     private Client(Builder b){
-        this.id = b.id;
+        this.clientId = b.id;
         this.name = b.name;
-        this.book = b.book;
         this.isRented = b.isRented;
     }
 
-    public String getId() {
-        return id;
+    public String getClientId() {
+        return clientId;
     }
 
     public Name getName() {
         return name;
     }
 
-   public Book getBook(){
-        return book;
-    }
 
     public boolean isRented() {
-        return isRented;
+        return this.isRented;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id='" + id + '\'' +
+                "id='" + clientId + '\'' +
                 ", name=" + name +
                 ", isRented=" + isRented +
                 '}';
@@ -52,18 +67,17 @@ public class Client {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Client client)) return false;
-        return id.equals(client.id);
+        return clientId.equals(client.clientId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(clientId);
     }
 
     public static class Builder{
         private String id;
         private Name name;
-        private Book book;
         private boolean isRented;
 
         public Builder id(String id){
@@ -77,20 +91,14 @@ public class Client {
             return this;
         }
 
-       public Builder book(Book book){
-            this.book = book;
-            return this;
-        }
-
         public Builder isRented(boolean isRented){
             this.isRented = isRented;
             return this;
         }
 
         public Builder copy(Client c){
-            this.id = c.id;
+            this.id = c.clientId;
             this.name = c.name;
-            this.book = c.book;
             this.isRented = c.isRented;
             return this;
         }

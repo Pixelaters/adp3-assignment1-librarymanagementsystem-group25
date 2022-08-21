@@ -16,11 +16,9 @@ class ClientFactoryTest {
     @BeforeEach
     void setUp(){
         client1 = ClientFactory.createClient("1",NameFactory.createName("Breyton","Sean",
-                "Ernstzen"),BookFactory.CreateBook("A123","Happy Feet","Harry Lange",
-                        "Fiction"), true);
+                "Ernstzen"), true);
 
         client2 = ClientFactory.createClient("2",NameFactory.createName("Ziyaad","Petersen"),
-                BookFactory.CreateBook("B141","My Neighbour Totoro","Kim Jeen","Fiction"),
                 true);
     }
 
@@ -54,7 +52,7 @@ class ClientFactoryTest {
     void objectEquality(){
 
         assertAll(
-                () -> assertNotEquals(client1.getId(),client2.getId()),
+                () -> assertNotEquals(client1.getClientId(),client2.getClientId()),
                 () -> assertNotEquals(client1.getName().getMiddleName(),client2.getName().getMiddleName()),
                 () -> assertEquals(client1.isRented(),client2.isRented())
         );
@@ -66,7 +64,7 @@ class ClientFactoryTest {
     void objectIdentity(){
 
         assertAll(
-                () -> assertNotSame(client1.getId(),client2.getId()),
+                () -> assertNotSame(client1.getClientId(),client2.getClientId()),
                 () -> assertNotSame(client1.getName().getMiddleName(),client2.getName().getMiddleName()),
                 () -> assertSame(client1.isRented(),client2.isRented())
 
