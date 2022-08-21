@@ -1,8 +1,31 @@
 package za.ac.cput.domain;
 
-public class LibrarianContact {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity
+@IdClass(LibrarianContact.class)
+public class LibrarianContact implements Serializable {
+    @Id
+    @Column(name = "librarianContactId")
+    private String librarianContactId;
+
+    @Id
+    @Column(name = "contactId")
     private String contactId;
+
+    @Id
+    @Column(name = "librarianId")
     private String librarianId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "contactId",referencedColumnName = "contactId")
+    private Contact contact;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "librarianId",referencedColumnName = "librarianId")
+    private Librarian librarian;
 
    protected LibrarianContact(){
 
@@ -27,6 +50,19 @@ public class LibrarianContact {
                 ", librarianId='" + librarianId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LibrarianContact that)) return false;
+        return contactId.equals(that.contactId) && librarianId.equals(that.librarianId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contactId, librarianId);
+    }
+
     public static class Builder{
         private String contactId;
         private String librarianId;
