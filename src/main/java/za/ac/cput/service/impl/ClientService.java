@@ -12,7 +12,7 @@ import za.ac.cput.repository.ClientIRepository;
 import java.util.List;
 
 @Service
-public class ClientService implements ClientIService{
+public class ClientService implements ClientIService {
 
     private final ClientIRepository clientIRepository;
 
@@ -28,7 +28,8 @@ public class ClientService implements ClientIService{
 
     @Override
     public Client read(String clientId) {
-        return this.clientIRepository.getReferenceById(clientId);
+        return this.clientIRepository.findById(clientId).orElse(null);
+
     }
 
     @Override
