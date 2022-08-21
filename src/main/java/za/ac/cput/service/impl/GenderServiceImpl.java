@@ -7,7 +7,9 @@ import za.ac.cput.domain.Gender;
 import za.ac.cput.repository.GenderRepository;
 import za.ac.cput.service.GenderService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.SubmissionPublisher;
 
 @Service
 public class GenderServiceImpl implements GenderService {
@@ -51,7 +53,16 @@ public class GenderServiceImpl implements GenderService {
         return this.genderRepository.findAll();
     }
 
-//    public Gender findGenderById(String genderId){
-//        return this.genderRepository.findGenderById(genderId);
-//    }
+    @Override
+    public List<Gender> findGenderById(String genderId){
+        List<Gender> subSet = this.genderRepository.findGenderById(genderId);
+
+        System.out.println(subSet);
+        List<Gender> genderNameList = new ArrayList<>();
+        for(Gender b : subSet){
+            genderNameList.add(b);
+        }
+
+        return genderNameList;
+    }
 }

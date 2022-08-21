@@ -9,4 +9,6 @@ public interface ClientGenderService extends IService<ClientGender , String> {
 
 
     public List<ClientGender> getAll();
+
+    List<ClientGender> findClientGenderById(String clientId);
 }

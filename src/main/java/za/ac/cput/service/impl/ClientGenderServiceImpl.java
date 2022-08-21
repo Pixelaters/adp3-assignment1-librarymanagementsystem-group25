@@ -6,6 +6,7 @@ import za.ac.cput.domain.ClientGender;
 import za.ac.cput.repository.ClientGenderRepository;
 import za.ac.cput.service.ClientGenderService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,7 +45,16 @@ public class ClientGenderServiceImpl implements ClientGenderService {
         return this.clientGenderRepository.findAll();
     }
 
-    //    public ClientGender findClientGenderById(String clientId){
-//        return this.clientGenderRepository.findClientGenderById(clientId);
-//    }
+
+        @Override
+        public List<ClientGender> findClientGenderById(String clientId){
+       List<ClientGender> subSet = this.clientGenderRepository.findClientGenderById(clientId);
+
+       System.out.println(subSet);
+       List<ClientGender> clientGenderList = new ArrayList<>();
+       for(ClientGender b : subSet){
+           clientGenderList.add(b);
+       }
+       return clientGenderList;
+    }
 }

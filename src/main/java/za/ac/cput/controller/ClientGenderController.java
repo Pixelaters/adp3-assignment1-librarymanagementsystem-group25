@@ -57,6 +57,10 @@ public class ClientGenderController {
     }
 
 
+    @GetMapping("/getClientGender/{id}")
+    public List<ClientGender> findClientGenderId(@PathVariable String id){
+        return clientGenderService.findClientGenderById(id);
+    }
 
 
 }
