@@ -53,4 +53,11 @@ public class GenderController {
         this.genderService.delete(genderId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/getGender/{id}")
+    public List<Gender> getGender(@PathVariable String id){
+        return genderService.findGenderById(id);
+    }
+
+
 }

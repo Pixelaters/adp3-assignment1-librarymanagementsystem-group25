@@ -7,9 +7,9 @@ import java.util.List;
 public interface GenderService extends IService<Gender , String> {
 
 
-    Gender create(Gender gender);
 
-    Gender update(Gender gender);
 
     public List<Gender> getAll();
+
+    public List<Gender> findGenderById(String genderId);
 }
