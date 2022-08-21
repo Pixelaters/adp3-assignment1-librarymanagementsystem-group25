@@ -19,6 +19,7 @@ public class Client implements Serializable {
     @Column(name="clientId")
     private String clientId;
     @Embedded
+    @Column(name="name")
     private Name name;
 
     @JsonProperty("isRented")
