@@ -13,10 +13,13 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class Address {
 
-    private String unitNumber, complexName, streetNumber, streetName;
+    private String unitNumber;
+    private String complexName;
+    private String streetNumber;
+    private String streetName;
     private int postalCode;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = City.class,cascade = CascadeType.ALL)
     private City city;
 
     public Address(AddressBuilder ab){

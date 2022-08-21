@@ -17,14 +17,14 @@ public class BookServiceImpl implements BookIService {
     private final BookIRepository bookRepository;
 
     @Autowired
-    public BookServiceImpl(BookIRepository bookRepository){
-        this.bookRepository= bookRepository;
+    public BookServiceImpl(BookIRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
 
     @Override
     public Book create(Book book) {
-       return this.bookRepository.save(book);
+        return this.bookRepository.save(book);
     }
 
     @Override
@@ -42,10 +42,10 @@ public class BookServiceImpl implements BookIService {
     //Discuss with group if we should make delete return a boolean or void.
     @Override
     public void delete(String id) {
-        if (this.bookRepository.existsById(id)){
+        if (this.bookRepository.existsById(id)) {
             this.bookRepository.deleteById(id);
             System.out.println("Deleted successfully");
-        }else {
+        } else {
             System.out.println("Could not find Id specified");
         }
 
@@ -57,49 +57,44 @@ public class BookServiceImpl implements BookIService {
         return this.bookRepository.findAll().stream().collect(Collectors.toSet());
     }
 
-//    public List<Book> findBookById(String bookId){
-//        List<Book> subSet= this.bookRepository.findByBookId(bookId);
-//
-//        System.out.println(subSet);
-//        List<Book> bookList= new ArrayList<>();
-//        for (Book b: subSet){
-//            bookList.add(b.getBookName()); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
-//
-//        }
-//        Collections.sort(bookList);
-//        return bookList;
-//
-//    }
-
-    public List<String> findByBookName(String bookName){
-        List<Book> subSet= this.bookRepository.findByBookName(bookName);
+    public List<Book> findBookById(String bookId){
+        List<Book> subSet= this.bookRepository.findByBookId(bookId);
 
         System.out.println(subSet);
-        List<String> bookNameList= new ArrayList<>();
+        List<Book> bookList= new ArrayList<>();
         for (Book b: subSet){
-            bookNameList.add(b.getBookName()); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
+            bookList.add(b); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
 
         }
-        Collections.sort(bookNameList);
+        return bookList;
+
+    }
+
+    public List<Book> findByBookName(String bookName) {
+        List<Book> subSet = this.bookRepository.findByBookName(bookName);
+
+        System.out.println(subSet);
+        List<Book> bookNameList = new ArrayList<>();
+        for (Book b : subSet) {
+            bookNameList.add(b); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
+
+        }
+
         return bookNameList;
 
     }
 
-    public List<String> findByBookAuthor(String author){
-        List<Book> subSet= this.bookRepository.findByAuthor(author);
+    public List<Book> findByBookAuthor(String author) {
+        List<Book> subSet = this.bookRepository.findByAuthor(author);
 
         System.out.println(subSet);
-        List<String> bookNameList= new ArrayList<>();
-        for (Book b: subSet){
-            bookNameList.add(b.getAuthor()); //I know this is broken, I'll be asking sir a question about this on monday, "How to pass in a Book object instead of just the name"
+        List<Book> bookList = new ArrayList<>();
+        for (Book b : subSet) {
+            bookList.add(b);
 
         }
-        Collections.sort(bookNameList);
-        return bookNameList;
+
+        return bookList;
 
     }
-
-
-
-
 }

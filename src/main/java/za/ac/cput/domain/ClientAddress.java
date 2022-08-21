@@ -4,10 +4,19 @@
  */
 package za.ac.cput.domain;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ClientAddress {
+@Entity
+public class ClientAddress implements Serializable {
+    @Id
     private String clientId;
+
+    @Embedded
     private Address address;
 
     protected ClientAddress(){

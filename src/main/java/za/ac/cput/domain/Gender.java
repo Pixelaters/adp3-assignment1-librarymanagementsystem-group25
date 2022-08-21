@@ -7,15 +7,23 @@ package za.ac.cput.domain;
  Project: Library Management
  Date : 2022/08/08
  */
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Gender {
+@Entity
+public class Gender implements Serializable {
 
+    @Id
     private String genderId;
 
     private String name;
 
     private String other;
+
+    protected Gender() {
+    }
 
     private Gender(Builder b){
 
