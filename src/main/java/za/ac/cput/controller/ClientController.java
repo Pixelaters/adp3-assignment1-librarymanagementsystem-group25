@@ -71,8 +71,8 @@ public class ClientController {
     public ResponseEntity<Client> delete(@PathVariable String clientId){
         log.info("Delete request: {}",clientId);
 
-            this.clientIService.delete(clientId);
-            return ResponseEntity.noContent().build();
+        this.clientIService.delete(clientId);
+        return ResponseEntity.noContent().build();
 
     }
 

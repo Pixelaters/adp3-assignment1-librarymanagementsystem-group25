@@ -11,5 +11,5 @@ import za.ac.cput.domain.Client;
 @Repository
 public interface ClientIRepository extends JpaRepository<Client,String> {
 
-    Client findClientById(String id);
+    Client findClientByClientId(String id);
 }

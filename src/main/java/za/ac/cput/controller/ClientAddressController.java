@@ -52,7 +52,7 @@ public class ClientAddressController {
         }
     }
 
-    @PostMapping("update_ClientAddress}")
+    @PostMapping("update_ClientAddress")
     public ResponseEntity<ClientAddress> update(@Valid @RequestBody ClientAddress updateClientAddress){
         log.info("Update request: {}",updateClientAddress);
 
@@ -80,3 +80,4 @@ public class ClientAddressController {
         return ResponseEntity.ok(clientAddressList);
     }
 }
+
