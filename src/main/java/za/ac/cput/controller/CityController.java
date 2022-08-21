@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.City;
-import za.ac.cput.domain.ClientAddress;
 import za.ac.cput.service.CityIService;
 
 import javax.validation.Valid;

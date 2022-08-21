@@ -88,7 +88,7 @@ class CityControllerTest {
         String url = urlBase + "delete/" + city.getId();
         this.restTemplate.delete(url);
 
-        assertNotEquals(url,city.getId());
+        assertNull(url);
     }
 
     @Test
