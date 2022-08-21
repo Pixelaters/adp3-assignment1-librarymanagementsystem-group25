@@ -5,15 +5,36 @@ Ongezwa Gwaza 211272183
 
 package za.ac.cput.domain;
 
-public class LibrarianGender {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity
+@IdClass(LibrarianGender.class)
+public class LibrarianGender implements Serializable {
+    @Id
+    @Column(name = "librarianGenderId")
+    private String librarianGenderId;
+
+    @Id
+    @Column(name = "librarianId")
     private String librarianId;
+
+    @Id
+    @Column(name = "genderId")
     private String genderId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "librarianId",referencedColumnName = "librarianId")
+    private Librarian librarian;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "genderId",referencedColumnName = "genderId")
+    private Gender gender;
 
     protected LibrarianGender(){
 
     }
-
-
 
     public LibrarianGender(Builder builder){
         this.genderId = builder.genderId;
@@ -36,6 +57,19 @@ public class LibrarianGender {
                 ", genderId='" + genderId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LibrarianGender that)) return false;
+        return librarianId.equals(that.librarianId) && genderId.equals(that.genderId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(librarianId, genderId);
+    }
+
     public static class Builder{
         private String librarianId;
         private String genderId;

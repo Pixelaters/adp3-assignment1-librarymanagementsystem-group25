@@ -14,9 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import za.ac.cput.domain.Client;
-import za.ac.cput.factory.BookFactory;
 import za.ac.cput.factory.NameFactory;
-import za.ac.cput.repository.ClientAddressIRepository;
 import za.ac.cput.repository.ClientIRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +37,6 @@ class ClientServiceTest {
         client1 = new Client.Builder()
                 .id("1")
                 .name(NameFactory.createName("Breyton","Sean","Ernstzen"))
-                .book(BookFactory.CreateBook("AZ1","Finding Gobby","Ralf Witzel","fiction"))
                 .isRented(true)
                 .build();
 
@@ -55,8 +52,7 @@ class ClientServiceTest {
 
         assertAll(
                 () -> assertNotNull(client1),
-                () -> assertSame("1",client1.getId()),
-                () -> assertSame("AZ1",client1.getBook().getBookId()),
+                () -> assertSame("1",client1.getClientId()),
                 () -> assertTrue(client1.isRented())
         );
 
@@ -68,7 +64,7 @@ class ClientServiceTest {
 
     @Test
     void b_read() {
-        clientService.read(client1.getId());
+        clientService.read(client1.getClientId());
 
         assertAll(
                 () -> assertNotNull(client1)
@@ -86,7 +82,7 @@ class ClientServiceTest {
                 () -> assertNotSame(client1.isRented(),updateClient1.isRented()),
                 () -> assertSame(false,updateClient1.isRented()),
                 () -> assertFalse(updateClient1.isRented()),
-                () -> assertSame("1",updateClient1.getId())
+                () -> assertSame("1",updateClient1.getClientId())
         );
 
         System.out.println("Details updated");
@@ -96,7 +92,7 @@ class ClientServiceTest {
 
     @Test
     void f_delete() {
-       clientService.delete(updateClient1.getId());
+       clientService.delete(updateClient1.getClientId());
 
         assertAll(
                 () -> assertNotNull(updateClient1),

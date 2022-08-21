@@ -8,10 +8,11 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class ClientAddress {
+public class ClientAddress implements Serializable {
     @Id
     private String clientId;
 

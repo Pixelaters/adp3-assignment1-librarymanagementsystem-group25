@@ -71,8 +71,8 @@ public class ClientController {
     public ResponseEntity<Client> delete(@PathVariable String clientId){
         log.info("Delete request: {}",clientId);
 
-            this.clientIService.delete(clientId);
-            return ResponseEntity.noContent().build();
+        this.clientIService.delete(clientId);
+        return ResponseEntity.noContent().build();
 
     }
 
@@ -84,9 +84,9 @@ public class ClientController {
     }
 
     //this may be the wrong way *
-    @GetMapping("find_ClientBy_Id")
-    public Client findById(String clientId){
-        return clientIService.findClientById(clientId);
+    @GetMapping("find_ClientBy_Id/{clientId}")
+    public List<Client> findById(@PathVariable String clientId){
+        return (List<Client>) clientIService.findClientById(clientId);
     }
 
 }

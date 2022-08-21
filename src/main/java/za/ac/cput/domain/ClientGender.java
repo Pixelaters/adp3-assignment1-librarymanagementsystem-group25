@@ -7,13 +7,35 @@ package za.ac.cput.domain;
  Date : 2022/08/08
  */
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ClientGender {
+@Entity
+@IdClass(ClientGender.class)
+public class ClientGender implements Serializable {
+    @Id
+    @Column(name = "clientGenderId")
+    private String clientGenderId;
 
+    @Id
+    @Column(name = "clientId")
     private String clientId;
 
+    @Id
+    @Column(name = "genderId")
     private String genderId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "clientId",referencedColumnName = "clientId")
+    private Client client;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "genderId",referencedColumnName = "genderId")
+    private Gender gender;
+
+    protected ClientGender() {
+    }
 
     private ClientGender(Builder b){
 
@@ -37,8 +59,15 @@ public class ClientGender {
     }
 
     @Override
-    public int hashCode(){
-        return Objects.hash(clientId);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientGender that)) return false;
+        return clientId.equals(that.clientId) && genderId.equals(that.genderId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientId, genderId);
     }
 
     public static class Builder{

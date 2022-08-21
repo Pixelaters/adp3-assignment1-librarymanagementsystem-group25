@@ -1,6 +1,7 @@
 package za.ac.cput.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /*
  * Name: Raeece Samuels
@@ -9,7 +10,7 @@ import javax.persistence.*;
  * Date: 2022/08/06
  * */
 @Entity
-public class Librarian {
+public class Librarian implements Serializable {
     @Id
     private String staffId;
     private String position;
@@ -23,7 +24,7 @@ public class Librarian {
         this.name = lb.name;
     }
 
-    public Librarian() {
+    protected Librarian() {
 
     }
 
