@@ -1,5 +1,10 @@
 package za.ac.cput.service.impl;
-
+/*
+ * Name: Raeece Samuels
+ * Project: Library Management
+ * Service: CityServiceTest
+ * Date: 2022/08/06
+ * */
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -74,9 +79,9 @@ class CityServiceTest {
 
     @Test
     void d_findCityById() {
-        cityService.findCityById("2");
+        cityService.findCitiesById("2");
 
         assertNotNull(updateCity1);
-        System.out.println(cityService.findCityById("2"));
+        System.out.println(cityService.findCitiesById("2"));
     }
 }
