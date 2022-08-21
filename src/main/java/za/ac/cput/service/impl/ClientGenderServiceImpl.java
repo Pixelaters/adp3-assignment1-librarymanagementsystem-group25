@@ -16,32 +16,23 @@ public class ClientGenderServiceImpl implements ClientGenderService {
     public ClientGenderServiceImpl(ClientGenderRepository clientGenderRepository) {
         this.clientGenderRepository = clientGenderRepository;
     }
-    
 
-    @Override
-    public ClientGender update(ClientGender clientGender){
+
+ @Override
+ public ClientGender create(ClientGender clientGender){
         return this.clientGenderRepository.save(clientGender);
-    }
+ }
 
     @Override
-    public ClientGender create(ClientGender clientGender) {
+    public ClientGender read(String id){
+        return (ClientGender) this.clientGenderRepository.getReferenceById(id);
+    }
+
+   @Override
+   public ClientGender update(ClientGender clientGender){
         return this.clientGenderRepository.save(clientGender);
-    }
+   }
 
-    @Override
-    public ClientGenderService create(ClientGenderService clientGenderService) {
-        return null;
-    }
-
-    @Override
-    public ClientGenderService read(String id){
-        return (ClientGenderService) this.clientGenderRepository.getReferenceById(id);
-    }
-
-    @Override
-    public ClientGenderService update(ClientGenderService clientGenderService) {
-        return null;
-    }
 
     @Override
     public void delete(String id){

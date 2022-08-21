@@ -5,11 +5,8 @@ import za.ac.cput.domain.Gender;
 
 import java.util.List;
 
-public interface ClientGenderService extends IService<ClientGenderService , String> {
+public interface ClientGenderService extends IService<ClientGender , String> {
 
-    ClientGender create(ClientGender clientGender);
-
-    ClientGender update(ClientGender clientGender);
 
     public List<ClientGender> getAll();
 }
