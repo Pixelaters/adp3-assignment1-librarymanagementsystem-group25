@@ -85,5 +85,9 @@ public class CityController {
         return ResponseEntity.ok(cityList);
     }
 
+    @GetMapping("getCitiesById")
+    public List<City> findCityById(String id){
+        return cityIService.findCitiesById(id);
+    }
     }
 
