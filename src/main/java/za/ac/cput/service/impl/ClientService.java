@@ -10,6 +10,7 @@ import za.ac.cput.domain.Client;
 import za.ac.cput.repository.ClientIRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService implements ClientIService {
@@ -44,7 +45,7 @@ public class ClientService implements ClientIService {
 
     @Override
     public List<Client> getAll() {
-        return this.clientIRepository.findAll();
+        return this.clientIRepository.findAll().stream().collect(Collectors.toList());
     }
 
     @Override
