@@ -1,10 +1,35 @@
 package za.ac.cput.domain;
 
-public class Contact {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Set;
+
+@Entity
+public class Contact implements Serializable {
+    @Id
+    @Column(name= "contactId")
     private String contactId;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String cell;
+
+    @NotNull
     private String nextOfKin;
+
+    @OneToMany(mappedBy = "contact")
+    private Set<ClientContact> clientContactSet;
+
+
+    protected Contact() {
+
+    }
 
     public Contact(Builder builder) {
         this.contactId = builder.contactId;

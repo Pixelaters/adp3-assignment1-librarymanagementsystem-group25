@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class Name implements Serializable {
+public class Name {
     private String firstName;
     private String middleName;
     private String lastName;

@@ -1,14 +1,27 @@
 package za.ac.cput.domain;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.Set;
 
-@Embeddable
-public class Book {
+@Entity
+public class Book implements Serializable {
+    @Id
+    @Column(name = "bookId")
     private String bookId;
+    @NotNull
     private String bookName;
+    @NotNull
     private String author;
+    @NotNull
     private String genre;
 
+    @OneToMany(mappedBy = "book")
+    private Set<ClientBook> clientBookSet;
+
+    //test
     protected Book(){
 
     }
@@ -18,22 +31,6 @@ public class Book {
         this.bookName = builder.bookName;
         this.author = builder.author;
         this.genre = builder.genre;
-    }
-
-    private void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
-
-    private void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    private void setAuthor(String author) {
-        this.author = author;
-    }
-
-    private void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getBookId() {
@@ -60,6 +57,18 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return bookId.equals(book.bookId) && bookName.equals(book.bookName) && author.equals(book.author) && genre.equals(book.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookId, bookName, author, genre);
     }
 
     public static class Builder {
