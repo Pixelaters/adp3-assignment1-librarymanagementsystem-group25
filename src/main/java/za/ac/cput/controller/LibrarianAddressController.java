@@ -83,4 +83,9 @@ public class LibrarianAddressController {
         return ResponseEntity.ok(librarianAddressList);
     }
 
+    @GetMapping("getLibrarianAddressBylibrarianId")
+    public List<LibrarianAddress> findLibrarianAddressByLibrarianIdList(String librarianId){
+        return findLibrarianAddressByLibrarianIdList(librarianId);
+    }
+
 }

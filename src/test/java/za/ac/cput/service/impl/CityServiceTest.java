@@ -79,9 +79,9 @@ class CityServiceTest {
 
     @Test
     void d_findCityById() {
-        cityService.findCityById("2");
+        cityService.findCitiesById("2");
 
         assertNotNull(updateCity1);
-        System.out.println(cityService.findCityById("2"));
+        System.out.println(cityService.findCitiesById("2"));
     }
 }

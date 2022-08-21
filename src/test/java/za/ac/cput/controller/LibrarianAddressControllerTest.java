@@ -91,7 +91,7 @@ class LibrarianAddressControllerTest {
     }
 
     @Test
-    void e_delete() {
+    void f_delete() {
         String url = urlBase + "delete/" + librarianAddress.getLibrarianId();
         this.restTemplate.delete(url);
 
@@ -111,4 +111,6 @@ class LibrarianAddressControllerTest {
                 () -> assertTrue(responseEntity.getBody().length == 0)
         );
     }
+
+
 }

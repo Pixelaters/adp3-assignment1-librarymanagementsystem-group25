@@ -53,7 +53,7 @@ public class CityService implements CityIService {
     }
 
     @Override
-    public City findCityById(String id) {
+    public List<City> findCitiesById(String id) {
         return this.cityIRepository.findCityById(id);
     }
 }
