@@ -5,10 +5,33 @@ Nondumiso Gaga(220430853)
 package za.ac.cput.domain;
 
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class ClientContact {
+@Entity
+@IdClass(ClientContactId.class)
+public class ClientContact implements Serializable {
+    @Id
+    @Column(name="clientContactId")
+    private String clientContactId;
+
+    @Id
+    @Column(name="contactId")
     private String contactId;
+
+
+    @Id
+    @Column(name="clientId")
     private String clientId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name="contactId", referencedColumnName = "contactId")
+    private Contact contact;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name="clientId", referencedColumnName = "clientId")
+    private Client client;
 
     protected ClientContact(){
 
@@ -32,6 +55,19 @@ public class ClientContact {
                 ", librarianId='" + clientId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientContact that)) return false;
+        return contactId.equals(that.contactId) && clientId.equals(that.clientId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contactId, clientId);
+    }
+
     public static class Builder{
         private String contactId;
         private String clientId;

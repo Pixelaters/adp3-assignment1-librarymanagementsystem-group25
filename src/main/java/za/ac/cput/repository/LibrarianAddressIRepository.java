@@ -12,5 +12,5 @@ import za.ac.cput.domain.LibrarianAddress;
 @Repository
 public interface LibrarianAddressIRepository extends JpaRepository<LibrarianAddress, String> {
 
-    LibrarianAddress findLibrarianAddressById(String librarianId);
+    LibrarianAddress findLibrarianAddressByLibrarianId(String librarianId);
 }
