@@ -15,5 +15,5 @@ public interface LibrarianAddressIService extends IService<LibrarianAddress, Str
 
     public LibrarianAddress findLibrarianAddressByLibrarianId(String librarianId);
 
-    
+
 }
