@@ -12,5 +12,5 @@ import za.ac.cput.domain.City;
 @Repository
 public interface CityIRepository extends JpaRepository<City,String> {
 
-    City findCityById(String id);
+    City findCitiesById(String id);
 }
