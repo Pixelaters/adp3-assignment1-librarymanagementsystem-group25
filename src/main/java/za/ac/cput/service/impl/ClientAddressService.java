@@ -29,7 +29,7 @@ public class ClientAddressService implements ClientAddressIService{
 
     @Override
     public ClientAddress read(String id) {
-        return this.clientAddressIRepository.getReferenceById(id);
+        return this.clientAddressIRepository.findById(id).orElse(null);
     }
 
     @Override
