@@ -21,6 +21,7 @@ public class Book implements Serializable {
     @OneToMany(mappedBy = "book")
     private Set<ClientBook> clientBookSet;
 
+    //test
     protected Book(){
 
     }
