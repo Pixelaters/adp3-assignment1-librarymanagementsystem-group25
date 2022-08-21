@@ -7,19 +7,32 @@ package za.ac.cput.domain;
  Date : 2022/08/08
  */
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@IdClass(ClientGender.class)
 public class ClientGender implements Serializable {
+    @Id
+    @Column(name = "clientGenderId")
+    private String clientGenderId;
 
     @Id
+    @Column(name = "clientId")
     private String clientId;
 
     @Id
+    @Column(name = "genderId")
     private String genderId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "clientId",referencedColumnName = "clientId")
+    private Client client;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "genderId",referencedColumnName = "genderId")
+    private Gender gender;
 
     protected ClientGender() {
     }

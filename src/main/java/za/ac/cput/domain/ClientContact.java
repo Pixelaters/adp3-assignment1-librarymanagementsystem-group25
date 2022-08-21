@@ -5,18 +5,33 @@ Nondumiso Gaga(220430853)
 package za.ac.cput.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@IdClass(ClientContactId.class)
 public class ClientContact implements Serializable {
     @Id
-    private String contactId;
+    @Column(name="clientContactId")
+    private String clientContactId;
 
     @Id
+    @Column(name="contactId")
+    private String contactId;
+
+
+    @Id
+    @Column(name="clientId")
     private String clientId;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name="contactId", referencedColumnName = "contactId")
+    private Contact contact;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name="clientId", referencedColumnName = "clientId")
+    private Client client;
 
     protected ClientContact(){
 

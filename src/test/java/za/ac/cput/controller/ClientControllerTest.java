@@ -1,0 +1,152 @@
+package za.ac.cput.controller;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import za.ac.cput.domain.Client;
+import za.ac.cput.domain.Name;
+import za.ac.cput.factory.ClientFactory;
+import za.ac.cput.factory.NameFactory;
+
+import java.util.Arrays;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
+class ClientControllerTest {
+    @LocalServerPort private int portNumber;
+    @Autowired private ClientController clientController;
+    @Autowired private TestRestTemplate restTemplate;
+    private Client client,updatedClient;
+    private String urlBase;
+
+    @BeforeEach
+    void setUp() {
+        assertNotNull(clientController);
+
+        this.client = ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean",
+                "Ernstzen"),true);
+
+        this.updatedClient = new Client.Builder().copy(client)
+                .name(NameFactory.createName("Breyton","Shaun","Ernstzen"))
+                .build();
+
+        this.urlBase = "http://localhost:" + this.portNumber + "/librarymanagementsystem/client/";
+    }
+
+    @Test
+    void a_create() {
+        String url = urlBase + "save_client";
+        System.out.println(url);
+
+        ResponseEntity<Client> clientResponseEntity = this.restTemplate
+                .postForEntity(url,this.client,Client.class);
+        System.out.println(clientResponseEntity);
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,clientResponseEntity.getStatusCode()),
+                () -> assertNotNull(clientResponseEntity.getBody())
+        );
+
+        System.out.println("Client saved!");
+
+    }
+
+    //this test method needs fixing
+    @Test
+    void b_read() {
+        String url = urlBase + "readClient/" + client.getClientId();
+        System.out.println(url);
+
+        ResponseEntity<Client> clientResponseEntity = this.restTemplate
+                .getForEntity(url,Client.class);
+        System.out.println(clientResponseEntity);
+        //System.out.println(Arrays.asList(Objects.requireNonNull(clientResponseEntity.getBody())));
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,clientResponseEntity.getStatusCode()),
+                () -> assertNotNull(clientResponseEntity.getBody())
+
+        );
+
+    }
+
+    @Test
+    void c_update() {
+        String url = urlBase + "update_client";
+        System.out.println(url);
+
+        ResponseEntity<Client> clientResponseEntity = this.restTemplate
+                .postForEntity(url,this.updatedClient,Client.class);
+        System.out.println(clientResponseEntity);
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,clientResponseEntity.getStatusCode()),
+                () -> assertNotNull(clientResponseEntity.getBody())
+        );
+
+        System.out.println("Client details updated");
+    }
+
+    @Test
+    void d_delete() {
+        String url = urlBase + "deleteClient/" + updatedClient.getClientId();
+        System.out.println(url);
+
+        this.restTemplate.delete(url);
+
+        assertAll(
+                () -> assertSame("1",updatedClient.getClientId()),
+                () -> assertNotNull(updatedClient.getName()),
+                () -> assertSame(true,updatedClient.isRented())
+
+        );
+
+        System.out.println("Delete success!");
+
+    }
+
+    @Test
+    void e_getAll() {
+        String url = urlBase + "getAll_clients";
+        System.out.println(url);
+
+        ResponseEntity<Client[]> responseEntity = this.restTemplate
+                .getForEntity(url,Client[].class);
+        System.out.println(Arrays.asList(Objects.requireNonNull(responseEntity.getBody())));
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertTrue(responseEntity.getBody().length == 0),
+                () -> assertNotNull(responseEntity)
+        );
+
+    }
+
+    //come back to this test.It doesn't work 100%.
+    @Test
+    void f_findById() {
+        String url = urlBase + "find_ClientBy_Id";
+        System.out.println(url);
+
+        ResponseEntity<Client[]> responseEntity = this.restTemplate
+                .getForEntity(url,Client[].class);
+        //System.out.println(Arrays.asList(Objects.requireNonNull(responseEntity.getBody())));
+
+        assertAll(
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity)
+        );
+
+
+
+    }
+}

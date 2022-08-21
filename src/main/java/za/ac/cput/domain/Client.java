@@ -4,6 +4,8 @@
  */
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -17,13 +19,17 @@ public class Client implements Serializable {
     @Column(name="clientId")
     private String clientId;
     @Embedded
+    @Column(name="name")
     private Name name;
 
-    @NotNull
+    @JsonProperty("isRented")
     private boolean isRented;
 
     @OneToMany(mappedBy = "client")
     private Set<ClientBook> clientBookSet;
+
+    @OneToMany(mappedBy = "client")
+    private Set<ClientContact> clientContactSet;
 
     protected Client(){
         //empty constructor
@@ -45,7 +51,7 @@ public class Client implements Serializable {
 
 
     public boolean isRented() {
-        return isRented;
+        return this.isRented;
     }
 
     @Override

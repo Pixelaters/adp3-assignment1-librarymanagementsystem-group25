@@ -48,6 +48,6 @@ public class ClientService implements ClientIService{
 
     @Override
     public Client findClientById(String id) {
-        return this.clientIRepository.findClientById(id);
+        return this.clientIRepository.findClientByClientId(id);
     }
 }
