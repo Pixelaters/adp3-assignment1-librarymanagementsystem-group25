@@ -15,6 +15,7 @@ import za.ac.cput.domain.Client;
 import za.ac.cput.service.impl.ClientIService;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -55,8 +56,7 @@ public class ClientController {
 
     }
 
-    //works same as the save/create method
-    @PostMapping("update_client")
+    @PutMapping("update_client")
     public ResponseEntity<Client> update(@Valid @RequestBody Client updateClient){
 
         try{
@@ -84,10 +84,9 @@ public class ClientController {
 
     }
 
-    //this may be the wrong way *
     @GetMapping("find_ClientBy_Id/{clientId}")
     public List<Client> findById(@PathVariable String clientId){
-        return (List<Client>) clientIService.findClientById(clientId);
+        return Collections.singletonList(clientIService.findClientById(clientId));
     }
 
 }

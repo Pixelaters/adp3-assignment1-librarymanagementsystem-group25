@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@IdClass(ClientGender.class)
+@IdClass(ClientGenderId.class)
 public class ClientGender implements Serializable {
     @Id
     @Column(name = "clientGenderId")
