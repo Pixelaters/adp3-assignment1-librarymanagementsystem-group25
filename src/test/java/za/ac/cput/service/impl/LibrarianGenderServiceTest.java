@@ -7,11 +7,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import za.ac.cput.domain.ClientAddress;
 import za.ac.cput.domain.LibrarianGender;
-import za.ac.cput.factory.AddressFactory;
-import za.ac.cput.factory.CityFactory;
-import za.ac.cput.repository.ClientAddressIRepository;
+
 import za.ac.cput.repository.LibrarianGenderRepository;
 
 import static org.junit.jupiter.api.Assertions.*;

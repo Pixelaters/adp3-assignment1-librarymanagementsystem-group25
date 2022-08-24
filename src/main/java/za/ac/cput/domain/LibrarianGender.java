@@ -90,6 +90,10 @@ public class LibrarianGender implements Serializable {
 
         }
         public LibrarianGender createLibrarianG(){return new LibrarianGender(this);}
+
+        public LibrarianGender build() {
+            return null;
+        }
     }
 
 }
