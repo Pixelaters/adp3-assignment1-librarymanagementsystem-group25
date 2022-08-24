@@ -6,9 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import za.ac.cput.domain.Book;
 import za.ac.cput.domain.ClientAddress;
 import za.ac.cput.domain.Librarian;
 import za.ac.cput.service.impl.LibrarianIservice;
+import za.ac.cput.service.impl.LibrarianService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,10 +22,10 @@ import java.util.List;
 @RequestMapping("librarymanagementsystem/librarian/")
 @Slf4j
 public class LibrarianController {
-    private final LibrarianIservice librarianIService;
+    private final LibrarianService librarianService;
 
-    public LibrarianController(LibrarianIservice librarianIService) {
-        this.librarianIService = librarianIService;
+    public LibrarianController(LibrarianService librarianService) {
+        this.librarianService = librarianService;
     }
 
     @PostMapping("save_Librarian")
@@ -32,7 +34,7 @@ public class LibrarianController {
         log.info("Save request: ", saveLibrarian);
         try {
 
-            Librarian librarian = this.librarianIService.create(saveLibrarian);
+            Librarian librarian = this.librarianService.create(saveLibrarian);
             return ResponseEntity.ok(librarian);
         } catch (IllegalArgumentException exception) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
@@ -45,7 +47,7 @@ public class LibrarianController {
     public ResponseEntity<Librarian> read(@PathVariable String librarianId) {
         log.info("Read request: {}", librarianId);
         try {
-            Librarian getLibrarian = this.librarianIService.read(librarianId);
+            Librarian getLibrarian = this.librarianService.read(librarianId);
             return ResponseEntity.ok(getLibrarian);
 
 
@@ -57,15 +59,25 @@ public class LibrarianController {
     public ResponseEntity<Librarian> delete(@PathVariable String librarianId){
         log.info("Delete request:",librarianId);
 
-        this.librarianIService.delete(librarianId);
+        this.librarianService.delete(librarianId);
         return ResponseEntity.noContent().build();
 
     }
 
     @GetMapping("getAll_Librarian")
     public ResponseEntity<List<Librarian>> getAll(){
-        List<Librarian> librarianList = this.librarianIService.getAll();
+        List<Librarian> librarianList = this.librarianService.getAll();
         return ResponseEntity.ok(librarianList);
+    }
+    @GetMapping("findByPosition")
+    public List<Librarian> findByPosition(@PathVariable String position){
+        return  librarianService.findLibrarianByPosition(position);
+
+
+    }
+    @GetMapping("findByName")
+    public List<Librarian> findLibrarianByName(@PathVariable String name){
+        return librarianService.findLibrarianByName(name);
     }
 }
 
