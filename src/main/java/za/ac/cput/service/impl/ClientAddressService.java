@@ -44,12 +44,12 @@ public class ClientAddressService implements ClientAddressIService{
 
     @Override
     public List<ClientAddress> getAll() {
-        return this.clientAddressIRepository.findAll();
+        return this.clientAddressIRepository.findAll().stream().toList();
 
     }
 
     public ClientAddress findClientAddressByClientId(String clientId){
-        return this.clientAddressIRepository.findClientAddressByClientId(clientId);
+        return this.clientAddressIRepository.findById(clientId).orElse(null);
     }
 
 }

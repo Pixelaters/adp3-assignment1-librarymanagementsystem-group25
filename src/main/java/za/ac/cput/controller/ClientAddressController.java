@@ -79,5 +79,6 @@ public class ClientAddressController {
         List<ClientAddress> clientAddressList = this.clientAddressIService.getAll();
         return ResponseEntity.ok(clientAddressList);
     }
+
 }
 
