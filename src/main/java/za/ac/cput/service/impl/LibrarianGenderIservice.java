@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface LibrarianGenderIservice extends IService<LibrarianGender,String> {
     public List<LibrarianGender> getAll();
+    public List<LibrarianGender> findLibrarianByLibrarianId(String librarianId);
 
+    List<LibrarianGender> findLibrarianGenderByLibrarianId(String librarianId);
 }
