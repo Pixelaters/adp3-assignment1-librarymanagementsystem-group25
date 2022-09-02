@@ -2,7 +2,6 @@ package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Librarian;
 import za.ac.cput.domain.LibrarianGender;
 import za.ac.cput.repository.LibrarianGenderRepository;
 
@@ -39,6 +38,17 @@ private final LibrarianGenderRepository librarianGenderRepository;
     @Override
     public List<LibrarianGender> getAll() {
         return this.librarianGenderRepository.findAll();
+    }
+
+    @Override
+    public List<LibrarianGender> findLibrarianByLibrarianId(String librarianId) {
+        return null;
+    }
+
+    @Override
+    public List<LibrarianGender> findLibrarianGenderByLibrarianId(String librarianId) {
+     return null;
+
     }
 }
 
