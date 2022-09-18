@@ -28,7 +28,7 @@ public class ClientService implements ClientIService{
 
     @Override
     public Client read(String clientId) {
-        return this.clientIRepository.getReferenceById(clientId);
+        return this.clientIRepository.findById(clientId).orElse(null);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ClientService implements ClientIService{
 
     @Override
     public List<Client> getAll() {
-        return this.clientIRepository.findAll();
+        return this.clientIRepository.findAll().stream().toList();
     }
 
     @Override
