@@ -8,6 +8,7 @@ import za.ac.cput.repository.ClientIRepository;
 import za.ac.cput.service.ClientBookIService;
 import za.ac.cput.service.IService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -46,10 +47,11 @@ public class ClientBookImpl implements ClientBookIService {
         return this.clientBookIRepository.findAll();
     }
 
+    //might be wrong
     @Override
     public List<ClientBook> findClientBooksByClientId(String clientId) {
-       // return this.clientBookIRepository.findClientBooksByClientId(clientId);
-        return null;
+       return Collections.singletonList(this.clientBookIRepository.findById(clientId).orElse(null));
+
     }
 
 }
