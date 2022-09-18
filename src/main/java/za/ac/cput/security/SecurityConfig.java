@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,9 +21,43 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+//@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class SecurityConfig  {
+
+    @Bean
+    public UserDetailsService users() {
+
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withUsername("user")
+                .password(passwordEncoder().encode("12345"))
+                .roles("USER")
+                .build());
+
+        manager.createUser(User.withUsername("admin")
+                .password(passwordEncoder().encode("54321"))
+                .roles("USER","ADMIN")
+                .build());
+
+        return manager;
+
+        //OR use this below
+
+        //        UserDetails user = User.builder()
+//                .username("user")
+//                .password(passwordEncoder().encode("12345"))
+//                .roles("USER")
+//                .build();
+//
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode("54321"))
+//                .roles("USER","ADMIN")
+//                .build();
+
+        // return new InMemoryUserDetailsManager(user,admin);
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -75,25 +110,6 @@ public class SecurityConfig  {
                 .formLogin().disable();
 
         return http.build();
-    }
-
-    @Bean
-    public UserDetailsService users() {
-
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("12345"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("54321"))
-                .roles("USER","ADMIN")
-                .build();
-
-                return new InMemoryUserDetailsManager(user,admin);
-
     }
 
     @Bean
