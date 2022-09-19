@@ -6,35 +6,47 @@ import java.util.Objects;
 
 public class ClientBookId implements Serializable {
 
-    private String clientBookId;
-    private String clientId;
-    private String bookId;
+    private Client client;
+    private Book book;
 
-    public String getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    private void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public String getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    private void setBookId(String bookId) {
-        this.bookId = bookId;
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public ClientBookId() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "ClientBookId{" +
+                "client=" + client +
+                ", book=" + book +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ClientBookId that)) return false;
-        return clientBookId.equals(that.clientBookId) && clientId.equals(that.clientId) && bookId.equals(that.bookId);
+        if (!(o instanceof ClientBookId)) return false;
+        ClientBookId that = (ClientBookId) o;
+        return client.equals(that.client) && book.equals(that.book);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientBookId, clientId, bookId);
+        return Objects.hash(client, book);
     }
 }
