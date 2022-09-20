@@ -2,27 +2,28 @@ package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Contact;
+import za.ac.cput.service.ContactIService;
 import za.ac.cput.service.impl.ContactServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/library-management/Contacts/")
+@RequestMapping("librarymanagementsystem/contact/")
 @Slf4j
 public class ContactController {
-    private ContactServiceImpl contactService;
+    private final ContactServiceImpl contactService;
 
     @Autowired
     ContactController(ContactServiceImpl contactService){
         this.contactService = contactService;
     }
-
 
     @PostMapping("save_contact")
     public ResponseEntity<Contact> create(@Valid @RequestBody Contact saveContact){
@@ -31,8 +32,9 @@ public class ContactController {
         try{
             Contact newContact = this.contactService.create(saveContact);
             return  ResponseEntity.ok(newContact);
+
         }catch(IllegalArgumentException exception){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST   , exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
         }
     }
 

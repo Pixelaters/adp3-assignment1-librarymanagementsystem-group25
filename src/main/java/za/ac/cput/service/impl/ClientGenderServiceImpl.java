@@ -26,7 +26,7 @@ public class ClientGenderServiceImpl implements ClientGenderService {
 
     @Override
     public ClientGender read(String id){
-        return (ClientGender) this.clientGenderRepository.getReferenceById(id);
+        return  this.clientGenderRepository.findById(id).orElse(null);
     }
 
    @Override
