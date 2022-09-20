@@ -33,19 +33,10 @@ class LibrarianGenderServiceTest {
     }
 
     @BeforeEach
-<<<<<<< HEAD
-    void setUp(){
-        librariangenderService = new LibrarianGenderService(testLibrarianGenderRepository) ;
-        librarian1 = new LibrarianGender.Builder().Librarian(librarian).GenderId("222").createLibrarianG();
-
-        updatelibrarian1 =  new LibrarianGender.Builder().Copy(librarian1).GenderId("333").createLibrarianG();
-=======
     void setUp() {
         librariangenderService = new LibrarianGenderService(testLibrarianGenderRepository);
         librarianGender = new LibrarianGender.Builder().Librarian(librarian).Gender(gender).build();
         Gender genderUpdate = GenderFactory.createGender("m","male","boys and man");
->>>>>>> 3f0d5ed (fix controller test and factory)
-
         updatelibrarianGender = new LibrarianGender.Builder().copy(librarianGender).Gender(genderUpdate).build();
 
 
