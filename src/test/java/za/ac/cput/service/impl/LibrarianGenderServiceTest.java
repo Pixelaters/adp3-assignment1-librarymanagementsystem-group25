@@ -26,7 +26,7 @@ class LibrarianGenderServiceTest {
     @BeforeEach
     void setUp(){
         librariangenderService = new LibrarianGenderService(testLibrarianGenderRepository) ;
-        librarian1 = new LibrarianGender.Builder().LibrarianId("999").GenderId("222").createLibrarianG();
+        librarian1 = new LibrarianGender.Builder().Librarian(librarian).GenderId("222").createLibrarianG();
 
         updatelibrarian1 =  new LibrarianGender.Builder().Copy(librarian1).GenderId("333").createLibrarianG();
 
