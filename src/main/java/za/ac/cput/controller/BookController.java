@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/library-management/books/")
+@RequestMapping("librarymanagementsystem/books/")
 @Slf4j
 public class BookController {
     private BookServiceImpl bookService;

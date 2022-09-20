@@ -9,6 +9,7 @@ import za.ac.cput.domain.ClientAddress;
 import za.ac.cput.service.impl.ClientAddressIService;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -52,7 +53,7 @@ public class ClientAddressController {
         }
     }
 
-    @PostMapping("update_ClientAddress")
+    @PutMapping("update_ClientAddress")
     public ResponseEntity<ClientAddress> update(@Valid @RequestBody ClientAddress updateClientAddress){
         log.info("Update request: {}",updateClientAddress);
 
@@ -79,5 +80,6 @@ public class ClientAddressController {
         List<ClientAddress> clientAddressList = this.clientAddressIService.getAll();
         return ResponseEntity.ok(clientAddressList);
     }
+
 }
 

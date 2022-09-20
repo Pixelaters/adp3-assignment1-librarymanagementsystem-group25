@@ -11,5 +11,5 @@ public interface GenderService extends IService<Gender , String> {
 
     public List<Gender> getAll();
 
-    public List<Gender> findGenderById(String genderId);
+    public Gender findGenderByGenderId(String genderId);
 }
