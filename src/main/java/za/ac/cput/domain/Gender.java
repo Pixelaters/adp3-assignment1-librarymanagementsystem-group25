@@ -7,20 +7,28 @@ package za.ac.cput.domain;
  Project: Library Management
  Date : 2022/08/08
  */
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Gender implements Serializable {
 
     @Id
+    @Column(name = "genderId")
     private String genderId;
-
+    @NotNull
     private String name;
-
+    @NotNull
     private String other;
+
+    @OneToMany(mappedBy = "gender")
+    private Set<ClientGender> clientGenderSet;
 
     protected Gender() {
     }
@@ -46,14 +54,20 @@ public class Gender implements Serializable {
 
     @Override
     public String toString(){
-
         return "Gender{" + "genderId" + genderId + '\'' + name +
                 "other=" + other + '}' ;
     }
 
     @Override
-    public int hashCode(){
-        return Objects.hash(genderId);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Gender gender)) return false;
+        return genderId.equals(gender.genderId) && name.equals(gender.name) && other.equals(gender.other) && clientGenderSet.equals(gender.clientGenderSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(genderId, name, other, clientGenderSet);
     }
 
     public static class Builder{
