@@ -7,25 +7,43 @@ import za.ac.cput.domain.ClientBook;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClientBookFactoryTest {
-    private ClientBook clientBook;
+    private ClientBook clientBook1,clientBook2;
 
     @BeforeEach
-    void setUp() {
-         clientBook = ClientBookFactory.createClientBook("1","A1");
+    void setUp(){
+        clientBook1 = ClientBookFactory.createClientBook(ClientFactory.createClient("1",
+                NameFactory.createName("Breyton","Sean","Ernstzen"),true),
+                BookFactory.CreateBook("ZZ1","Finding Gobby","James Franke","fiction"));
+
+        clientBook2 = ClientBookFactory.createClientBook(ClientFactory.createClient("2",
+                        NameFactory.createName("Ziyaad","Petersen"),true),
+                BookFactory.CreateBook("AA1","Frankenstein","Claude van Damme","science-fiction"));
     }
 
     @Test
-    void createClientBook() {
+    void objectIdentity(){
 
         assertAll(
-                () -> assertNotNull(clientBook),
-                () -> assertSame("1",clientBook.getClientId()),
-                () -> assertSame("A1",clientBook.getBookId()),
-                () -> assertNotSame("2",clientBook.getClientId()),
-                () -> assertNotSame("aa",clientBook.getBookId())
-
+                () -> assertNotSame(clientBook1.getClient().getClientId(),clientBook2.getClient().getClientId()),
+                () -> assertNotSame(clientBook1.getBook().getBookId(),clientBook2.getBook().getBookId()),
+                () -> assertNotNull(clientBook1),
+                () -> assertNotNull(clientBook2),
+                () -> assertSame("1",clientBook1.getClient().getClientId()),
+                () -> assertSame("2",clientBook2.getClient().getClientId())
         );
 
-        System.out.println("client book created");
+        System.out.println("success");
+    }
+
+    @Test
+    void objectEquality(){
+
+        assertAll(
+                () -> assertNotEquals(clientBook1.getClient().getClientId(),clientBook2.getClient().getClientId()),
+                () -> assertNotEquals(clientBook1.getBook().getBookId(),clientBook2.getBook().getBookId()),
+                () -> assertNotEquals(clientBook1,clientBook2)
+        );
+
+        System.out.println("success");
     }
 }

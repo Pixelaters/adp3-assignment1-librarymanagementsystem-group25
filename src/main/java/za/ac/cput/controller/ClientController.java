@@ -3,7 +3,6 @@ package za.ac.cput.controller;
     Breyton Ernstzen (217203027)
     ADP372S
     Capstone Project
-    ..
  */
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +55,7 @@ public class ClientController {
 
     }
 
+    //works same as the save/create method
     @PutMapping("update_client")
     public ResponseEntity<Client> update(@Valid @RequestBody Client updateClient){
 
@@ -84,6 +84,7 @@ public class ClientController {
 
     }
 
+    //this may be the wrong way *
     @GetMapping("find_ClientBy_Id/{clientId}")
     public List<Client> findById(@PathVariable String clientId){
         return Collections.singletonList(clientIService.findClientById(clientId));

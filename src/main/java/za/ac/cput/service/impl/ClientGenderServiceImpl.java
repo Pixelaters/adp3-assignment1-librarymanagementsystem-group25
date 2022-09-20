@@ -2,11 +2,13 @@ package za.ac.cput.service.impl;
 
 
 import org.springframework.stereotype.Service;
+import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientGender;
 import za.ac.cput.repository.ClientGenderRepository;
 import za.ac.cput.service.ClientGenderService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -45,16 +47,14 @@ public class ClientGenderServiceImpl implements ClientGenderService {
         return this.clientGenderRepository.findAll();
     }
 
+    public List<ClientGender> findClientGenderByClient(Client client){
+       return this.clientGenderRepository.findClientGenderByClient(client);
 
-        @Override
-        public List<ClientGender> findClientGenderById(String clientId){
-       List<ClientGender> subSet = this.clientGenderRepository.findClientGenderById(clientId);
-
-       System.out.println(subSet);
-       List<ClientGender> clientGenderList = new ArrayList<>();
-       for(ClientGender b : subSet){
-           clientGenderList.add(b);
-       }
-       return clientGenderList;
+//       System.out.println(subSet);
+//       List<ClientGender> clientGenderList = new ArrayList<>();
+//       for(ClientGender b : subSet){
+//           clientGenderList.add(b);
+//       }
+//       return clientGenderList;
     }
 }

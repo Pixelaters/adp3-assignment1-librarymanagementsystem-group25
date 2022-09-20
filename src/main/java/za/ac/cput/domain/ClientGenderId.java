@@ -4,43 +4,45 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class ClientGenderId implements Serializable {
-    private String clientId;
-    private String genderId;
-    private String clientGenderId;
+    private Client client;
+    private Gender gender;
 
-    public String getClientId() {
-        return clientId;
+    public ClientGenderId(){
     }
 
-    private void setClientId(String clientId) {
-        this.clientId = clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public String getGenderId() {
-        return genderId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    private void setGenderId(String genderId) {
-        this.genderId = genderId;
+    public Gender getGender() {
+        return gender;
     }
 
-    public String getClientGenderId() {
-        return clientGenderId;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
-    private void setClientGenderId(String clientGenderId) {
-        this.clientGenderId = clientGenderId;
+    @Override
+    public String toString() {
+        return "ClientGenderId{" +
+                "client=" + client +
+                ", gender=" + gender +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ClientGenderId that)) return false;
-        return clientId.equals(that.clientId) && genderId.equals(that.genderId) && clientGenderId.equals(that.clientGenderId);
+        return client.equals(that.client) && gender.equals(that.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, genderId, clientGenderId);
+        return Objects.hash(client, gender);
     }
 }

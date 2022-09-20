@@ -54,9 +54,9 @@ public class GenderController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/getGender/{id}")
-    public List<Gender> getGender(@PathVariable String id){
-        return genderService.findGenderById(id);
+    @GetMapping("/getGender/{genderId}")
+    public Gender getGenderByGenderId(@PathVariable String genderId){
+        return genderService.findGenderByGenderId(genderId);
     }
 
 
