@@ -1,14 +1,15 @@
 package za.ac.cput.service.impl;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import za.ac.cput.domain.Gender;
+import za.ac.cput.domain.Librarian;
 import za.ac.cput.domain.LibrarianGender;
 
+import za.ac.cput.factory.GenderFactory;
+import za.ac.cput.factory.LibrarianFactory;
 import za.ac.cput.repository.LibrarianGenderRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,71 +22,78 @@ class LibrarianGenderServiceTest {
     @Mock
     private LibrarianGenderRepository testLibrarianGenderRepository;
     LibrarianGenderService librariangenderService;
-    private static LibrarianGender librarian1, updatelibrarian1;
+    private static LibrarianGender librarianGender, updatelibrarianGender;
+    private static Librarian librarian;
+    private static Gender gender;
+
+    @BeforeAll
+    static void initialiseTests(){
+        librarian = LibrarianFactory.createLibrarian("5694","labrarian","Ongezwa","Ongie","Gwaza");
+        gender = GenderFactory.createGender("f","female","girls and woman");
+    }
 
     @BeforeEach
+<<<<<<< HEAD
     void setUp(){
         librariangenderService = new LibrarianGenderService(testLibrarianGenderRepository) ;
         librarian1 = new LibrarianGender.Builder().Librarian(librarian).GenderId("222").createLibrarianG();
 
         updatelibrarian1 =  new LibrarianGender.Builder().Copy(librarian1).GenderId("333").createLibrarianG();
+=======
+    void setUp() {
+        librariangenderService = new LibrarianGenderService(testLibrarianGenderRepository);
+        librarianGender = new LibrarianGender.Builder().Librarian(librarian).Gender(gender).build();
+        Gender genderUpdate = GenderFactory.createGender("m","male","boys and man");
+>>>>>>> 3f0d5ed (fix controller test and factory)
 
+        updatelibrarianGender = new LibrarianGender.Builder().copy(librarianGender).Gender(genderUpdate).build();
 
 
     }
 
     @Test
-    void a_create(){
-    librariangenderService.create(librarian1);
-
-            assertNotNull(librarian1);
+    void a_create() {
+        librariangenderService.create(librarianGender);
+        assertNotNull(librarianGender);
         System.out.println("librarian gender  created successfully");
-
-
-
-
-
-
-
     }
+
     @Test
-  void b_read(){
-     librariangenderService.read(librarian1.getGenderId());
-        assertNotNull(librarian1);
-        System.out.println(librarian1);
-
-
+    void b_read() {
+        librariangenderService.read(librarianGender.getGender().getGenderId());
+        assertNotNull(librarianGender);
+        System.out.println(librarianGender);
     }
+
     @Test
-    void c_update(){
+    void c_update() {
 
-    librariangenderService.create(updatelibrarian1) ;
-    assertNotSame (librarian1.getGenderId(),updatelibrarian1.getGenderId());
+        librariangenderService.create(updatelibrarianGender);
+        assertNotSame(librarianGender.getGender().getGenderId(), updatelibrarianGender.getGender().getGenderId());
 
-    assertSame("333",librarian1.getGenderId());
+        assertSame("m", librarianGender.getGender().getGenderId());
         System.out.println("genderid is updated");
-        System.out.println(updatelibrarian1.toString());
+        System.out.println(updatelibrarianGender.toString());
 
 
     }
+
     @Test
-    void e_delete(){
-   librariangenderService.delete(updatelibrarian1.getGenderId());
-   assertAll(
-           () ->assertNotNull(updatelibrarian1),
-           () ->assertSame("999",librarian1.getLibrarianId()),
-           () -> assertSame("333",librarian1.getGenderId())
+    void e_delete() {
+        librariangenderService.delete(updatelibrarianGender.getGender().getGenderId());
+        assertAll(
+                () -> assertNotNull(updatelibrarianGender),
+                () -> assertSame("5694", librarianGender.getLibrarian().getStaffId()),
+                () -> assertSame("m", librarianGender.getGender().getGenderId())
 
 
-
-   );
+        );
 
         System.out.println("updated");
 
 
-
-
     }
+
     @Test
     void getAll() {
 
@@ -95,5 +103,5 @@ class LibrarianGenderServiceTest {
 
         );
         System.out.println();
-}
+    }
 }

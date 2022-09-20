@@ -6,32 +6,42 @@ Ongezwa Gwaza 211272183
 
 package za.ac.cput.factory;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import za.ac.cput.domain.Gender;
 import za.ac.cput.domain.Librarian;
 import za.ac.cput.domain.LibrarianGender;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibrarianGenderFactoryTest {
+    static Librarian librarian;
+    static Gender gender;
+     @BeforeAll
+     static void setUp(){
+          librarian = LibrarianFactory.createLibrarian("5694","labrarian","Ongezwa","Ongie","Gwaza");
+          gender = GenderFactory.createGender("f","female","girls and woman");
+
+     }
 
     @Test
     void testLibrarianGender() {// all value are provided
-        LibrarianGender librarianGender = LibrarianGenderFactory.createLibrariangender("5555", "36525");
+        LibrarianGender librarianGender = LibrarianGenderFactory.createLibrariangender(librarian, gender);
         assertNotNull(librarianGender);
         System.out.println(librarianGender);
     }
     @Test
-    void testwithoutlibrarianId(){
-        LibrarianGender librarianGender = LibrarianGenderFactory.createLibrariangender("", "36525");
+    void testwithoutlibrarian(){
+        LibrarianGender librarianGender = LibrarianGenderFactory.createLibrariangender(null, gender);
         assertNotNull(librarianGender);
         System.out.println(librarianGender);
 
 
     }
     @Test
-    void testwithoutgenderId(){
+    void testwithoutgender(){
 
-        LibrarianGender librarianGender = LibrarianGenderFactory.createLibrariangender("99999", "");
+        LibrarianGender librarianGender = LibrarianGenderFactory.createLibrariangender(librarian, null);
         assertNotNull(librarianGender);
         System.out.println(librarianGender);
     }
