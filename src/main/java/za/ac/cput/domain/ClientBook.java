@@ -2,25 +2,18 @@ package za.ac.cput.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @IdClass(ClientBookId.class)
 public class ClientBook implements Serializable {
-    @Id
-    @Column(name= "clientId")
-    private String clientId;
-    @Id
-    @Column(name= "bookId")
-    private String bookId;
 
     @Id
-    @Column(name="clientBookId")
-    private String clientBookId;
-
     @ManyToOne
     @PrimaryKeyJoinColumn(name="bookId",referencedColumnName = "bookId")
     private Book book;
+
+
+    @Id
     @ManyToOne
     @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
     private Client client;
@@ -30,56 +23,53 @@ public class ClientBook implements Serializable {
     }
 
     public ClientBook(Builder b) {
-        this.clientId = b.clientId;
-        this.bookId = b.bookId;
-
+        this.book = b.book;
+        this.client = b.client;
     }
 
-    public String getClientId() {
-        return clientId;
+
+    public Book getBook() {
+        return book;
     }
 
-    public String getBookId() {
-        return bookId;
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public String toString() {
         return "ClientBook{" +
-                "clientId='" + clientId + '\'' +
-                ", bookId='" + bookId + '\'' +
+                "book=" + book +
+                ", client=" + client +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ClientBook that)) return false;
-        return clientId.equals(that.clientId) && bookId.equals(that.bookId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(clientId, bookId);
-    }
 
     public static class Builder {
-        private String clientId;
-        private String bookId;
+        private Book book;
+        private Client client;
 
-        public Builder clientId(String clientId) {
-            this.clientId = clientId;
+        public Builder Book(Book book) {
+            this.book = book;
             return this;
         }
 
-        public Builder bookId(String bookId) {
-            this.bookId = bookId;
+        public Builder Client(Client client) {
+            this.client = client;
             return this;
         }
 
         public Builder copy(ClientBook clientBook){
-            this.clientId = clientBook.clientId;
-            this.bookId = clientBook.bookId;
+            this.book= book;
+            this.client= client;
             return this;
         }
 

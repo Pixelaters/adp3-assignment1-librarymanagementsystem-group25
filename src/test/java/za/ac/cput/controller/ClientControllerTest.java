@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import za.ac.cput.domain.Client;
 import za.ac.cput.domain.Name;
 import za.ac.cput.factory.ClientFactory;
@@ -27,6 +26,9 @@ class ClientControllerTest {
     @Autowired private TestRestTemplate restTemplate;
     private Client client,updatedClient;
     private String urlBase;
+
+    public static String USERNAME = "user";
+    public static String PASSWORD = "password";
 
     @BeforeEach
     void setUp() {
@@ -119,15 +121,23 @@ class ClientControllerTest {
         String url = urlBase + "getAll_clients";
         System.out.println(url);
 
-        ResponseEntity<Client[]> responseEntity = this.restTemplate
-                .getForEntity(url,Client[].class);
-        System.out.println(Arrays.asList(Objects.requireNonNull(responseEntity.getBody())));
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> entity = new HttpEntity<>(null,headers);
+
+        ResponseEntity<String> responseEntity = this.restTemplate
+                .withBasicAuth(USERNAME,PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
+        //System.out.println(Arrays.asList(Objects.requireNonNull(responseEntity.getBody())));
 
         assertAll(
                 () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
-                () -> assertTrue(responseEntity.getBody().length == 0),
+                () -> assertNotNull(responseEntity.getBody()),
                 () -> assertNotNull(responseEntity)
         );
+
+        System.out.println("Show all");
+        System.out.println(responseEntity);
+        System.out.println(responseEntity.getBody());
 
     }
 
