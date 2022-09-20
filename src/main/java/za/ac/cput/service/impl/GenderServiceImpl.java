@@ -54,15 +54,15 @@ public class GenderServiceImpl implements GenderService {
     }
 
     @Override
-    public List<Gender> findGenderById(String genderId){
-        List<Gender> subSet = this.genderRepository.findGenderById(genderId);
+    public Gender findGenderByGenderId(String genderId){
+        return this.genderRepository.findGenderByGenderId(genderId);
 
-        System.out.println(subSet);
-        List<Gender> genderNameList = new ArrayList<>();
-        for(Gender b : subSet){
-            genderNameList.add(b);
-        }
-
-        return genderNameList;
+//        System.out.println(subSet);
+//        List<Gender> genderNameList = new ArrayList<>();
+//        for(Gender b : subSet){
+//            genderNameList.add(b);
+//        }
+//
+//        return genderNameList;
     }
 }
