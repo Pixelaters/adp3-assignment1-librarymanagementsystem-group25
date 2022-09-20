@@ -15,6 +15,6 @@ import java.util.List;
 
 @Repository
 public interface GenderRepository  extends JpaRepository <Gender, String> {
-    List<Gender> findGenderById(String genderId);
+    Gender findGenderByGenderId(String genderId);
 
 }

@@ -9,14 +9,18 @@ package za.ac.cput.factory;
  */
 
 import za.ac.cput.Helper.StringHelper;
+import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientGender;
+import za.ac.cput.domain.Gender;
 
 public class ClientGenderFactory {
 
-    public static ClientGender createClientGender(String clientId , String genderId ){
-        StringHelper.checkStringParam("clientId" , clientId);
-        StringHelper.checkStringParam("genderId" , genderId);
-
-        return new ClientGender.Builder().clientId(clientId).genderId(genderId).build();
+    public static ClientGender createClientGender(Client client , Gender gender ){
+//        StringHelper.checkStringParam("clientId" , client);
+//        StringHelper.checkStringParam("genderId" , gender);
+        if (client == null || gender == null) {
+            throw new IllegalArgumentException("there should be no null values");
+        }
+        return new ClientGender.Builder().Client(client).Gender(gender).build();
     }
 }
