@@ -12,24 +12,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@IdClass(ClientGender.class)
+@IdClass(ClientGenderId.class)
 public class ClientGender implements Serializable {
-    @Id
-    @Column(name = "clientGenderId")
-    private String clientGenderId;
+//    @Id
+//    @Column(name = "clientGenderId")
+//    private String clientGenderId;
+
+//    @Id
+//    @Column(name = "clientId")
+//    private String clientId;
+//
+//    @Id
+//    @Column(name = "genderId")
+//    private String genderId;
 
     @Id
-    @Column(name = "clientId")
-    private String clientId;
-
-    @Id
-    @Column(name = "genderId")
-    private String genderId;
-
     @ManyToOne
     @PrimaryKeyJoinColumn(name = "clientId",referencedColumnName = "clientId")
     private Client client;
 
+    @Id
     @ManyToOne
     @PrimaryKeyJoinColumn(name = "genderId",referencedColumnName = "genderId")
     private Gender gender;
@@ -38,59 +40,64 @@ public class ClientGender implements Serializable {
     }
 
     private ClientGender(Builder b){
-
-        this.genderId = b.genderId;
-        this.clientId = b.clientId;
+        this.client = b.client;
+        this.gender = b.gender;
     }
 
 
-    public String getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public String getGenderId() {
-        return genderId;
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Override
-    public String toString(){
-        return "ClientGender" + "clientId " + clientId + "\'" +
-                "genderId" + genderId;
+    public String toString() {
+        return "ClientGender{" +
+                "client=" + client +
+                ", gender=" + gender +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ClientGender that)) return false;
-        return clientId.equals(that.clientId) && genderId.equals(that.genderId);
+        return client.equals(that.client) && gender.equals(that.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, genderId);
+        return Objects.hash(client, gender);
     }
 
     public static class Builder{
+        private Client client;
+        private Gender gender;
 
-
-        private String clientId;
-
-        private String genderId;
-
-        public Builder clientId(String clientId){
-
-            this.clientId = clientId;
+        public Builder Client(Client client){
+            this.client = client;
             return this;
         }
 
-        public Builder genderId(String genderId){
-            this.genderId = genderId;
+        public Builder Gender(Gender gender){
+            this.gender = gender;
             return this;
         }
 
         public Builder copy(ClientGender clientGender){
-            this.genderId = clientGender.genderId;
-            this.clientId= clientGender.clientId;
+            this.client= clientGender.client;
+            this.gender = clientGender.gender;
             return this;
         }
 

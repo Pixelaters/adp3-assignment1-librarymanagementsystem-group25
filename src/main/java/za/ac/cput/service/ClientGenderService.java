@@ -1,5 +1,6 @@
 package za.ac.cput.service;
 
+import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientGender;
 import za.ac.cput.domain.Gender;
 
@@ -10,5 +11,5 @@ public interface ClientGenderService extends IService<ClientGender , String> {
 
     public List<ClientGender> getAll();
 
-    List<ClientGender> findClientGenderById(String clientId);
+    List<ClientGender> findClientGenderByClient(Client client);
 }
