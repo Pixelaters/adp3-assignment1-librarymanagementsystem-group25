@@ -8,36 +8,47 @@ import za.ac.cput.repository.LibrarianGenderRepository;
 import java.util.List;
 @Service
 public class LibrarianGenderService implements LibrarianGenderIservice{
-private final LibrarianGenderRepository LibrarianGenderRepository;
+private final LibrarianGenderRepository librarianGenderRepository;
 @Autowired
-    public LibrarianGenderService(za.ac.cput.repository.LibrarianGenderRepository librarianGenderRepository) {
-        LibrarianGenderRepository = librarianGenderRepository;
+    public LibrarianGenderService(LibrarianGenderRepository librarianGenderRepository) {
+        this.librarianGenderRepository = librarianGenderRepository;
     }
 
     @Override
     public LibrarianGender create(LibrarianGender librarianGender) {
-        return this.LibrarianGenderRepository.save(librarianGender);
+        return this.librarianGenderRepository.save(librarianGender);
     }
 
     @Override
     public LibrarianGender read(String id) {
-        return this.LibrarianGenderRepository.getReferenceById(id);
+        return this.librarianGenderRepository.getReferenceById(id);
     }
 
     @Override
     public LibrarianGender update(LibrarianGender UpdatelibrarianGender) {
-        return this.LibrarianGenderRepository.save(UpdatelibrarianGender);
+        return this.librarianGenderRepository.save(UpdatelibrarianGender);
     }
 
     @Override
     public void delete(String id) {
-    this.LibrarianGenderRepository.deleteById(id);
+    this.librarianGenderRepository.deleteById(id);
 
     }
 
     @Override
     public List<LibrarianGender> getAll() {
-        return this.LibrarianGenderRepository.findAll();
+        return this.librarianGenderRepository.findAll();
+    }
+
+    @Override
+    public List<LibrarianGender> findLibrarianByLibrarianId(String librarianId) {
+        return null;
+    }
+
+    @Override
+    public List<LibrarianGender> findLibrarianGenderByLibrarianId(String librarianId) {
+     return null;
+
     }
 }
 

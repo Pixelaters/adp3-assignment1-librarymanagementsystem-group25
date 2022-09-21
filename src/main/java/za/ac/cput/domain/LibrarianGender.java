@@ -7,89 +7,76 @@ package za.ac.cput.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @IdClass(LibrarianGender.class)
 public class LibrarianGender implements Serializable {
     @Id
-    @Column(name = "librarianGenderId")
-    private String librarianGenderId;
-
-    @Id
-    @Column(name = "librarianId")
-    private String librarianId;
-
-    @Id
-    @Column(name = "genderId")
-    private String genderId;
-
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "librarianId",referencedColumnName = "librarianId")
+    @PrimaryKeyJoinColumn(name = "genderId", referencedColumnName = "genderId")
+    private Gender gender;
+    @Id
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "librarianId", referencedColumnName = "librarianId")
     private Librarian librarian;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "genderId",referencedColumnName = "genderId")
-    private Gender gender;
+    protected LibrarianGender() {
+    }
 
-    protected LibrarianGender(){
+    public LibrarianGender(Builder builder) {
+        this.librarian = builder.librarian;
+        this.gender = builder.gender;
 
     }
 
-    public LibrarianGender(Builder builder){
-        this.genderId = builder.genderId;
-        this.librarianId = builder.librarianId;
-
+    public Gender getGender() {
+        return gender;
     }
 
-    public String getLibrarianId() {
-        return librarianId;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
-    public String getGenderId() {
-        return genderId;
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
     }
 
     @Override
     public String toString() {
         return "LibrarianGender{" +
-                "librarianId='" + librarianId + '\'' +
-                ", genderId='" + genderId + '\'' +
+                "gender=" + gender +
+                ", librarian=" + librarian +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LibrarianGender that)) return false;
-        return librarianId.equals(that.librarianId) && genderId.equals(that.genderId);
-    }
+    public static class Builder {
+        private Gender gender;
+        private Librarian librarian;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(librarianId, genderId);
-    }
 
-    public static class Builder{
-        private String librarianId;
-        private String genderId;
-
-        public Builder LibrarianId(String librarianId) {
-            this.librarianId = librarianId;
+        public Builder Gender(Gender gender) {
+            this.gender = gender;
             return this;
         }
 
-        public Builder GenderId(String genderId) {
-            this.genderId = genderId;
+        public Builder Librarian(Librarian librarian) {
+            this.librarian = librarian;
             return this;
         }
-        public Builder Copy (LibrarianGender LibrarianGender){
-            this.librarianId = librarianId;
-            this.genderId = genderId;
+
+        public Builder copy(LibrarianGender librarianGender) {
+            this.gender = gender;
+            this.librarian = librarian;
             return this;
 
         }
-        public LibrarianGender createLibrarianG(){return new LibrarianGender(this);}
+
+        public LibrarianGender build() {
+            return new LibrarianGender(this);
+        }
     }
-
 }
