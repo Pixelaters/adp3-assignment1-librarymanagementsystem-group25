@@ -7,6 +7,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.ClientContact;
+import za.ac.cput.factory.ClientFactory;
+import za.ac.cput.factory.ContactFactory;
+import za.ac.cput.factory.NameFactory;
 import za.ac.cput.repository.ClientContactIRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,63 +27,79 @@ class ClientContactServiceTest {
     @Autowired
     ClientContactService clientContactService;
 
-    private static ClientContact contact1 ,contact2;
+    private static ClientContact Clientcontact ,updatecontact;
 
     @BeforeEach
     void setUp() {
         clientContactService = new ClientContactService(clientContactIRepository);
 
-        contact1 = new ClientContact.Builder().ContactId("324").ClientId("4569").createClientCont();
+        Clientcontact = new ClientContact.Builder().Client(ClientFactory.createClient("6",
+                        NameFactory.createName("Bob", " ", "James"), true)).
+                Contact(ContactFactory.createContact("89", "pink@gmail.com", "0453988623", "0842345467")).build();
 
-        contact2 = new ClientContact.Builder().ContactId("424").Copy(contact1).createClientCont();
+        updatecontact = new ClientContact.Builder().copy(Clientcontact)
+                .Client(ClientFactory.createClient(Clientcontact.getClient().getClientId(),
+                        NameFactory.createName(Clientcontact.getClient().getName().getFirstName(),
+                                Clientcontact.getClient().getName().getMiddleName(),
+                                Clientcontact.getClient().getName().getLastName()),Clientcontact.getClient().isRented()))
+                .Contact(ContactFactory.createContact("7","cool32@gmail.com","0874562345","0673243456"))
+                .build();
     }
 
 
     @Test
     void a_create() {
-        clientContactService.create(contact1);
-        assertNotNull(contact1);
-        System.out.println("Contact created successfully!");
+        clientContactService.create(Clientcontact);
+        assertAll(
+                () -> assertNotNull(Clientcontact),
+                () -> assertSame("6",Clientcontact.getClient().getClientId()),
+                () -> assertSame("89",Clientcontact.getContact().getContactId()),
+                () -> assertSame(true,Clientcontact.getClient().isRented())
+        );
+        System.out.println("created");
 
     }
 
     @Test
     void b_read() {
-        clientContactService.read(contact1.getContactId());
-        assertNotNull(contact1);
-        System.out.println(contact1);
+        clientContactService.read(Clientcontact.getClient().getClientId());
+        assertNotNull(Clientcontact);
+        System.out.println(Clientcontact);
     }
 
     @Test
     void c_update() {
-        clientContactService.create(contact2);
+        clientContactService.update(updatecontact);
 
+        assertAll(
+                () -> assertNotSame(Clientcontact.getContact().getContactId(),updatecontact.getContact().getContactId()),
+                () -> assertNotSame(Clientcontact.getContact().getEmail(),updatecontact.getContact().getEmail()),
+                () -> assertNotSame(Clientcontact.getContact().getCell(),updatecontact.getContact().getCell()),
+                () -> assertNotSame(Clientcontact.getContact().getNextOfKin(),updatecontact.getContact().getNextOfKin())
+        );
+        System.out.println("contact updated");
+        System.out.println(updatecontact.toString());
 
-                assertNotSame(contact1.getContactId(),contact2.getContactId());
-
-                assertSame("424",contact2.getContactId());
-        System.out.println("contact id updated");
-        System.out.println(contact2.toString());
 
     }
 
     @Test
     void e_delete() {
-        clientContactService.delete(contact2.getContactId());
-        assertAll(
-                () -> assertNotNull(contact2),
-                () -> assertSame("324",contact1.getContactId()),
-                () -> assertSame("4569",contact1.getClientId())
-        );
-        System.out.println("Deleted successfully");
+        clientContactService.delete(updatecontact.getClient().getClientId());
+
+        assertNotNull(updatecontact);
+
     }
 
     @Test
     void d_getAll() {
-        System.out.println(clientContactService.getAll());
+       clientContactService.getAll();
 
         assertAll(
                 () -> assertNotNull(clientContactService.getAll())
         );
+        System.out.println(clientContactService.getAll());
     }
+
+
 }

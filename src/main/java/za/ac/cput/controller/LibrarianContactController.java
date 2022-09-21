@@ -35,11 +35,11 @@ public class LibrarianContactController {
         }
     }
     @GetMapping("readLibrarianContact/{contactId}")
-    public ResponseEntity<LibrarianContact> read(@PathVariable String contactId){
-        log.info("Read request: {}" ,contactId);
+    public ResponseEntity<LibrarianContact> read(@PathVariable String librarianId){
+        log.info("Read request: {}" ,librarianId);
 
         try{
-           LibrarianContact getLibrarianContact = this.librarianContactIService.read(contactId);
+           LibrarianContact getLibrarianContact = this.librarianContactIService.read(librarianId);
             return ResponseEntity.ok(getLibrarianContact);
 
         }catch(IllegalArgumentException e){
@@ -59,10 +59,10 @@ public class LibrarianContactController {
         }
     }
     @DeleteMapping("deleteLibrarianContact/{contactId}")
-    public ResponseEntity<LibrarianContact> delete(@PathVariable String contactId){
-        log.info("Delete request: {}",contactId);
+    public ResponseEntity<LibrarianContact> delete(@PathVariable String librarianId){
+        log.info("Delete request: {}",librarianId);
 
-        this.librarianContactIService.delete(contactId);
+        this.librarianContactIService.delete(librarianId);
         return ResponseEntity.noContent().build();
     }
     @GetMapping("getAll_LibrarianContacts")

@@ -9,7 +9,10 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.LibrarianContact;
+import za.ac.cput.factory.ContactFactory;
 import za.ac.cput.factory.LibrarianContactFactory;
+import za.ac.cput.factory.LibrarianFactory;
+
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -25,62 +28,78 @@ class LibrarianContactControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    private LibrarianContact librarianContact;
+    private LibrarianContact librarianContact,updatelibrarianContact;
     private String urlbase;
 
     @BeforeEach
     void setUp(){
         assertNotNull(librarianContact);
-        this.librarianContact= LibrarianContactFactory.createLibrariancontact("345","76694");
-        this.urlbase= "http:/localhost:" + this.portNumber+"/adp3-assignmentsystem-group25/librariancontact/";
+        this.librarianContact= LibrarianContactFactory.createContact(LibrarianFactory.createLibrarian("345","librarian",
+                "Lois","","Bricks"),
+                ContactFactory.createContact("2345","business@gmail.com","021456556","Logan"));
+
+        this.urlbase= "http:/localhost:" + this.portNumber+"/librarymanagementsystem/librariancontact/";
 
 
     }
 
     @Test
     void create() {
-        String url = urlbase +"savelibrariancontact";
+        String url = urlbase + "save_librarianContact/";
         System.out.println(url);
 
-        ResponseEntity<LibrarianContact> response = this.restTemplate
-                .postForEntity(url,this.librarianContact,LibrarianContact.class);
-        System.out.println(response);
+        ResponseEntity<LibrarianContact> responseEntity = this.restTemplate.postForEntity(url,this.librarianContact,LibrarianContact.class);
+        System.out.println(responseEntity);
+
         assertAll(
-                () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
-                () -> assertNotNull(response.getBody()),
-                () -> assertSame("345",librarianContact.getContactId()),
-                () -> assertSame("76694",librarianContact.getLibrarianId())
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity.getBody())
         );
+        System.out.println("contact created");
+
 
     }
 
     @Test
     void read() {
-        String url = urlbase +"readLibrariancontact/" + librarianContact.getContactId();
-        ResponseEntity<LibrarianContact> response = this.restTemplate.getForEntity(url,LibrarianContact.class);
+        String url = urlbase +"read_librarianContact/" + librarianContact.getLibrarian().getStaffId();
+        System.out.println(url);
+
+        ResponseEntity<LibrarianContact> responseEntity= this.restTemplate.getForEntity(url,LibrarianContact.class);
 
         assertAll(
-                () -> assertEquals(HttpStatus.OK,response.getStatusCode()),
-                () -> assertNotNull(response.getBody()),
-                () -> assertSame("345",librarianContact.getContactId()),
-                () -> assertSame("76694",librarianContact.getLibrarianId())
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity.getBody())
         );
+
 
     }
 
     @Test
     void update() {
+        String url = urlbase + "update_librarianContact";
+        System.out.println(url);
+
+        ResponseEntity<LibrarianContact> responseEntity = this.restTemplate.postForEntity(url,updatelibrarianContact,LibrarianContact.class);
+        System.out.println(responseEntity);
+
+        assertAll(
+                () -> assertNotNull(responseEntity),
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity.getBody())
+        );
+        System.out.println("contact updated");
     }
 
     @Test
     void delete() {
-        String url = urlbase +"deleteLibrariancontact/" + librarianContact.getContactId();
-        this.restTemplate.delete(url);
-        assertAll(
+        String url = urlbase +"delete_librarianContact/" + updatelibrarianContact.getLibrarian().getStaffId();
+        System.out.println(url);
 
-                () -> assertSame("345",librarianContact.getContactId()),
-                () -> assertSame("76694",librarianContact.getLibrarianId())
-        );
+        this.restTemplate.delete(url);
+         assertSame("456",updatelibrarianContact.getLibrarian().getStaffId());
+
+        System.out.println("contact deleted");
 
     }
 

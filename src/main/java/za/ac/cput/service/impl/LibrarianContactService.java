@@ -42,4 +42,9 @@ public class LibrarianContactService implements LibrarianContactIService{
     public List<LibrarianContact> getAll() {
         return this.librarianContactIRepository.findAll();
     }
+
+    @Override
+    public List<LibrarianContact> findLibrarianByLibrarianId(String librarianId) {
+        return null;
+    }
 }

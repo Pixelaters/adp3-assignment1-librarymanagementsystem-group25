@@ -7,7 +7,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.ClientContact;
+import za.ac.cput.domain.Contact;
 import za.ac.cput.domain.LibrarianContact;
+import za.ac.cput.factory.ContactFactory;
+import za.ac.cput.factory.LibrarianFactory;
+import za.ac.cput.factory.NameFactory;
 import za.ac.cput.repository.LibrarianContactIRepository;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
@@ -22,62 +26,82 @@ class LibrarianContactServiceTest {
 
     private LibrarianContactIRepository librarianContactIRepository;
 
-    @Autowired
-   LibrarianContactService librarianContactService;
+    LibrarianContactService librarianContactService;
 
-    private static LibrarianContact contact1 ,contact2;
+    public static LibrarianContact librarianContact,updateLibrariancontact;
 
     @BeforeEach
     void setUp() {
         librarianContactService = new LibrarianContactService(librarianContactIRepository);
 
-        contact1 = new LibrarianContact.Builder().ContactId("566").LibrarianId("67433").createLibrarianC();
+        librarianContact = new LibrarianContact.Builder().Librarian(
+                LibrarianFactory.createLibrarian("394","librarian","Amanda","","Booi")).
+        Contact(ContactFactory.createContact("2354","meann@gmail.com","03456977","Bob")).build();
 
-        contact2 = new LibrarianContact.Builder().ContactId("756").Copy(contact1).createLibrarianC();
+        updateLibrariancontact = new LibrarianContact.Builder().copy(librarianContact).Librarian(LibrarianFactory.createLibrarian
+           (librarianContact.getLibrarian().getStaffId(),librarianContact.getLibrarian().getPosition(),
+               librarianContact.getLibrarian().getName().getFirstName(),librarianContact.getLibrarian().getName().getMiddleName(),
+                        librarianContact.getLibrarian().getName().getLastName())).
+                Contact(ContactFactory.createContact("346","bling@gmail.com","0789543295","Lois")).build();
+
 
     }
 
     @Test
     void a_create() {
-        librarianContactService.create(contact1);
-        assertNotNull(contact1);
-        System.out.println("saved successfully");
+        librarianContactService.create(librarianContact);
+
+        assertAll(
+                () -> assertNotNull(librarianContact),
+                () -> assertSame("394",librarianContact.getLibrarian().getStaffId()),
+                () -> assertSame("2354",librarianContact.getContact().getContactId())
+        );
+        System.out.println("contact saved");
+
+
     }
 
     @Test
     void b_read() {
-        librarianContactService.read(contact1.getContactId());
-        assertNotNull(contact1);
-        System.out.println(contact1);
-    }
+        librarianContactService.read(librarianContact.getLibrarian().getStaffId());
+         assertNotNull(librarianContact);
+
+        System.out.println(librarianContact);
+          }
 
     @Test
     void c_update() {
-        librarianContactService.create(contact2);
-        assertNotSame(contact1.getContactId(),contact2.getContactId());
+        librarianContactService.update(updateLibrariancontact);
 
-        assertSame("756",contact2.getContactId());
+        assertAll(
+                () -> assertNotSame(librarianContact.getContact().getContactId(),updateLibrariancontact.getContact().getContactId()),
+                () -> assertNotSame(librarianContact.getContact().getEmail(),updateLibrariancontact.getContact().getEmail()),
+                () -> assertNotSame(librarianContact.getContact().getCell(),updateLibrariancontact.getContact().getCell()),
+                () -> assertNotSame(librarianContact.getContact().getNextOfKin(),updateLibrariancontact.getContact().getNextOfKin())
+        );
 
         System.out.println("updated");
+        System.out.println(updateLibrariancontact.toString());
+
     }
 
     @Test
     void e_delete() {
-        librarianContactService.delete(contact2.getContactId());
-        assertAll(
-                () -> Assertions.assertNotNull(contact2),
-                () -> assertSame("566",contact1.getContactId()),
-                () -> assertSame("67433",contact1.getLibrarianId())
-        );
-        System.out.println("Deleted successfully");
+        librarianContactService.delete(updateLibrariancontact.getLibrarian().getStaffId());
+         assertNotNull(updateLibrariancontact);
+
+        System.out.println("contact deleted");
+
     }
 
     @Test
     void getAll() {
-        System.out.println(librarianContactService.getAll());
+        librarianContactService.getAll();
 
         assertAll(
                 () -> Assertions.assertNotNull(librarianContactService.getAll())
         );
+        System.out.println(librarianContactService.getAll());
     }
+
 }

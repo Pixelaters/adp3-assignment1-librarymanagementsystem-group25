@@ -2,89 +2,74 @@ package za.ac.cput.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-@IdClass(LibrarianContact.class)
+@IdClass(LibrarianContactId.class)
 public class LibrarianContact implements Serializable {
     @Id
-    @Column(name = "librarianContactId")
-    private String librarianContactId;
-
-    @Id
-    @Column(name = "contactId")
-    private String contactId;
-
-    @Id
-    @Column(name = "librarianId")
-    private String librarianId;
-
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "contactId",referencedColumnName = "contactId")
+    @PrimaryKeyJoinColumn(name="contactId",referencedColumnName = "contactId")
     private Contact contact;
 
+    @Id
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "librarianId",referencedColumnName = "librarianId")
+    @PrimaryKeyJoinColumn(name="librarianId",referencedColumnName = "librarianId")
     private Librarian librarian;
 
-   protected LibrarianContact(){
-
-    }
+    protected LibrarianContact(){}
 
     public LibrarianContact(Builder builder){
-    this.contactId = builder.contactId;
-    this.librarianId = builder.librarianId;
-}
-    public String getContactId() {
-        return contactId;
+        this.librarian= builder.librarian;
+        this.contact = builder.contact;
+
     }
 
-    public String getLibrarianId() {
-        return librarianId;
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
     }
 
     @Override
     public String toString() {
-        return "LibrarianContact{" +
-                "contactId='" + contactId + '\'' +
-                ", librarianId='" + librarianId + '\'' +
+        return "ClientContact{" +
+                "contact=" + contact +
+                ", librarian=" + librarian +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LibrarianContact that)) return false;
-        return contactId.equals(that.contactId) && librarianId.equals(that.librarianId);
-    }
+    public static class  Builder{
+        private Contact contact;
+        private Librarian librarian;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(contactId, librarianId);
-    }
-
-    public static class Builder{
-        private String contactId;
-        private String librarianId;
-
-        public Builder ContactId(String contactId) {
-            this.contactId = contactId;
+        public LibrarianContact.Builder Contact(Contact contact) {
+            this.contact = contact;
             return this;
         }
 
-        public Builder LibrarianId(String librarianId) {
-            this.librarianId = librarianId;
+        public LibrarianContact.Builder Librarian(Librarian librarian) {
+            this.librarian =librarian;
             return this;
         }
-        public Builder Copy(LibrarianContact librarianContact){
-            this.contactId = contactId;
-            this.librarianId = librarianId;
+        public LibrarianContact.Builder copy(LibrarianContact librarianContact){
+            this.librarian = librarian;
+            this.contact = contact;
+
             return this;
         }
-        public LibrarianContact createLibrarianC(){
+
+        public LibrarianContact build(){
             return new LibrarianContact(this);
         }
-
-
     }
 }

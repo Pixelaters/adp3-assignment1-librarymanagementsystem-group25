@@ -7,90 +7,74 @@ package za.ac.cput.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @IdClass(ClientContactId.class)
 public class ClientContact implements Serializable {
-    @Id
-    @Column(name="clientContactId")
-    private String clientContactId;
 
     @Id
-    @Column(name="contactId")
-    private String contactId;
-
-
-    @Id
-    @Column(name="clientId")
-    private String clientId;
-
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="contactId", referencedColumnName = "contactId")
+    @PrimaryKeyJoinColumn(name="contactId",referencedColumnName = "contactId")
     private Contact contact;
 
+    @Id
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="clientId", referencedColumnName = "clientId")
+    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
     private Client client;
 
-    protected ClientContact(){
+    protected ClientContact(){}
+
+    public ClientContact(Builder builder){
+        this.client= builder.client;
+        this.contact = builder.contact;
 
     }
-    private ClientContact(ClientContact.Builder builder){
-        this.contactId = builder.contactId;
-        this.clientId = builder.clientId;
-    }
-    public String getContactId() {
-        return contactId;
+
+    public Contact getContact() {
+        return contact;
     }
 
-    public String getClientId() {
-        return clientId;
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public String toString() {
-        return "LibrarianContact{" +
-                "contactId='" + contactId + '\'' +
-                ", librarianId='" + clientId + '\'' +
+        return "ClientContact{" +
+                "contact=" + contact +
+                ", client=" + client +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ClientContact that)) return false;
-        return contactId.equals(that.contactId) && clientId.equals(that.clientId);
-    }
+    public static class  Builder{
+        private Contact contact;
+        private Client client;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(contactId, clientId);
-    }
-
-    public static class Builder{
-        private String contactId;
-        private String clientId;
-
-        public ClientContact.Builder ContactId(String contactId) {
-
-            this.contactId = contactId;
+        public Builder Contact(Contact contact) {
+            this.contact = contact;
             return this;
         }
 
-        public ClientContact.Builder ClientId(String clientId) {
-            this.clientId = clientId;
+        public Builder Client(Client client) {
+            this.client = client;
             return this;
         }
-        public ClientContact.Builder Copy(ClientContact clientContact){
-            this.contactId = contactId;
-            this.clientId = clientId;
+        public Builder copy(ClientContact clientContact){
+            this.contact = contact;
+            this.client = client;
             return this;
         }
-        public ClientContact createClientCont(){
+
+        public ClientContact build(){
             return new ClientContact(this);
         }
-
-
     }
 }

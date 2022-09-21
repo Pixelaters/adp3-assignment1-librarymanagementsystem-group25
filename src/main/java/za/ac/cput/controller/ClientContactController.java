@@ -2,6 +2,7 @@ package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,7 @@ import java.util.List;
 public class ClientContactController {
 
     private final ClientContactIService clientContactIService;
-
-
+    @Autowired
     public ClientContactController(ClientContactIService clientContactIService) {
         this.clientContactIService = clientContactIService;
     }
@@ -61,10 +61,10 @@ public class ClientContactController {
         }
     }
     @DeleteMapping("deleteClientContact/{contactId}")
-    public ResponseEntity<ClientContact> delete(@PathVariable String contactId){
-        log.info("Delete request: {}",contactId);
+    public ResponseEntity<ClientContact> delete(@PathVariable String clientId){
+        log.info("Delete request: {}",clientId);
 
-        this.clientContactIService.delete(contactId);
+        this.clientContactIService.delete(clientId);
         return ResponseEntity.noContent().build();
     }
     @GetMapping("getAll_ClientContacts")

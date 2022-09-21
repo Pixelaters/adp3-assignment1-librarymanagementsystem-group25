@@ -36,6 +36,8 @@ public class ClientContactService implements ClientContactIService{
     @Override
     public void delete(String id) {
 
+         this.clientContactIRepository.deleteById(id);
+
 
         }
 
@@ -45,5 +47,16 @@ public class ClientContactService implements ClientContactIService{
     public List<ClientContact> getAll() {
 
         return this.clientContactIRepository.findAll();
+
+    }
+
+    @Override
+    public List<ClientContact> findClientContactsByClientId(String clientId) {
+        return null;
+    }
+
+    @Override
+    public List<ClientContact> findClientContactsById(String clientId){
+         return null;
     }
 }

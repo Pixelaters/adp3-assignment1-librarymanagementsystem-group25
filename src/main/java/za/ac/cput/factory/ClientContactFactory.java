@@ -5,15 +5,18 @@ Nondumiso Gaga(220430853)
 package za.ac.cput.factory;
 
 import za.ac.cput.Helper.StringHelper;
+import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientContact;
+import za.ac.cput.domain.Contact;
 
 public class ClientContactFactory {
 
-    public static ClientContact createClientcontact(String contactId, String clientId){
-        StringHelper.checkStringParam("contactId",contactId);
-        StringHelper.checkStringParam("librarianId",clientId);
-
-        return new ClientContact.Builder().ContactId(contactId).ClientId(clientId).createClientCont();
+    public static ClientContact createContact(Client client, Contact contact){
+        if(client ==  null || contact == null){
+            throw new IllegalArgumentException("no null values");
+        }
+        return new ClientContact.Builder().Client(client).Contact(contact).build();
 
     }
+
 }
