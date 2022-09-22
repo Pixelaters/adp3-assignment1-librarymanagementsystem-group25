@@ -7,6 +7,7 @@ package za.ac.cput.controller;
  * */
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +16,17 @@ import za.ac.cput.domain.LibrarianAddress;
 import za.ac.cput.service.LibrarianAddressIService;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("librarymanagementsystem/libraryAddress")
+@RequestMapping("librarymanagementsystem/libraryAddress/")
 @Slf4j
 public class LibrarianAddressController {
 
     private final LibrarianAddressIService librarianAddressIService;
 
+    @Autowired
     public LibrarianAddressController(LibrarianAddressIService librarianAddressIService){
         this.librarianAddressIService = librarianAddressIService;
 
@@ -83,9 +86,9 @@ public class LibrarianAddressController {
         return ResponseEntity.ok(librarianAddressList);
     }
 
-    @GetMapping("getLibrarianAddressBylibrarianId")
-    public List<LibrarianAddress> findLibrarianAddressByLibrarianIdList(String librarianId){
-        return findLibrarianAddressByLibrarianIdList(librarianId);
+    @GetMapping("getLibrarianAddressByLibrarianId/{librarianId}")
+    public List<LibrarianAddress> findLibrarianAddressByLibrarianIdList(@PathVariable String librarianId){
+        return Collections.singletonList(librarianAddressIService.findLibrarianAddressByLibrarianId(librarianId));
     }
 
 }

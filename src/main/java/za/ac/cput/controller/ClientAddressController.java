@@ -81,5 +81,19 @@ public class ClientAddressController {
         return ResponseEntity.ok(clientAddressList);
     }
 
+    //new method added on 21 September 2022. Remove if it causes problems
+    @GetMapping("findClientAddressByClientId/{clientId}")
+    public ResponseEntity<ClientAddress> findClientAddressByClientId(@PathVariable String clientId){
+        log.info("Read request: {}",clientId);
+
+        try{
+            ClientAddress getClientAddressById = this.clientAddressIService.findClientAddressByClientId(clientId);
+            return ResponseEntity.ok(getClientAddressById);
+
+        }catch(IllegalArgumentException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+
+        }
+    }
 }
 

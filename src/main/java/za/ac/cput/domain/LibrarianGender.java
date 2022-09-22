@@ -7,6 +7,7 @@ package za.ac.cput.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @IdClass(LibrarianGender.class)
@@ -51,6 +52,18 @@ public class LibrarianGender implements Serializable {
                 "gender=" + gender +
                 ", librarian=" + librarian +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LibrarianGender that)) return false;
+        return gender.equals(that.gender) && librarian.equals(that.librarian);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gender, librarian);
     }
 
     public static class Builder {

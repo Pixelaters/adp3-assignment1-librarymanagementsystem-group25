@@ -48,8 +48,13 @@ public class ClientAddressService implements ClientAddressIService{
 
     }
 
-    public ClientAddress findClientAddressByClientId(String clientId){
-        return this.clientAddressIRepository.findById(clientId).orElse(null);
+    @Override
+    public ClientAddress findClientAddressByClientId(String id) {
+        return this.clientAddressIRepository.findClientAddressByClientId(id);
+
+    //this method works. delete the one above if it causes problems
+//    public ClientAddress findClientAddressByClientId(String clientId){
+//        return this.clientAddressIRepository.findById(clientId).orElse(null);
     }
 
 }

@@ -13,6 +13,6 @@ import java.util.List;
 
 public interface ClientAddressIService extends IService<ClientAddress, String> {
 
-    public List<ClientAddress> getAll();
-    //public Client findClientAddressByClientId(String id);
+    List<ClientAddress> getAll();
+    ClientAddress findClientAddressByClientId(String id);
 }

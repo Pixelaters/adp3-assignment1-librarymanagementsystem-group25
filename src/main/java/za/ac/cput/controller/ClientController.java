@@ -84,10 +84,9 @@ public class ClientController {
 
     }
 
-    //this may be the wrong way *
     @GetMapping("find_ClientBy_Id/{clientId}")
     public List<Client> findById(@PathVariable String clientId){
-        return Collections.singletonList(clientIService.findClientById(clientId));
+        return Collections.singletonList(clientIService.findClientByClientId(clientId));
     }
 
 }

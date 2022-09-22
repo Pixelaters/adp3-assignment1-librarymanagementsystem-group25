@@ -1,6 +1,7 @@
 package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class LibrarianContactController {
 
     private final LibrarianContactIService librarianContactIService;
 
-
+    @Autowired
     public LibrarianContactController(LibrarianContactIService librarianContactIService) {
         this.librarianContactIService = librarianContactIService;
     }
@@ -46,12 +47,12 @@ public class LibrarianContactController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }
-    @PostMapping("update_LibrarianContact")
-    public ResponseEntity<LibrarianContact> update(@Valid @RequestBody LibrarianContact updatelibrarianContact){
-        log.info("update request:  {}",updatelibrarianContact);
+    @PutMapping("update_LibrarianContact")
+    public ResponseEntity<LibrarianContact> update(@Valid @RequestBody LibrarianContact updateLibrarianContact){
+        log.info("update request:  {}",updateLibrarianContact);
 
         try{
-            LibrarianContact update = this.librarianContactIService.update(updatelibrarianContact);
+            LibrarianContact update = this.librarianContactIService.update(updateLibrarianContact);
             return ResponseEntity.ok(update);
 
         }catch(IllegalArgumentException e){
