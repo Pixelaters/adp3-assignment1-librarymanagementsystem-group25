@@ -119,12 +119,12 @@ class ClientServiceTest {
 
     @Test
     void d_findClientById() {
-        clientService.findClientById("1");
+        clientService.findClientByClientId("1");
 
         assertAll(
                 () -> assertNotNull(updateClient1)
         );
 
-        System.out.println(clientService.findClientById("1"));
+        System.out.println(clientService.findClientByClientId("1"));
     }
 }

@@ -1,6 +1,7 @@
 package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,15 +23,12 @@ public class LibrarianGenderController {
 
     private final LibrarianGenderIservice librariangenderIService;
 
+    @Autowired
     public LibrarianGenderController(LibrarianGenderIservice librariangenderIService) {
         this.librariangenderIService = librariangenderIService;
     }
 
-
-
-
     @PostMapping("save_LibrarianGender")
-
     public ResponseEntity<LibrarianGender> create(@Valid @RequestBody LibrarianGender saveLibrarianGender) {
         log.info("Save request: ", saveLibrarianGender);
         try {

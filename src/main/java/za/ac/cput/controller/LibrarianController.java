@@ -2,6 +2,7 @@ package za.ac.cput.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,12 @@ import java.util.List;
 public class LibrarianController {
     private final LibrarianService librarianService;
 
+    @Autowired
     public LibrarianController(LibrarianService librarianService) {
         this.librarianService = librarianService;
     }
 
     @PostMapping("save_Librarian")
-
     public ResponseEntity<Librarian> create(@Valid @RequestBody Librarian saveLibrarian) {
         log.info("Save request: ", saveLibrarian);
         try {
@@ -69,13 +70,13 @@ public class LibrarianController {
         List<Librarian> librarianList = this.librarianService.getAll();
         return ResponseEntity.ok(librarianList);
     }
-    @GetMapping("findByPosition")
+    @GetMapping("findByPosition/{position}")
     public List<Librarian> findByPosition(@PathVariable String position){
         return  librarianService.findLibrarianByPosition(position);
 
 
     }
-    @GetMapping("findByName")
+    @GetMapping("findByName/{name}")
     public List<Librarian> findLibrarianByName(@PathVariable String name){
         return librarianService.findLibrarianByName(name);
     }

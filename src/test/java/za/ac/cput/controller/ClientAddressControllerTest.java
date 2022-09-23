@@ -128,4 +128,22 @@ class ClientAddressControllerTest {
                 () -> assertNotNull(responseEntity)
         );
     }
+
+    @Test
+    void f_findClientAddressByClientId(){
+        String url = urlBase + "findClientAddressByClientId/" + updatedClientAddress.getClientId();
+        System.out.println(url);
+
+        ResponseEntity<ClientAddress> responseEntity = this.restTemplate
+                .getForEntity(url,ClientAddress.class);
+        System.out.println(responseEntity);
+
+        assertAll(
+                () -> assertNotNull(responseEntity),
+                () -> assertEquals(HttpStatus.OK,responseEntity.getStatusCode()),
+                () -> assertNotNull(responseEntity.getBody())
+        );
+
+
+    }
 }

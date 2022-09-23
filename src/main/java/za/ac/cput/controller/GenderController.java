@@ -1,5 +1,6 @@
 package za.ac.cput.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,22 +12,22 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/library-management/genders")
+@RequestMapping("librarymanagementsystem/genders/")
 public class GenderController {
 
     private final GenderServiceImpl genderService;
 
-
+    @Autowired
     public GenderController(GenderServiceImpl genderService) {
         this.genderService = genderService;
     }
 
-    @GetMapping("/getAllGenders")
+    @GetMapping("getAllGenders")
     public List<Gender> getAll(){
         return genderService.getAll().stream().toList();
     }
 
-    @PostMapping("/save_gender")
+    @PostMapping("save_gender")
     public ResponseEntity<Gender> create(@Valid @RequestBody Gender saveGender){
         try{
             Gender newGender = this.genderService.create(saveGender);
@@ -36,7 +37,7 @@ public class GenderController {
         }
     }
 
-    @PostMapping("/update_gender")
+    @PostMapping("update_gender")
     public ResponseEntity<Gender> update(@Valid @RequestBody Gender updateGender){
 
         try{
@@ -47,14 +48,14 @@ public class GenderController {
         }
     }
 
-    @DeleteMapping("/deleteGender/{genderId}")
+    @DeleteMapping("deleteGender/{genderId}")
     public ResponseEntity<Gender> delete(@PathVariable String genderId){
 
         this.genderService.delete(genderId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/getGender/{genderId}")
+    @GetMapping("getGenderByGenderId/{genderId}")
     public Gender getGenderByGenderId(@PathVariable String genderId){
         return genderService.findGenderByGenderId(genderId);
     }

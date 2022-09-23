@@ -2,6 +2,7 @@ package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,11 @@ import java.util.List;
 @RestController
 @RequestMapping("librarymanagementsystem/clientContact/")
 @Slf4j
-
 public class ClientContactController {
 
     private final ClientContactIService clientContactIService;
 
-
+    @Autowired
     public ClientContactController(ClientContactIService clientContactIService) {
         this.clientContactIService = clientContactIService;
     }
@@ -48,7 +48,7 @@ public class ClientContactController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }
-    @PostMapping("update_ClientContact")
+    @PutMapping("update_ClientContact")
     public ResponseEntity<ClientContact> update(@Valid @RequestBody ClientContact updateclientContact){
         log.info("update request:  {}",updateclientContact);
 

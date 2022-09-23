@@ -65,13 +65,22 @@ public class SecurityConfig  {
                 .and()
                 .authorizeRequests()
 
-                //client authentication
-                .antMatchers(HttpMethod.POST,"/client/save_client").hasRole("USER")
-                .antMatchers(HttpMethod.GET,"/client/readClient/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/client/update_client").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE,"/client/deleteClient/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/client/getAll_clients").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/client/find_ClientBy_Id/").hasRole("ADMIN")
+                //book authentication
+                .antMatchers(HttpMethod.POST,"/books/save_book").hasRole("USER")
+                .antMatchers(HttpMethod.PUT,"/books/update_book").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/books/deleteBook/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/books/getAllBooks").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/books/findByName/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/books/findByAuthor/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/books/findByBookId/").hasRole("ADMIN")
+
+                //city authentication
+                .antMatchers(HttpMethod.POST,"/cityController/save_City").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/cityController/readCity/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/cityController/update_City").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/cityController/deleteCity/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/cityController/getall").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/cityController/getCitiesById").hasRole("ADMIN")
 
                 //client address authentication
                 .antMatchers(HttpMethod.POST,"/clientAddress/save_ClientAddress").hasRole("USER")
@@ -87,6 +96,28 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.DELETE,"/clientBook/delete_clientbook/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/clientBook/getAll_clientbooks").hasRole("ADMIN")
 
+                //client contact authentication
+                .antMatchers(HttpMethod.POST,"/clientContact/save_ClientContact").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/clientContact/readClientContact/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/clientContact/update_ClientContact").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/clientContact/deleteClientContact/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/clientContact/getAll_ClientContacts").hasRole("ADMIN")
+
+                //client authentication
+                .antMatchers(HttpMethod.POST,"/client/save_client").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/client/readClient/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/client/update_client").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/client/deleteClient/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/client/getAll_clients").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/client/find_ClientBy_Id/").hasRole("ADMIN")
+
+                //client gender authentication
+                .antMatchers(HttpMethod.GET,"/clientgender/getAllClientGender").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/clientgender/save_clientGender").hasRole("USER")
+                .antMatchers(HttpMethod.PUT,"/clientgender/update_clientGender").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/clientgender/deleteClientGender/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/clientgender/findClientGenderByClient/").hasRole("ADMIN")
+
                 //contact authentication
                 .antMatchers(HttpMethod.POST,"/contact/save_contact").hasRole("USER")
                 .antMatchers(HttpMethod.PUT,"/contact/update_contact").hasRole("USER")
@@ -96,14 +127,40 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.GET,"/contact/findByEmail/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/contact/findByContactId/").hasRole("ADMIN")
 
-                //book authentication
-                .antMatchers(HttpMethod.POST,"/books/save_book").hasRole("USER")
-                .antMatchers(HttpMethod.PUT,"/books/update_book").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE,"/books/deleteBook/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/books/getAllBooks").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/books/findByName/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/books/findByAuthor/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/books/findByBookId/").hasRole("ADMIN")
+                //gender authentication
+                .antMatchers(HttpMethod.GET,"/genders/getAllGenders").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/genders/save_gender").hasRole("USER")
+                .antMatchers(HttpMethod.PUT,"/genders/update_gender").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/genders/deleteGender/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/gender/getGenderByGenderId/").hasRole("ADMIN")
+
+                //librarian address authentication
+                .antMatchers(HttpMethod.POST,"/libraryAddress/save_LibrarianAddress").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/libraryAddress/readLibrarianAddress/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/libraryAddress/update_LibrarianAddress").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/libraryAddress/deleteClientAddress/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/libraryAddress/getAll_LibrarianAddresses").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/libraryAddress/getLibrarianAddressByLibrarianId/").hasRole("ADMIN")
+
+                //librarian contact authentication
+                .antMatchers(HttpMethod.POST,"/librarianContact/save_LibrarianContact").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/librarianContact/readLibrarianContact/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/librarianContact/update_LibrarianContact").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/librarianContact/deleteLibrarianContact/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/librarianContact/getAll_LibrarianContacts").hasRole("ADMIN")
+
+                //librarian authentication
+                .antMatchers(HttpMethod.POST,"/librarian/save_Librarian").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/librarian/readLibrarian/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/librarian/deleteLibrarian/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/librarian/getAll_Librarian").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/librarian/findByPosition/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/librarian/findByName/").hasRole("ADMIN")
+
+                .antMatchers(HttpMethod.POST,"/librariangender/save_LibrarianGender").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/librariangender/readLibrarianGender/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/librariangender/deleteLibrarianGender/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/librariangender/getAll_LibrarianGender").hasRole("ADMIN")
 
                 .and()
                 .csrf().disable()
