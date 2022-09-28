@@ -13,6 +13,6 @@ import java.util.List;
 public interface ClientIService extends IService<Client, String> {
 
     List<Client> getAll();
-
-    Client findClientByClientId(String id);//this may cause errors for the findClientById method in the ClientService class
+    Client findClientByClientId(String id);
+    Client readClientByClientId(String clientId);
 }

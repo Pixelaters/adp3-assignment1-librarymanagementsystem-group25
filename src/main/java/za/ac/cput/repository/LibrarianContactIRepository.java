@@ -7,7 +7,7 @@ import za.ac.cput.domain.LibrarianContact;
 @Repository
 public interface LibrarianContactIRepository extends JpaRepository<LibrarianContact,String> {
 
-    public LibrarianContactIRepository findLibrarianContactByLibrarianId(String librarianId);
+    LibrarianContact findLibrarianContactByLibrarianId(String librarianId);
 
 
 }

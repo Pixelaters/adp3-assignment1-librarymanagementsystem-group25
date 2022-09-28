@@ -89,4 +89,17 @@ public class ClientController {
         return Collections.singletonList(clientIService.findClientByClientId(clientId));
     }
 
+    @GetMapping("readClientByClientId/{clientId}")
+    public ResponseEntity<Client> readClientByClientId(@PathVariable String clientId){
+        log.info("Read request: {}", clientId);
+
+        try{
+            Client client = this.clientIService.readClientByClientId(clientId);
+            return ResponseEntity.ok(client);
+
+        }catch(IllegalArgumentException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,exception.getMessage());
+        }
+    }
+
 }

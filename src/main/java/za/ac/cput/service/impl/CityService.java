@@ -11,6 +11,7 @@ import za.ac.cput.domain.City;
 import za.ac.cput.repository.CityIRepository;
 import za.ac.cput.service.CityIService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class CityService implements CityIService {
 
     @Override
     public City read(String id) {
-        return this.cityIRepository.getReferenceById(id);
+        return this.cityIRepository.findById(id).orElse(null);
 
     }
 
@@ -49,11 +50,11 @@ public class CityService implements CityIService {
 
     @Override
     public List<City> getAll() {
-        return this.cityIRepository.findAll();
+        return this.cityIRepository.findAll().stream().toList();
     }
 
     @Override
     public List<City> findCitiesById(String id) {
-        return this.findCitiesById(id);
+        return Collections.singletonList(this.cityIRepository.findCitiesById(id));
     }
 }

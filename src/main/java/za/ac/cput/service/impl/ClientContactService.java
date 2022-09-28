@@ -23,27 +23,28 @@ public class ClientContactService implements ClientContactIService{
     }
 
     @Override
-    public ClientContact read(String id) {
-        return this.clientContactIRepository.getReferenceById(id);
+    public ClientContact read(String clientId) {
+        return this.clientContactIRepository.findById(clientId).orElse(null);
     }
 
     @Override
     public ClientContact update(ClientContact updateClientContact) {
-
         return this.clientContactIRepository.save(updateClientContact);
     }
 
     @Override
     public void delete(String id) {
+         this.clientContactIRepository.deleteById(id);
 
 
         }
-
-
-
     @Override
     public List<ClientContact> getAll() {
+        return this.clientContactIRepository.findAll().stream().toList();
+    }
 
-        return this.clientContactIRepository.findAll();
+    @Override
+    public ClientContact findClientContactByClientId(String clientId) {
+        return this.clientContactIRepository.findClientContactByClientId(clientId);
     }
 }

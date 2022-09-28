@@ -23,7 +23,7 @@ public class LibrarianContactService implements LibrarianContactIService{
 
     @Override
     public LibrarianContact read(String id) {
-        return this.librarianContactIRepository.getReferenceById(id);
+        return this.librarianContactIRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -35,11 +35,15 @@ public class LibrarianContactService implements LibrarianContactIService{
     public void delete(String id) {
         this.librarianContactIRepository.deleteById(id);
 
-
     }
 
     @Override
     public List<LibrarianContact> getAll() {
-        return this.librarianContactIRepository.findAll();
+        return this.librarianContactIRepository.findAll().stream().toList();
+    }
+
+    @Override
+    public LibrarianContact findLibrarianContactByLibrarianId(String librarianId) {
+        return this.librarianContactIRepository.findLibrarianContactByLibrarianId(librarianId);
     }
 }

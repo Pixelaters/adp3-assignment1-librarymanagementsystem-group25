@@ -9,7 +9,7 @@ import java.util.List;
 public interface ClientGenderService extends IService<ClientGender , String> {
 
 
-    public List<ClientGender> getAll();
+    List<ClientGender> getAll();
 
     List<ClientGender> findClientGenderByClient(Client client);
 }

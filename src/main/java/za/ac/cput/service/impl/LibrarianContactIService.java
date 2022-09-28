@@ -6,8 +6,8 @@ import za.ac.cput.service.IService;
 import java.util.List;
 
 public interface LibrarianContactIService extends IService<LibrarianContact,String> {
-
-    public List<LibrarianContact> getAll();
+    List<LibrarianContact> getAll();
+    LibrarianContact findLibrarianContactByLibrarianId(String librarianId);
 
 
 }

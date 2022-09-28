@@ -1,7 +1,11 @@
 package za.ac.cput.service.impl;
-//
+/*
+    Breyton Ernstzen
+    Capstone Project
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientBook;
 import za.ac.cput.repository.ClientBookIRepository;
 import za.ac.cput.repository.ClientIRepository;
@@ -44,13 +48,13 @@ public class ClientBookImpl implements ClientBookIService {
 
     @Override
     public List<ClientBook> getAll() {
-        return this.clientBookIRepository.findAll();
+        return this.clientBookIRepository.findAll().stream().toList();
     }
 
     //might be wrong
     @Override
-    public List<ClientBook> findClientBooksByClientId(String clientId) {
-       return Collections.singletonList(this.clientBookIRepository.findById(clientId).orElse(null));
+    public List<ClientBook> findClientBookByClient(Client client) {
+       return this.clientBookIRepository.findClientBookByClient(client);
 
     }
 

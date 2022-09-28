@@ -6,5 +6,5 @@ import za.ac.cput.service.IService;
 import java.util.List;
 
 public interface LibrarianIservice  extends IService<Librarian,String> {
-    public List<Librarian> getAll();
+    List<Librarian> getAll();
 }

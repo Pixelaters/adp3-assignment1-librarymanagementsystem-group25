@@ -1,6 +1,7 @@
 package za.ac.cput.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,14 @@ import java.util.List;
  * Date: 2022/08/21
  * */
 @RestController
-@RequestMapping("librarymanagementsystem/cityController")
+@RequestMapping("librarymanagementsystem/cityController/")
 @Slf4j
 
 public class CityController {
 
     private final CityIService cityIService;
 
+    @Autowired
     public CityController(CityIService cityIService){
         this.cityIService = cityIService;
 
@@ -55,10 +57,9 @@ public class CityController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exc.getMessage());
         }
 
-
     }
 
-    @PostMapping("update_City")
+    @PutMapping("update_City")
     public ResponseEntity<City> update(@Valid @RequestBody City updateCity){
         log.info("Update request: {}",updateCity);
 
@@ -85,8 +86,8 @@ public class CityController {
         return ResponseEntity.ok(cityList);
     }
 
-    @GetMapping("getCitiesById")
-    public List<City> findCityById(String id){
+    @GetMapping("getCitiesById/{id}")
+    public List<City> findCityById(@PathVariable String id){
         return cityIService.findCitiesById(id);
     }
     }

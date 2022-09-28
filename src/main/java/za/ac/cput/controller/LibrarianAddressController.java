@@ -58,7 +58,7 @@ public class LibrarianAddressController {
 
     }
 
-    @PostMapping("update_LibrarianAddress")
+    @PutMapping("update_LibrarianAddress")
     public ResponseEntity<LibrarianAddress> update(@Valid @RequestBody LibrarianAddress updateLibrarianAddress){
         log.info("Update request: {}",updateLibrarianAddress);
 

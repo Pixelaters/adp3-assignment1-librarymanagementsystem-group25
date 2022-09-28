@@ -27,7 +27,7 @@ public class LibrarianAddressService implements LibrarianAddressIService {
 
     @Override
     public LibrarianAddress read(String id) {
-        return this.librarianAddressIRepository.getReferenceById(id);
+        return this.librarianAddressIRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -37,7 +37,6 @@ public class LibrarianAddressService implements LibrarianAddressIService {
 
     @Override
     public void delete(String id) {
-
         this.librarianAddressIRepository.deleteById(id);
     }
 
