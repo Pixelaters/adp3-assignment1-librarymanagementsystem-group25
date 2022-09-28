@@ -50,4 +50,9 @@ public class ClientService implements ClientIService{
     public Client findClientByClientId(String id) {
         return this.clientIRepository.findClientByClientId(id);
     }
+
+    @Override
+    public Client readClientByClientId(String clientId) {
+        return this.clientIRepository.readClientByClientId(clientId);
+    }
 }

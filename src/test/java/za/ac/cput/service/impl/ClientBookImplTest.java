@@ -119,7 +119,7 @@ class ClientBookImplTest {
                 () -> assertNotNull(clientBook)
         );
 
-        System.out.println(clientBookService.findClientBooksByClientId("1"));
+        System.out.println(clientBookService.findClientBookByClient(updateClientBook.getClient()));
 
     }
 }

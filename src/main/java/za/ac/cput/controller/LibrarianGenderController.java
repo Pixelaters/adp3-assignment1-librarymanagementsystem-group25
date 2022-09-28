@@ -68,6 +68,19 @@ public class LibrarianGenderController {
         List<LibrarianGender> librariangenderList = this.librariangenderIService.getAll();
         return ResponseEntity.ok(librariangenderList);
     }
+
+    @GetMapping("findLibrarianGenderByLibrarian/{librarian}")
+    public ResponseEntity<List<LibrarianGender>> findLibrarianGenderByLibrarian(@PathVariable Librarian librarian){
+        log.info("Find request: {}",librarian);
+
+        try{
+            List<LibrarianGender> librarianGender = this.librariangenderIService.findLibrarianGenderByLibrarian(librarian);
+            return ResponseEntity.ok(librarianGender);
+
+        }catch (IllegalArgumentException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,exception.getMessage());
+        }
+    }
 }
 
 

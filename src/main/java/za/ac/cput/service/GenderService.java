@@ -5,11 +5,6 @@ import za.ac.cput.domain.Gender;
 import java.util.List;
 
 public interface GenderService extends IService<Gender , String> {
-
-
-
-
-    public List<Gender> getAll();
-
-    public Gender findGenderByGenderId(String genderId);
+    List<Gender> getAll();
+    Gender findGenderByGenderId(String genderId);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Book;
 import za.ac.cput.domain.ClientAddress;
 import za.ac.cput.domain.Librarian;
+import za.ac.cput.domain.Name;
 import za.ac.cput.service.impl.LibrarianIservice;
 import za.ac.cput.service.impl.LibrarianService;
 
@@ -32,7 +33,7 @@ public class LibrarianController {
 
     @PostMapping("save_Librarian")
     public ResponseEntity<Librarian> create(@Valid @RequestBody Librarian saveLibrarian) {
-        log.info("Save request: ", saveLibrarian);
+        log.info("Save request: {}", saveLibrarian);
         try {
 
             Librarian librarian = this.librarianService.create(saveLibrarian);
@@ -58,7 +59,7 @@ public class LibrarianController {
     }
     @DeleteMapping("deleteLibrarian/{librarianId}")
     public ResponseEntity<Librarian> delete(@PathVariable String librarianId){
-        log.info("Delete request:",librarianId);
+        log.info("Delete request: {}",librarianId);
 
         this.librarianService.delete(librarianId);
         return ResponseEntity.noContent().build();
@@ -70,6 +71,7 @@ public class LibrarianController {
         List<Librarian> librarianList = this.librarianService.getAll();
         return ResponseEntity.ok(librarianList);
     }
+
     @GetMapping("findByPosition/{position}")
     public List<Librarian> findByPosition(@PathVariable String position){
         return  librarianService.findLibrarianByPosition(position);
@@ -77,7 +79,7 @@ public class LibrarianController {
 
     }
     @GetMapping("findByName/{name}")
-    public List<Librarian> findLibrarianByName(@PathVariable String name){
+    public List<Librarian> findLibrarianByName(@PathVariable Name name){
         return librarianService.findLibrarianByName(name);
     }
 }

@@ -76,7 +76,14 @@ public class ClientBookController {
     public ResponseEntity<List<ClientBook>> getAll(){
         List<ClientBook> clientBooks = this.clientBookIService.getAll();
         return ResponseEntity.ok(clientBooks);
-
     }
+
+    @GetMapping("findClientBookByClient/{client}")
+    public ResponseEntity<List<ClientBook>> findClientBookByClient(@PathVariable Client client){
+        log.info("Find Request: {}",client);
+
+        List<ClientBook> findClientBook = this.clientBookIService.findClientBookByClient(client);
+        return ResponseEntity.ok(findClientBook);
+        }
 
 }

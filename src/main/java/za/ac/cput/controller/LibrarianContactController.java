@@ -35,6 +35,7 @@ public class LibrarianContactController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }
+
     @GetMapping("readLibrarianContact/{contactId}")
     public ResponseEntity<LibrarianContact> read(@PathVariable String contactId){
         log.info("Read request: {}" ,contactId);
@@ -47,6 +48,7 @@ public class LibrarianContactController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }
+
     @PutMapping("update_LibrarianContact")
     public ResponseEntity<LibrarianContact> update(@Valid @RequestBody LibrarianContact updateLibrarianContact){
         log.info("update request:  {}",updateLibrarianContact);
@@ -59,6 +61,7 @@ public class LibrarianContactController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }
+
     @DeleteMapping("deleteLibrarianContact/{contactId}")
     public ResponseEntity<LibrarianContact> delete(@PathVariable String contactId){
         log.info("Delete request: {}",contactId);
@@ -66,10 +69,25 @@ public class LibrarianContactController {
         this.librarianContactIService.delete(contactId);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("getAll_LibrarianContacts")
     public ResponseEntity<List<LibrarianContact>> getAll(){
         List<LibrarianContact> librarianContactList = this.librarianContactIService.getAll();
         return ResponseEntity.ok(librarianContactList);
+    }
+
+    @GetMapping("findLibrarianContactByLibrarianId/{librarianId}")
+    public ResponseEntity<LibrarianContact> findLibrarianContactByLibrarianId(@PathVariable String librarianId){
+        log.info("Find request: {}",librarianId);
+
+        try{
+            LibrarianContact librarianContact = this.librarianContactIService.findLibrarianContactByLibrarianId(librarianId);
+            return ResponseEntity.ok(librarianContact);
+
+        }catch(IllegalArgumentException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
+
     }
 
 }

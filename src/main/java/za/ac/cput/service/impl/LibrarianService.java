@@ -3,6 +3,7 @@ package za.ac.cput.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Librarian;
+import za.ac.cput.domain.Name;
 import za.ac.cput.repository.LibrarianRepository;
 import za.ac.cput.repository.LibrarianRepository;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 public class LibrarianService implements LibrarianIservice {
 private final LibrarianRepository librarianRepository;
+
 @Autowired
     public LibrarianService(LibrarianRepository librarianRepository) {
        this.librarianRepository = librarianRepository;
@@ -23,7 +25,7 @@ private final LibrarianRepository librarianRepository;
 
     @Override
     public Librarian read(String id) {
-        return this.librarianRepository.getReferenceById(id);
+        return this.librarianRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -37,22 +39,16 @@ private final LibrarianRepository librarianRepository;
         this.librarianRepository.deleteById(id);
         System.out.println("Deleted successfully");
 
-
-
     }else{
         System.out.println("Could not find Id specified");
 
     }
-
-
-
     }
 
     @Override
     public List<Librarian> getAll() {
-        return this.librarianRepository.findAll();
+        return this.librarianRepository.findAll().stream().toList();
     }
-
 
     public List<Librarian>  findLibrarianByPosition(String position) {
         List<Librarian> subset= this.librarianRepository.findLibrarianByPosition(position);
@@ -62,7 +58,8 @@ private final LibrarianRepository librarianRepository;
         }
         return librarianList;
     }
-    public List<Librarian> findLibrarianByName(String name){
+
+    public List<Librarian> findLibrarianByName(Name name){
 
         List<Librarian> subset= this.librarianRepository.findLibrarianByName(name);
         List<Librarian> librarianList = new ArrayList<>();

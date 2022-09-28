@@ -95,7 +95,7 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.PUT,"/clientBook/update_clientbook").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/clientBook/delete_clientbook/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/clientBook/getAll_clientbooks").hasRole("ADMIN")
-                //TODO: get clientbookByClientId
+                .antMatchers(HttpMethod.GET,"/clientBook/findClientBookByClient/").hasRole("ADMIN") // added on 2022/09/27
 
                 //client contact authentication
                 .antMatchers(HttpMethod.POST,"/clientContact/save_ClientContact").hasRole("USER")
@@ -103,7 +103,7 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.PUT,"/clientContact/update_ClientContact").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/clientContact/deleteClientContact/").hasRole("USER") //should be able to delete their own Contact
                 .antMatchers(HttpMethod.GET,"/clientContact/getAll_ClientContacts").hasRole("ADMIN")
-                //TODO: get clientContact by ClientId
+                .antMatchers(HttpMethod.GET,"/clientContact/getClientContactByClientId/").hasRole("ADMIN") // --> added on 2022/09/27
 
                 //client authentication
                 .antMatchers(HttpMethod.POST,"/client/save_client").hasRole("USER")
@@ -112,7 +112,7 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.DELETE,"/client/deleteClient/").hasRole("ADMIN") //should be able to delete their own account
                 .antMatchers(HttpMethod.GET,"/client/getAll_clients").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/client/find_ClientBy_Id/").hasRole("ADMIN")
-                //TODO: update client by client id + read client by id
+                .antMatchers(HttpMethod.GET,"/client/readClientByClientId/").hasRole("ADMIN") // read client by id --> added on 2022/09/27
 
                 //client gender authentication
                 .antMatchers(HttpMethod.GET,"/clientgender/getAllClientGender").hasRole("USER")
@@ -120,7 +120,6 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.PUT,"/clientgender/update_clientGender").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/clientgender/deleteClientGender/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/clientgender/findClientGenderByClient/").hasRole("USER") //should be able to view their own gender
-                //TODO: update Client gender by id?
 
                 //contact authentication
                 .antMatchers(HttpMethod.POST,"/contact/save_contact").hasRole("USER")

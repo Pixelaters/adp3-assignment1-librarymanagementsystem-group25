@@ -2,6 +2,7 @@ package za.ac.cput.service.impl;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Gender;
 import za.ac.cput.repository.GenderRepository;
@@ -14,9 +15,9 @@ import java.util.concurrent.SubmissionPublisher;
 @Service
 public class GenderServiceImpl implements GenderService {
 
-
     private final GenderRepository genderRepository;
 
+    @Autowired
     public GenderServiceImpl(GenderRepository genderRepository) {
         this.genderRepository = genderRepository;
     }
