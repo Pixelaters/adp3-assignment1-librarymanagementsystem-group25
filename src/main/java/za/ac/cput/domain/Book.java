@@ -18,6 +18,8 @@ public class Book implements Serializable {
     @NotNull
     private String genre;
 
+    //TODO: is rented
+    //private String isRented;
     @OneToMany(mappedBy = "book")
     private Set<ClientBook> clientBookSet;
 

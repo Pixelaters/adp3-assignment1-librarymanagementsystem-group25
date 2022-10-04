@@ -37,7 +37,7 @@ public class BookController {
         }
     }
 
-    @PostMapping("update_book")
+    @PutMapping("update_book")
     public ResponseEntity<Book> update(@Valid @RequestBody Book updateBook){
         try{
             Book updatedBook = this.bookService.update(updateBook);
