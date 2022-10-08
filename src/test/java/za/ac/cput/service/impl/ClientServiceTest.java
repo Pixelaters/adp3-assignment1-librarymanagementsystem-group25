@@ -34,14 +34,14 @@ class ClientServiceTest {
     void setUp() {
         clientService = new ClientService(clientIRepository);
 
-        client1 = new Client.Builder()
-                .id("1")
+        client1 =  Client.builder()
+                .clientId("1")
                 .name(NameFactory.createName("Breyton","Sean","Ernstzen"))
-                .isRented(true)
                 .build();
 
-        updateClient1 = new Client.Builder().copy(client1)
-                .isRented(false)
+        updateClient1 =Client.builder()
+                .clientId("2")
+                .name(NameFactory.createName("Breyton","Sean","Ernstzen"))
                 .build();
 
     }
@@ -52,8 +52,7 @@ class ClientServiceTest {
 
         assertAll(
                 () -> assertNotNull(client1),
-                () -> assertSame("1",client1.getClientId()),
-                () -> assertTrue(client1.isRented())
+                () -> assertSame("1",client1.getClientId())
         );
 
         System.out.println("Client saved successfully");
@@ -79,9 +78,6 @@ class ClientServiceTest {
         clientService.create(updateClient1);
 
         assertAll(
-                () -> assertNotSame(client1.isRented(),updateClient1.isRented()),
-                () -> assertSame(false,updateClient1.isRented()),
-                () -> assertFalse(updateClient1.isRented()),
                 () -> assertSame("1",updateClient1.getClientId())
         );
 

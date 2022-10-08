@@ -31,17 +31,13 @@ class ClientBookImplTest {
         clientBookService = new ClientBookImpl(clientBookIRepository);
 
         clientBook = new ClientBook.Builder()
-              .Client(ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean","Ernstzen"),
-                      true))
+              .Client(ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean","Ernstzen")))
                       .Book (BookFactory.CreateBook("ZZ1","Finding Gobby","James Frank","fiction","description", "false", "https://something.jpg"))
                 .build();
 
-        updateClientBook = new ClientBook.Builder().copy(clientBook)
-                .Client(ClientFactory.createClient(clientBook.getClient().getClientId(),
-                                NameFactory.createName(clientBook.getClient().getName().getFirstName(),
-                                        clientBook.getClient().getName().getMiddleName(),
-                                        clientBook.getClient().getName().getLastName()),clientBook.getClient().isRented()))
-                .Book(BookFactory.CreateBook("FS1","Frankenstein","Mark Shelley","Novel", "false", "description","https://something.jpg"))
+        updateClientBook = new ClientBook.Builder()
+                .Client(ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean","Ernstzen")))
+                .Book (BookFactory.CreateBook("ZZ1","Finding Gobby","James Frank","fiction","description", "false", "https://something.jpg"))
                 .build();
     }
 
@@ -52,8 +48,7 @@ class ClientBookImplTest {
         assertAll(
                 () -> assertNotNull(clientBook),
                 () -> assertSame("1",clientBook.getClient().getClientId()),
-                () -> assertSame("ZZ1",clientBook.getBook().getBookId()),
-                () -> assertSame(true,clientBook.getClient().isRented())
+                () -> assertSame("ZZ1",clientBook.getBook().getBookId())
         );
 
         System.out.println("Client book saved!");
