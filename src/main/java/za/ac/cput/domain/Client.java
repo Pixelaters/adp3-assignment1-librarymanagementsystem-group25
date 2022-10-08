@@ -23,7 +23,6 @@ import java.util.Set;
 @AllArgsConstructor
 @SuperBuilder
 public class Client implements Serializable {
-
     @Id
     @Column(name="clientId")
     private String clientId;
@@ -31,11 +30,12 @@ public class Client implements Serializable {
     @Column(name="name")
     private Name name;
 
-    @ManyToMany(mappedBy = "clientBook")
-    private Set<Book> books = new HashSet<>();
+    @OneToMany(mappedBy = "client")
+    private Set<ClientBook> clientBookSet;
 
     @OneToMany(mappedBy = "client")
     private Set<ClientContact> clientContactSet;
+
 
 
 }
