@@ -16,7 +16,7 @@ class BookFactoryTest {
     @Order(1)
     void a_createBook() {
 
-        Book book = BookFactory.CreateBook("A1","Goosebumps", "CantRemember", "Horror");
+        Book book = BookFactory.CreateBook("A1","Goosebumps", "CantRemember", "Horror", "description","false", "https://something.jpg");
         assertNotNull(book);
         System.out.println(book);
     }
@@ -26,7 +26,7 @@ class BookFactoryTest {
     @Order(2)
     void b_createBookWithError() {
 
-        Book book = BookFactory.CreateBook("A2","", "CantRemember", "Horror");
+        Book book = BookFactory.CreateBook("A2","", "CantRemember", "Horror","description", "false", "https://something.jpg");
         assertNotNull(book);
         System.out.println(book);
     }
@@ -35,7 +35,7 @@ class BookFactoryTest {
     @Order(3)
     void c_createBookWithError2() {
 
-        Book book = BookFactory.CreateBook("A2","Goosebumps", "", "Horror");
+        Book book = BookFactory.CreateBook("A2","Goosebumps", "", "Horror", "description","false", "https://something.jpg");
         assertNotNull(book);
         System.out.println(book);
     }
@@ -44,7 +44,7 @@ class BookFactoryTest {
     @Order(4)
     void d_createBookWithError3() {
 
-        Book book = BookFactory.CreateBook("A2","Goosebumps", "CantRemember", "");
+        Book book = BookFactory.CreateBook("A2","Goosebumps", "CantRemember", "", "description","false", "https://something.jpg");
         assertNotNull(book);
         System.out.println(book);
     }

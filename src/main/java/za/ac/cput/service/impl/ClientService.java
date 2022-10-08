@@ -46,6 +46,7 @@ public class ClientService implements ClientIService{
         return this.clientIRepository.findAll().stream().toList();
     }
 
+
     @Override
     public Client findClientByClientId(String id) {
         return this.clientIRepository.findClientByClientId(id);

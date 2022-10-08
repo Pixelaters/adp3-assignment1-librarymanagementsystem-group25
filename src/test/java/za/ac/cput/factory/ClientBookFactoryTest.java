@@ -12,12 +12,12 @@ class ClientBookFactoryTest {
     @BeforeEach
     void setUp(){
         clientBook1 = ClientBookFactory.createClientBook(ClientFactory.createClient("1",
-                NameFactory.createName("Breyton","Sean","Ernstzen"),true),
-                BookFactory.CreateBook("ZZ1","Finding Gobby","James Franke","fiction"));
+                NameFactory.createName("Breyton","Sean","Ernstzen")),
+                BookFactory.CreateBook("ZZ1","Finding Gobby","James Franke","fiction", "description","false", "https://something.jpg"));
 
         clientBook2 = ClientBookFactory.createClientBook(ClientFactory.createClient("2",
-                        NameFactory.createName("Ziyaad","Petersen"),true),
-                BookFactory.CreateBook("AA1","Frankenstein","Claude van Damme","science-fiction"));
+                        NameFactory.createName("Ziyaad","Petersen")),
+                BookFactory.CreateBook("AA1","Frankenstein","Claude van Damme","science-fiction", "description","false", "https://something.jpg"));
     }
 
     @Test

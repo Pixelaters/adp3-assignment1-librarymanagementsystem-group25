@@ -1,12 +1,23 @@
 package za.ac.cput.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Book implements Serializable {
     @Id
     @Column(name = "bookId")
@@ -17,98 +28,18 @@ public class Book implements Serializable {
     private String author;
     @NotNull
     private String genre;
-
-    //TODO: is rented
-    //private String isRented;
-    @OneToMany(mappedBy = "book")
-    private Set<ClientBook> clientBookSet;
-
-    //test
-    protected Book(){
-
-    }
-
-    public Book(Builder builder) {
-        this.bookId = builder.bookId;
-        this.bookName = builder.bookName;
-        this.author = builder.author;
-        this.genre = builder.genre;
-    }
-
-    public String getBookId() {
-        return bookId;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookId='" + bookId + '\'' +
-                ", bookName='" + bookName + '\'' +
-                ", author='" + author + '\'' +
-                ", genre='" + genre + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Book book)) return false;
-        return bookId.equals(book.bookId) && bookName.equals(book.bookName) && author.equals(book.author) && genre.equals(book.genre);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(bookId, bookName, author, genre);
-    }
-
-    public static class Builder {
-        private String bookId;
-        private String bookName;
-        private String author;
-        private String genre;
-
-        public Builder BookId(String bookId) {
-            this.bookId = bookId;
-            return this;
-        }
-
-        public Builder BookName(String bookName) {
-            this.bookName = bookName;
-            return this;
-        }
-
-        public Builder Author(String author) {
-            this.author = author;
-            return this;
-        }
-
-        public Builder Genre(String genre) {
-            this.genre = genre;
-            return this;
-        }
-
-        public Builder copy(Book book){
-            this.bookId= bookId;
-            this.bookName= bookName;
-            this.author= author;
-            this.genre= genre;
-            return this;
-        }
-
-        public Book build() {
-            return new Book(this);
-        }
-    }
+    @NotNull
+    private String description;
+    @NotNull
+    private String isRented;
+    @NotNull
+    private String imgUrl;
+//(mappedBy = "book")
+    @ManyToMany
+    @JoinTable(
+            name="ClientBook",
+            joinColumns = @JoinColumn(name= "book_Id"),
+            inverseJoinColumns = @JoinColumn(name= "client_Id")
+    )
+    private Set<ClientBook> clientBook = new HashSet<>();
 }

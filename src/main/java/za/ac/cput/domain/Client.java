@@ -5,14 +5,23 @@
 package za.ac.cput.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Client implements Serializable {
 
     @Id
@@ -22,90 +31,11 @@ public class Client implements Serializable {
     @Column(name="name")
     private Name name;
 
-    @JsonProperty("isRented")
-    private boolean isRented;
-
-    @OneToMany(mappedBy = "client")
-    private Set<ClientBook> clientBookSet;
+    @ManyToMany(mappedBy = "clientBook")
+    private Set<Book> books = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
     private Set<ClientContact> clientContactSet;
 
-    protected Client(){
-        //empty constructor
-    }
-
-    private Client(Builder b){
-        this.clientId = b.id;
-        this.name = b.name;
-        this.isRented = b.isRented;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-
-    public boolean isRented() {
-        return this.isRented;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id='" + clientId + '\'' +
-                ", name=" + name +
-                ", isRented=" + isRented +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Client client)) return false;
-        return clientId.equals(client.clientId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(clientId);
-    }
-
-    public static class Builder{
-        private String id;
-        private Name name;
-        private boolean isRented;
-
-        public Builder id(String id){
-            this.id = id;
-            return this;
-
-        }
-
-        public Builder name(Name name){
-            this.name = name;
-            return this;
-        }
-
-        public Builder isRented(boolean isRented){
-            this.isRented = isRented;
-            return this;
-        }
-
-        public Builder copy(Client c){
-            this.id = c.clientId;
-            this.name = c.name;
-            this.isRented = c.isRented;
-            return this;
-        }
-
-        public Client build(){
-            return new Client(this);
-        }
-    }
 
 }

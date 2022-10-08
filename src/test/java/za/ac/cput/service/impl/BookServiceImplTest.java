@@ -19,10 +19,10 @@ class BookServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        book1 = BookFactory.CreateBook("1","GooseBumps","Ziyaad","Horror");
-        book2 = BookFactory.CreateBook("2","GooseBumps2","Ziyaad","Horror");
-        book3 = BookFactory.CreateBook("3","GooseBumps3","Ziyaad","Horror");
-        updateBook = new Book.Builder().copy(book1).BookName("Goosebumps4").build();
+        book1 = BookFactory.CreateBook("1","GooseBumps","Ziyaad","Horror", "description","false", "https://something.jpg");
+        book2 = BookFactory.CreateBook("2","GooseBumps2","Ziyaad","Horror", "description","false", "https://something.jpg");
+        book3 = BookFactory.CreateBook("3","GooseBumps3","Ziyaad","Horror", "description","false", "https://something.jpg");
+        updateBook =  BookFactory.CreateBook("4","GooseBumps4","Ziyaad","Horror", "description","false", "https://something.jpg");
     }
 
     @Test

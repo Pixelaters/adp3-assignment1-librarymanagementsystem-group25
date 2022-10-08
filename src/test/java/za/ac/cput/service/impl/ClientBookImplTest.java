@@ -33,7 +33,7 @@ class ClientBookImplTest {
         clientBook = new ClientBook.Builder()
               .Client(ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean","Ernstzen"),
                       true))
-                      .Book (BookFactory.CreateBook("ZZ1","Finding Gobby","James Frank","fiction"))
+                      .Book (BookFactory.CreateBook("ZZ1","Finding Gobby","James Frank","fiction","description", "false", "https://something.jpg"))
                 .build();
 
         updateClientBook = new ClientBook.Builder().copy(clientBook)
@@ -41,7 +41,7 @@ class ClientBookImplTest {
                                 NameFactory.createName(clientBook.getClient().getName().getFirstName(),
                                         clientBook.getClient().getName().getMiddleName(),
                                         clientBook.getClient().getName().getLastName()),clientBook.getClient().isRented()))
-                .Book(BookFactory.CreateBook("FS1","Frankenstein","Mark Shelley","Novel"))
+                .Book(BookFactory.CreateBook("FS1","Frankenstein","Mark Shelley","Novel", "false", "description","https://something.jpg"))
                 .build();
     }
 

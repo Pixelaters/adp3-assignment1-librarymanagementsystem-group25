@@ -16,10 +16,10 @@ class ClientFactoryTest {
     @BeforeEach
     void setUp(){
         client1 = ClientFactory.createClient("1",NameFactory.createName("Breyton","Sean",
-                "Ernstzen"), true);
+                "Ernstzen"));
 
-        client2 = ClientFactory.createClient("2",NameFactory.createName("Ziyaad","Petersen"),
-                true);
+        client2 = ClientFactory.createClient("2",NameFactory.createName("Ziyaad","Petersen")
+                );
     }
 
     @Test
@@ -53,8 +53,7 @@ class ClientFactoryTest {
 
         assertAll(
                 () -> assertNotEquals(client1.getClientId(),client2.getClientId()),
-                () -> assertNotEquals(client1.getName().getMiddleName(),client2.getName().getMiddleName()),
-                () -> assertEquals(client1.isRented(),client2.isRented())
+                () -> assertNotEquals(client1.getName().getMiddleName(),client2.getName().getMiddleName())
         );
 
         System.out.println("Test successfully passed");
@@ -65,8 +64,7 @@ class ClientFactoryTest {
 
         assertAll(
                 () -> assertNotSame(client1.getClientId(),client2.getClientId()),
-                () -> assertNotSame(client1.getName().getMiddleName(),client2.getName().getMiddleName()),
-                () -> assertSame(client1.isRented(),client2.isRented())
+                () -> assertNotSame(client1.getName().getMiddleName(),client2.getName().getMiddleName())
 
         );
     }

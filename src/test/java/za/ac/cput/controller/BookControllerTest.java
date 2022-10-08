@@ -29,11 +29,9 @@ public class BookControllerTest {
     void setUp() {
         assertNotNull(bookController);
 
-        this.book = BookFactory.CreateBook("1","GooseBumps", "Ziyaad", "Horror");
+        this.book = BookFactory.CreateBook("A1","Goosebumps", "CantRemember", "Horror","description", "false", "https://something.jpg");
 
-        this.updatedBook = new Book.Builder().copy(book)
-                .Author("Petersen")
-                .build();
+        this.updatedBook = BookFactory.CreateBook("A2","Goosebumps", "CantRemember", "Horror","description", "false", "https://something.jpg");
 
         this.urlBase = "http://localhost:" + this.portNumber + "/librarymanagementsystem/book/";
     }
