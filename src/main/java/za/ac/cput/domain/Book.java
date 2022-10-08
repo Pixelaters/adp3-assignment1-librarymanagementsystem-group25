@@ -34,12 +34,9 @@ public class Book implements Serializable {
     private String isRented;
     @NotNull
     private String imgUrl;
-//(mappedBy = "book")
-    @ManyToMany
-    @JoinTable(
-            name="ClientBook",
-            joinColumns = @JoinColumn(name= "book_Id"),
-            inverseJoinColumns = @JoinColumn(name= "client_Id")
-    )
-    private Set<ClientBook> clientBook = new HashSet<>();
+
+    @OneToMany(mappedBy = "book")
+    private Set<ClientBook> clientBookSet;
+
+
 }
