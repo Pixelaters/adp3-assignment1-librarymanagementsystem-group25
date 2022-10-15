@@ -35,11 +35,10 @@ class ClientControllerTest {
         assertNotNull(clientController);
 
         this.client = ClientFactory.createClient("1", NameFactory.createName("Breyton","Sean",
-                "Ernstzen"),true);
+                "Ernstzen"));
 
-        this.updatedClient = new Client.Builder().copy(client)
-                .name(NameFactory.createName("Breyton","Shaun","Ernstzen"))
-                .build();
+        this.updatedClient = ClientFactory.createClient("2", NameFactory.createName("Breyton","Sean",
+                "Ernstzen"));
 
         this.urlBase = "http://localhost:" + this.portNumber + "/librarymanagementsystem/client/";
     }
@@ -107,8 +106,7 @@ class ClientControllerTest {
 
         assertAll(
                 () -> assertSame("1",updatedClient.getClientId()),
-                () -> assertNotNull(updatedClient.getName()),
-                () -> assertSame(true,updatedClient.isRented())
+                () -> assertNotNull(updatedClient.getName())
 
         );
 

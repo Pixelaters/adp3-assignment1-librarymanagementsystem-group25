@@ -1,82 +1,41 @@
 package za.ac.cput.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 @IdClass(ClientBookId.class)
 public class ClientBook implements Serializable {
 
+//    @PrimaryKeyJoinColumn(name="bookId",referencedColumnName = "bookId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Book books;
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
+    private Client clients;
+
+
+
+
+
     @Id
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name="bookId",referencedColumnName = "bookId")
-    private Book book;
+    private String clientId;
 
 
     @Id
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
-    private Client client;
+    private String bookId;
 
-    protected ClientBook(){
-
-    }
-
-    public ClientBook(Builder b) {
-        this.book = b.book;
-        this.client = b.client;
-    }
-
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    @Override
-    public String toString() {
-        return "ClientBook{" +
-                "book=" + book +
-                ", client=" + client +
-                '}';
-    }
-
-
-    public static class Builder {
-        private Book book;
-        private Client client;
-
-        public Builder Book(Book book) {
-            this.book = book;
-            return this;
-        }
-
-        public Builder Client(Client client) {
-            this.client = client;
-            return this;
-        }
-
-        public Builder copy(ClientBook clientBook){
-            this.book= book;
-            this.client= client;
-            return this;
-        }
-
-        public ClientBook build() {
-            return new ClientBook(this);
-        }
-    }
+    @Id
+    String dateOrdered;
 }
 
 

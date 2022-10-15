@@ -10,15 +10,14 @@ import za.ac.cput.domain.Name;
 
 public class ClientFactory {
 
-    public static Client createClient(String id, Name name, boolean bookRented){
+    public static Client createClient(String id, Name name){
 
         if(id.isEmpty() || name.getFirstName().isEmpty() || name.getLastName().isEmpty())
             throw new IllegalArgumentException("Please complete all fields");
 
-        return new Client.Builder()
-                .id(id)
+        return Client.builder()
+                .clientId(id)
                 .name(name)
-                .isRented(bookRented)
                 .build();
         }
 

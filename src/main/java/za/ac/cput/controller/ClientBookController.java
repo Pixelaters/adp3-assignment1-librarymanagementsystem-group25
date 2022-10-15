@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientBook;
 import za.ac.cput.service.ClientBookIService;
-import za.ac.cput.service.impl.ClientBookImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,6 +18,8 @@ import java.util.List;
 @Slf4j
 public class ClientBookController {
     private final ClientBookIService clientBookIService;
+    //ClientBookIdd clientBookIdd;
+
 
     @Autowired
     public ClientBookController(ClientBookIService clientBookIService) {
@@ -30,6 +31,9 @@ public class ClientBookController {
         log.info("Save request: {}",clientBook);
 
         try{
+//            clientBookIdd.clientId = clientBook.getClient().getClientId();
+//            clientBookIdd.bookId = clientBook.getBook().getBookId();
+
             ClientBook save_clientBook = this.clientBookIService.create(clientBook);
             return ResponseEntity.ok(save_clientBook);
 
@@ -39,11 +43,11 @@ public class ClientBookController {
     }
 
     @GetMapping("read_clientBook/{clientId}")
-    public ResponseEntity<ClientBook> read(@PathVariable String clientId){
-        log.info("Read request: {}", clientId);
+    public ResponseEntity<ClientBook> read(@PathVariable ClientBook clientBook){
+        log.info("Read request: {}", clientBook);
 
         try{
-            ClientBook read_ClientBook = this.clientBookIService.read(clientId);
+            ClientBook read_ClientBook = this.clientBookIService.read(clientBook);
             return ResponseEntity.ok(read_ClientBook);
 
         }catch(IllegalArgumentException exception){
@@ -65,10 +69,10 @@ public class ClientBookController {
     }
 
     @DeleteMapping("delete_clientbook/{clientId}")
-    public ResponseEntity<ClientBook> delete(@PathVariable String clientId){
-        log.info("Delete request: {}", clientId);
+    public ResponseEntity<ClientBook> delete(@PathVariable ClientBook clientBook){
+        log.info("Delete request: {}", clientBook);
 
-        this.clientBookIService.delete(clientId);
+        this.clientBookIService.delete(clientBook);
         return ResponseEntity.noContent().build();
     }
 
