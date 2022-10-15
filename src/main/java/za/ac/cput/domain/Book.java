@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@Table(name = "book")
 public class Book implements Serializable {
     @Id
     @Column(name = "bookId")
@@ -35,8 +37,8 @@ public class Book implements Serializable {
     @NotNull
     private String imgUrl;
 
-    @OneToMany(mappedBy = "book")
-    private Set<ClientBook> clientBookSet;
+    @OneToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    private List<ClientBook> clientBooks;
 
 
 }
