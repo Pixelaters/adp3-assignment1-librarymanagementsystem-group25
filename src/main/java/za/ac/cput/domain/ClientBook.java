@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,29 +14,38 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@IdClass(ClientBookId.class)
 public class ClientBook implements Serializable {
 
-//    @PrimaryKeyJoinColumn(name="bookId",referencedColumnName = "bookId")
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @EmbeddedId
+//    ClientBookId id;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("bookId")
+//    @JoinColumn(name = "bookId")
+//    private Book books;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("clientId")
+//    @JoinColumn(name = "clientId")
+//    private Client clients;
+//
+//
+//    private String dateOrdered;
+
+    @Id
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    String clientBookId;
+
+    @ManyToOne
+    @JoinColumn(name = "bookId")
     private Book books;
-    @ManyToOne(fetch = FetchType.LAZY)
-//    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
+
+    @ManyToOne
+    @JoinColumn(name = "clientId")
     private Client clients;
 
-
-
-
-
-    @Id
-    private String clientId;
-
-
-    @Id
-    private String bookId;
-
-    @Id
-    String dateOrdered;
+    private String dateOrdered;
 }
 
 

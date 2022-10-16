@@ -42,12 +42,12 @@ public class ClientBookController {
         }
     }
 
-    @GetMapping("read_clientBook/{clientId}")
-    public ResponseEntity<ClientBook> read(@PathVariable ClientBook clientBook){
-        log.info("Read request: {}", clientBook);
+    @GetMapping("read_clientBook/{clientBookId}")
+    public ResponseEntity<ClientBook> read(@PathVariable String clientBookId){
+        log.info("Read request: {}", clientBookId);
 
         try{
-            ClientBook read_ClientBook = this.clientBookIService.read(clientBook);
+            ClientBook read_ClientBook = this.clientBookIService.read(clientBookId);
             return ResponseEntity.ok(read_ClientBook);
 
         }catch(IllegalArgumentException exception){
@@ -68,11 +68,11 @@ public class ClientBookController {
         }
     }
 
-    @DeleteMapping("delete_clientbook/{clientId}")
-    public ResponseEntity<ClientBook> delete(@PathVariable ClientBook clientBook){
-        log.info("Delete request: {}", clientBook);
+    @DeleteMapping("delete_clientbook/{clientBookId}")
+    public ResponseEntity<ClientBook> delete(@PathVariable String clientBookId){
+        log.info("Delete request: {}", clientBookId);
 
-        this.clientBookIService.delete(clientBook);
+        this.clientBookIService.delete(clientBookId);
         return ResponseEntity.noContent().build();
     }
 

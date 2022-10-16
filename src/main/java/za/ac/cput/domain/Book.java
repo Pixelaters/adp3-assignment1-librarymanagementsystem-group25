@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,8 +38,17 @@ public class Book implements Serializable {
     @NotNull
     private String imgUrl;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "books", fetch = FetchType.EAGER)
     private List<ClientBook> clientBooks;
+
+    @ManyToMany
+            @JoinTable(
+                    name = "BookAuthor",
+                    joinColumns = @JoinColumn(name = "bookId"),
+                    inverseJoinColumns = @JoinColumn(name = "authorId")
+            )
+    Set<Author> authorSet;
 
 
 }
