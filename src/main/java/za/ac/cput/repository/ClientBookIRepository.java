@@ -10,7 +10,7 @@ import za.ac.cput.domain.ClientBookId;
 import java.util.List;
 
 @Repository
-public interface ClientBookIRepository extends JpaRepository<ClientBook,ClientBook> {
+public interface ClientBookIRepository extends JpaRepository<ClientBook, String> {
     List<ClientBook> findClientBookByClients(Client client);
 
 }

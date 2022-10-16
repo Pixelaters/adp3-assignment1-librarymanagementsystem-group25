@@ -40,5 +40,13 @@ public class Book implements Serializable {
     @OneToMany(mappedBy = "books", fetch = FetchType.EAGER)
     private List<ClientBook> clientBooks;
 
+    @ManyToMany
+            @JoinTable(
+                    name = "BookAuthor",
+                    joinColumns = @JoinColumn(name = "bookId"),
+                    inverseJoinColumns = @JoinColumn(name = "authorId")
+            )
+    Set<Author> authorSet;
+
 
 }

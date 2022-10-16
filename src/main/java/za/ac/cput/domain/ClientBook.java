@@ -23,19 +23,15 @@ public class ClientBook implements Serializable {
 //    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
     private Client clients;
 
-
-
-
-
     @Id
+    @GeneratedValue
+    private String clientBookId;
+
     private String clientId;
 
-
-    @Id
     private String bookId;
 
-    @Id
-    String dateOrdered;
+    private String dateOrdered;
 }
 
 
