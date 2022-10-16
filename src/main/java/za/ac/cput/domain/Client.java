@@ -4,6 +4,7 @@
  */
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +33,7 @@ public class Client implements Serializable {
     @Embedded
     private Name name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "clients", fetch = FetchType.EAGER)
         //Using this annotation will tell JPA that the CLIENTBOOK table
         // must have a foreign key column clientId(name="clientId") that references
