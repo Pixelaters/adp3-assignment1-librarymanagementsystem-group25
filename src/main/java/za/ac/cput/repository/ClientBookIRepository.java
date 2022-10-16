@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Book;
 import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientBook;
-import za.ac.cput.domain.ClientBookId;
 
 import java.util.List;
 

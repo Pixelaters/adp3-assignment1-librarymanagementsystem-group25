@@ -13,23 +13,34 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@IdClass(ClientBookId.class)
 public class ClientBook implements Serializable {
 
-//    @PrimaryKeyJoinColumn(name="bookId",referencedColumnName = "bookId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Book books;
-    @ManyToOne(fetch = FetchType.LAZY)
-//    @PrimaryKeyJoinColumn(name="clientId",referencedColumnName = "clientId")
-    private Client clients;
+//    @EmbeddedId
+//    ClientBookId id;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("bookId")
+//    @JoinColumn(name = "bookId")
+//    private Book books;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("clientId")
+//    @JoinColumn(name = "clientId")
+//    private Client clients;
+//
+//
+//    private String dateOrdered;
 
     @Id
-    @GeneratedValue
-    private String clientBookId;
+    String clientBookId;
 
-    private String clientId;
+    @ManyToOne
+    @JoinColumn(name = "bookId")
+    private Book books;
 
-    private String bookId;
+    @ManyToOne
+    @JoinColumn(name = "clientId")
+    private Client clients;
 
     private String dateOrdered;
 }

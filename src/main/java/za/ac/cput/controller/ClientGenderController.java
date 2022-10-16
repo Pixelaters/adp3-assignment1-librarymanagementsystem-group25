@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Client;
-import za.ac.cput.domain.ClientBookId;
 import za.ac.cput.domain.ClientGender;
 import za.ac.cput.service.ClientGenderService;
 
