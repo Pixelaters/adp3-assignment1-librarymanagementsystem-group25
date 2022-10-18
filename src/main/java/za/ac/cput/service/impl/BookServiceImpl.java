@@ -38,6 +38,12 @@ public class BookServiceImpl implements BookIService {
         return this.bookRepository.save(book);
     }
 
+    public Book updateBookAvailability(String bookId){
+        Book bookToUpdate = bookRepository.getOne(bookId);
+        bookToUpdate.setIsRented("Not Available");
+        return bookRepository.save(bookToUpdate);
+    }
+
 
     //Discuss with group if we should make delete return a boolean or void.
     @Override

@@ -27,8 +27,14 @@ public class Book implements Serializable {
     private String bookId;
     @NotNull
     private String bookName;
+
     @NotNull
     private String author;
+
+    private String author2;
+
+    private String author3;
+
     @NotNull
     private String genre;
     @NotNull

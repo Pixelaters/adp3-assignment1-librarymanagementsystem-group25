@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Book;
+import za.ac.cput.factory.BookFactory;
 import za.ac.cput.service.impl.BookServiceImpl;
 
 import javax.validation.Valid;
@@ -30,7 +31,7 @@ public class BookController {
         log.info("Save request: {}", saveBook);
 
         try{
-            Book newBook = this.bookService.create(saveBook);
+            Book newBook = this.bookService.create(BookFactory.CreateBook(saveBook));
             return  ResponseEntity.ok(newBook);
         }catch(IllegalArgumentException exception){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST   , exception.getMessage());
@@ -54,6 +55,17 @@ public class BookController {
 
         this.bookService.delete((bookId));
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("updateBookAvailability/{bookId}")
+    public ResponseEntity<Book> updateBookAvailability(@PathVariable String bookId){
+        try{
+            Book updatedBook = this.bookService.updateBookAvailability(bookId);
+            return ResponseEntity.ok(updatedBook);
+
+        }catch (IllegalArgumentException exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
     }
 
 
