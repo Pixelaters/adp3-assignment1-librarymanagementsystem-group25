@@ -38,7 +38,7 @@ public class ContactController {
         }
     }
 
-    @PostMapping("update_contact")
+    @PutMapping("update_contact")
     public ResponseEntity<Contact> update(@Valid @RequestBody Contact updateContact){
         try{
             Contact updatedContact = this.contactService.update(updateContact);
