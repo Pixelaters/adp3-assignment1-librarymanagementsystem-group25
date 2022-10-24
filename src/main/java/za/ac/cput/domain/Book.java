@@ -37,6 +37,11 @@ public class Book implements Serializable {
 
     @NotNull
     private String genre;
+
+    private String genre2;
+
+    private String genre3;
+
     @NotNull
     private String description;
     @NotNull
@@ -55,6 +60,14 @@ public class Book implements Serializable {
                     inverseJoinColumns = @JoinColumn(name = "authorId")
             )
     Set<Author> authorSet;
+
+    @ManyToMany
+    @JoinTable(
+            name= "BookGenre",
+            joinColumns = @JoinColumn(name= "bookId"),
+            inverseJoinColumns = @JoinColumn(name= "genreName")
+    )
+    Set<Genre> genreSet;
 
 
 }
