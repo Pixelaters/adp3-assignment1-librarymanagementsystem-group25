@@ -103,4 +103,15 @@ public class BookServiceImpl implements BookIService {
         return bookList;
 
     }
+
+    public List<Book> findByIsRented(String isRented){
+        List<Book> subSet= this.bookRepository.findByIsRented(isRented);
+
+        System.out.println(subSet);
+        List<Book> bookList = new ArrayList<>();
+        for (Book b: subSet){
+            bookList.add(b);
+        }
+        return bookList;
+    }
 }

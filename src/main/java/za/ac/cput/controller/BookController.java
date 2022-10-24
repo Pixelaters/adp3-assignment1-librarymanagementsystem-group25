@@ -91,6 +91,10 @@ public class BookController {
     }
 
 
+    @GetMapping("findByIsRented/{isRented}")
+    public List<Book> findByIsRented(@PathVariable String isRented){
+        return bookService.findByIsRented(isRented);
+    }
 
 
 

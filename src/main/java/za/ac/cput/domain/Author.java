@@ -22,12 +22,7 @@ public class Author {
     private String authorId;
 
     @NotNull
-    private String name;
-
-    private String middleName;
-
-    @NotNull
-    private String lastName;
+    private Name name;
 
     @ManyToMany(mappedBy = "authorSet")
     Set<Book> bookSet;
