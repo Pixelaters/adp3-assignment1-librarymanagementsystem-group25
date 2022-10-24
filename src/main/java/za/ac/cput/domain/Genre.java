@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -16,14 +15,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Author {
+@Table(name = "Genre")
+public class Genre {
+
     @Id
     @NotNull
-    private String authorId;
+    private String genreName;
 
-    @NotNull
-    private Name name;
-
-    @ManyToMany(mappedBy = "authorSet")
+    @ManyToMany(mappedBy = "genreSet")
     Set<Book> bookSet;
+
 }

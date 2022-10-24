@@ -38,6 +38,12 @@ public class BookServiceImpl implements BookIService {
         return this.bookRepository.save(book);
     }
 
+    public Book updateBookAvailability(String bookId){
+        Book bookToUpdate = bookRepository.getOne(bookId);
+        bookToUpdate.setIsRented("Not Available");
+        return bookRepository.save(bookToUpdate);
+    }
+
 
     //Discuss with group if we should make delete return a boolean or void.
     @Override
@@ -96,5 +102,16 @@ public class BookServiceImpl implements BookIService {
 
         return bookList;
 
+    }
+
+    public List<Book> findByIsRented(String isRented){
+        List<Book> subSet= this.bookRepository.findByIsRented(isRented);
+
+        System.out.println(subSet);
+        List<Book> bookList = new ArrayList<>();
+        for (Book b: subSet){
+            bookList.add(b);
+        }
+        return bookList;
     }
 }
