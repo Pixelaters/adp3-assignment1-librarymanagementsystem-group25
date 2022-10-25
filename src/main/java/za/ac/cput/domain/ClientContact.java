@@ -28,21 +28,21 @@ public class ClientContact implements Serializable {
     @Column(name = "clientContactId")
     private String clientContactId;
 
-    @Id
+    //@Id
     @Column(name = "contactId")
     private String contactId;
 
 
-    @Id
+   // @Id
     @Column(name = "clientId")
     private String clientId;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "contactId", referencedColumnName = "contactId")
+    //@PrimaryKeyJoinColumn(name = "contactId", referencedColumnName = "contactId")
     private Contact contact;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "clientId", referencedColumnName = "clientId")
+    //@PrimaryKeyJoinColumn(name = "clientId", referencedColumnName = "clientId")
     private Client client;
 
 }

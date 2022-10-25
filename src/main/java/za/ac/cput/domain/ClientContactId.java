@@ -5,19 +5,17 @@ import java.util.Objects;
 
 public class ClientContactId implements Serializable {
     private String clientContactId;
-    private String clientId;
-    private String contactId;
+
+//    public ClientContactId(){
+//    }
+
+    public ClientContactId(String clientContactId, String clientId, String contactId) {
+        this.clientContactId = clientContactId;
+
+    }
 
     public String getClientContactId() {
         return clientContactId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public String getContactId() {
-        return contactId;
     }
 
     @Override
@@ -25,11 +23,11 @@ public class ClientContactId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ClientContactId)) return false;
         ClientContactId that = (ClientContactId) o;
-        return clientContactId.equals(that.clientContactId) && clientId.equals(that.clientId) && contactId.equals(that.contactId);
+        return clientContactId.equals(that.clientContactId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientContactId, clientId, contactId);
+        return Objects.hash(clientContactId);
     }
 }

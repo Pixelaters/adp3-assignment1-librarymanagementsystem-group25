@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Contact implements Serializable {
     private String contactId;
 
     @NotNull
+    @Email
     private String email;
 
     @NotNull

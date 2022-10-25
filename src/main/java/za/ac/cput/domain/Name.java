@@ -3,12 +3,21 @@ package za.ac.cput.domain;
 import lombok.Getter;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Embeddable
 public class Name {
+    @Size(min = 2,max = 20)
+    @NotEmpty
     private String firstName;
+
+    @Size(min = 2,max = 20)
     private String middleName;
+
+    @Size(min = 2,max = 30)
+    @NotEmpty
     private String lastName;
 
     protected Name(){
