@@ -34,6 +34,8 @@ public class Client implements Serializable {
     @Embedded
     private Name name;
 
+
+
     @JsonIgnore
     @OneToMany(mappedBy = "clients", fetch = FetchType.EAGER)
         //Using this annotation will tell JPA that the CLIENTBOOK table
