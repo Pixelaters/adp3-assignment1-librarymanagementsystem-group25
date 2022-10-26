@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.User;
 import za.ac.cput.service.impl.AuthService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -19,6 +21,11 @@ public class AuthController {
     return authService.register(user);
 
 
+  }
+
+  @GetMapping("/getAll")
+  public List<User> getAll(@RequestBody User user){
+    return authService.getAll();
   }
 
   @PostMapping("/login")
