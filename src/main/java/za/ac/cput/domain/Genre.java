@@ -19,6 +19,11 @@ import java.util.Set;
 public class Genre {
 
     @Id
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String genreId;
+
+
     @NotNull
     private String genreName;
 

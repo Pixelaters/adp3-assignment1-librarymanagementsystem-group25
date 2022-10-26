@@ -31,7 +31,7 @@ public class BookController {
         log.info("Save request: {}", saveBook);
 
         try{
-            Book newBook = this.bookService.create(BookFactory.CreateBook(saveBook));
+            Book newBook = this.bookService.create(saveBook);
             return  ResponseEntity.ok(newBook);
         }catch(IllegalArgumentException exception){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST   , exception.getMessage());
