@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface ClientContactIService extends IService<ClientContact,String> {
     List<ClientContact> getAll();
-    ClientContact findClientContactByClientId(String clientId);
+//    ClientContact findClientContactByClientId(String clientId);
 }

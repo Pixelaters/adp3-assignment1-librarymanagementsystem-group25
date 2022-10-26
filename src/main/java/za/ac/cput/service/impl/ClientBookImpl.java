@@ -51,7 +51,6 @@ public class ClientBookImpl implements ClientBookIService {
         return this.clientBookIRepository.findAll().stream().toList();
     }
 
-    //might be wrong
     @Override
     public List<ClientBook> findClientBookByClient(Client client) {
        return this.clientBookIRepository.findClientBookByClients(client);

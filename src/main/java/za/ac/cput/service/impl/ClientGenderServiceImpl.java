@@ -50,11 +50,5 @@ public class ClientGenderServiceImpl implements ClientGenderService {
     public List<ClientGender> findClientGenderByClient(Client client){
        return this.clientGenderRepository.findClientGenderByClient(client);
 
-//       System.out.println(subSet);
-//       List<ClientGender> clientGenderList = new ArrayList<>();
-//       for(ClientGender b : subSet){
-//           clientGenderList.add(b);
-//       }
-//       return clientGenderList;
     }
 }

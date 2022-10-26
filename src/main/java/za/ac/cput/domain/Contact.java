@@ -1,15 +1,25 @@
 package za.ac.cput.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Contact implements Serializable {
     @Id
     @Column(name= "contactId")
@@ -25,13 +35,10 @@ public class Contact implements Serializable {
     @NotNull
     private String nextOfKin;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "contact")
+    //@Fetch(value = FetchMode.SELECT)
     private Set<ClientContact> clientContactSet;
-
-
-    protected Contact() {
-
-    }
 
     public Contact(Builder builder) {
         this.contactId = builder.contactId;

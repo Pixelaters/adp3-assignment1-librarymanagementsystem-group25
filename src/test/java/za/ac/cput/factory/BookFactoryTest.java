@@ -15,8 +15,8 @@
 //    @Test
 //    @Order(1)
 //    void a_createBook() {
-//
-//        Book book = BookFactory.CreateBook("A1","Goosebumps", "CantRemember", "Horror", "description","false", "https://something.jpg");
+//        Book book1 = new Book();
+//        Book book = BookFactory.CreateBook(book1);
 //        assertNotNull(book);
 //        System.out.println(book);
 //    }

@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,7 +22,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@IdClass(ClientContactId.class)
 public class ClientContact implements Serializable {
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -28,21 +29,14 @@ public class ClientContact implements Serializable {
     @Column(name = "clientContactId")
     private String clientContactId;
 
-    //@Id
-    @Column(name = "contactId")
-    private String contactId;
-
-
-   // @Id
-    @Column(name = "clientId")
-    private String clientId;
-
     @ManyToOne
-    //@PrimaryKeyJoinColumn(name = "contactId", referencedColumnName = "contactId")
+    @JoinColumn(name = "contactId")
+    @NotFound(action = NotFoundAction.IGNORE)
     private Contact contact;
 
     @ManyToOne
-    //@PrimaryKeyJoinColumn(name = "clientId", referencedColumnName = "clientId")
+    @JoinColumn(name = "clientId")
+    @NotFound(action = NotFoundAction.IGNORE)
     private Client client;
 
 }
