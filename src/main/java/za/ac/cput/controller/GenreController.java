@@ -46,9 +46,9 @@ public class GenreController {
         }
     }
 
-    @DeleteMapping("delete/{genreName}")
-    public ResponseEntity<Genre> delete(@PathVariable String genreName){
-        this.genreService.delete(genreName);
+    @DeleteMapping("delete/{genreId}")
+    public ResponseEntity<Genre> delete(@PathVariable String genreId){
+        this.genreService.delete(genreId);
         return ResponseEntity.noContent().build();
     }
 

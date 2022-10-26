@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientBook;
 import za.ac.cput.service.ClientBookIService;
+import za.ac.cput.service.impl.ClientBookImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,12 +18,12 @@ import java.util.List;
 @RequestMapping("librarymanagementsystem/clientBook/")
 @Slf4j
 public class ClientBookController {
-    private final ClientBookIService clientBookIService;
+    private final ClientBookImpl clientBookIService;
     //ClientBookIdd clientBookIdd;
 
 
     @Autowired
-    public ClientBookController(ClientBookIService clientBookIService) {
+    public ClientBookController(ClientBookImpl clientBookIService) {
         this.clientBookIService = clientBookIService;
     }
 
@@ -82,12 +83,18 @@ public class ClientBookController {
         return ResponseEntity.ok(clientBooks);
     }
 
-    @GetMapping("findClientBookByClient/{client}")
-    public ResponseEntity<List<ClientBook>> findClientBookByClient(@PathVariable Client client){
-        log.info("Find Request: {}",client);
-
-        List<ClientBook> findClientBook = this.clientBookIService.findClientBookByClient(client);
+    @GetMapping("findClientBookByClient/{clientId}")
+    public ResponseEntity<List<ClientBook>> findClientBookByClient(@PathVariable String clientId){
+        log.info("Find Request: {}",clientId);
+        List<ClientBook> findClientBook = this.clientBookIService.findClientBookByClients_ClientId(clientId);
         return ResponseEntity.ok(findClientBook);
         }
 
+
+    @GetMapping("findClientBookByBook/{bookId}")
+    public ResponseEntity<List<ClientBook>> findClientBookByBook(@PathVariable String bookId){
+        log.info("Find Request: {}",bookId);
+        List<ClientBook> findClientBook = this.clientBookIService.findClientBookByBooks_BookId(bookId);
+        return ResponseEntity.ok(findClientBook);
+    }
 }
