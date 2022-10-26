@@ -11,5 +11,8 @@ public interface BookIRepository extends JpaRepository<Book, String> {
     public List<Book> findByBookId(String bookId);
     public List<Book> findByBookName(String bookName);
     public List<Book> findByAuthor(String author);
+    public List<Book> findByIsRented(String isRented);
+
+
 
 }

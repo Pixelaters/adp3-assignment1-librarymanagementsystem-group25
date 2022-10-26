@@ -31,8 +31,8 @@ public class ClientBookImpl implements ClientBookIService {
     }
 
     @Override
-    public ClientBook read(ClientBook clientBook) {
-        return this.clientBookIRepository.findById(clientBook).orElse(null);
+    public ClientBook read(String clientId) {
+        return this.clientBookIRepository.findById(clientId).orElse(null);
     }
 
     @Override
@@ -41,8 +41,8 @@ public class ClientBookImpl implements ClientBookIService {
     }
 
     @Override
-    public void delete(ClientBook clientBook) {
-        this.clientBookIRepository.deleteById(clientBook);
+    public void delete(String clientId) {
+        this.clientBookIRepository.deleteById(clientId);
 
     }
 
@@ -51,11 +51,15 @@ public class ClientBookImpl implements ClientBookIService {
         return this.clientBookIRepository.findAll().stream().toList();
     }
 
-    //might be wrong
     @Override
-    public List<ClientBook> findClientBookByClient(Client client) {
-       return this.clientBookIRepository.findClientBookByClients(client);
-
+    public List<ClientBook> findClientBookByClients_ClientId(String clientId) {
+        return this.clientBookIRepository.findClientBookByClients_ClientId(clientId);
     }
+
+    @Override
+    public ClientBook findClientBookByBooks_BookId(String bookId) {
+        return this.clientBookIRepository.findClientBookByBooks_BookId(bookId);
+    }
+
 
 }

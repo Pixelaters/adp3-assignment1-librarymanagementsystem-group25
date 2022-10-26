@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Client;
 import za.ac.cput.domain.ClientBook;
 import za.ac.cput.service.ClientBookIService;
+import za.ac.cput.service.impl.ClientBookImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,12 +18,12 @@ import java.util.List;
 @RequestMapping("librarymanagementsystem/clientBook/")
 @Slf4j
 public class ClientBookController {
-    private final ClientBookIService clientBookIService;
+    private final ClientBookImpl clientBookIService;
     //ClientBookIdd clientBookIdd;
 
 
     @Autowired
-    public ClientBookController(ClientBookIService clientBookIService) {
+    public ClientBookController(ClientBookImpl clientBookIService) {
         this.clientBookIService = clientBookIService;
     }
 
@@ -42,12 +43,12 @@ public class ClientBookController {
         }
     }
 
-    @GetMapping("read_clientBook/{clientId}")
-    public ResponseEntity<ClientBook> read(@PathVariable ClientBook clientBook){
-        log.info("Read request: {}", clientBook);
+    @GetMapping("read_clientBook/{clientBookId}")
+    public ResponseEntity<ClientBook> read(@PathVariable String clientBookId){
+        log.info("Read request: {}", clientBookId);
 
         try{
-            ClientBook read_ClientBook = this.clientBookIService.read(clientBook);
+            ClientBook read_ClientBook = this.clientBookIService.read(clientBookId);
             return ResponseEntity.ok(read_ClientBook);
 
         }catch(IllegalArgumentException exception){
@@ -68,11 +69,11 @@ public class ClientBookController {
         }
     }
 
-    @DeleteMapping("delete_clientbook/{clientId}")
-    public ResponseEntity<ClientBook> delete(@PathVariable ClientBook clientBook){
-        log.info("Delete request: {}", clientBook);
+    @DeleteMapping("delete_clientbook/{clientBookId}")
+    public ResponseEntity<ClientBook> delete(@PathVariable String clientBookId){
+        log.info("Delete request: {}", clientBookId);
 
-        this.clientBookIService.delete(clientBook);
+        this.clientBookIService.delete(clientBookId);
         return ResponseEntity.noContent().build();
     }
 
@@ -82,12 +83,18 @@ public class ClientBookController {
         return ResponseEntity.ok(clientBooks);
     }
 
-    @GetMapping("findClientBookByClient/{client}")
-    public ResponseEntity<List<ClientBook>> findClientBookByClient(@PathVariable Client client){
-        log.info("Find Request: {}",client);
-
-        List<ClientBook> findClientBook = this.clientBookIService.findClientBookByClient(client);
+    @GetMapping("findClientBookByClient/{clientId}")
+    public ResponseEntity<List<ClientBook>> findClientBookByClient(@PathVariable String clientId){
+        log.info("Find Request: {}",clientId);
+        List<ClientBook> findClientBook = this.clientBookIService.findClientBookByClients_ClientId(clientId);
         return ResponseEntity.ok(findClientBook);
         }
 
+
+    @GetMapping("findClientBookByBook/{bookId}")
+    public ResponseEntity<ClientBook> findClientBookByBook(@PathVariable String bookId){
+        log.info("Find Request: {}",bookId);
+        ClientBook findClientBook = this.clientBookIService.findClientBookByBooks_BookId(bookId);
+        return ResponseEntity.ok(findClientBook);
+    }
 }
