@@ -33,9 +33,6 @@ class LibrarianServiceTest {
     assertNotNull(librarian1);
         System.out.println("saved successfully");
 
-
-
-
     }
 
     @Test
@@ -65,9 +62,6 @@ class LibrarianServiceTest {
               () -> assertSame("Ongie",librarian1.getName().getMiddleName()),
               () -> assertSame("Gwaza",librarian1.getName().getLastName())
 
-
-
-
       );
         System.out.println("deleted");
 
@@ -79,7 +73,6 @@ class LibrarianServiceTest {
         System.out.println(librarianService.getAll());
         assertAll(
                 () -> assertNotNull(librarianService.getAll())
-
         );
         System.out.println();
     }

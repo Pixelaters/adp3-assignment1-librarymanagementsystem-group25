@@ -58,12 +58,5 @@ public class GenderServiceImpl implements GenderService {
     public Gender findGenderByGenderId(String genderId){
         return this.genderRepository.findGenderByGenderId(genderId);
 
-//        System.out.println(subSet);
-//        List<Gender> genderNameList = new ArrayList<>();
-//        for(Gender b : subSet){
-//            genderNameList.add(b);
-//        }
-//
-//        return genderNameList;
     }
 }
