@@ -8,5 +8,5 @@ import java.util.List;
 public interface ClientBookIService extends IService<ClientBook, String>{
     List<ClientBook> getAll();
     List<ClientBook> findClientBookByClients_ClientId(String clientId);
-    List<ClientBook> findClientBookByBooks_BookId(String bookId);
+    ClientBook findClientBookByBooks_BookId(String bookId);
 }

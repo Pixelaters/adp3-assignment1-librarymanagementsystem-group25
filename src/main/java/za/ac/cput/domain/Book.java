@@ -39,7 +39,7 @@ public class Book implements Serializable {
     private String description;
     @NotNull
     private String isRented;
-    @NotNull
+
     private String imgUrl;
 
     @JsonIgnore
