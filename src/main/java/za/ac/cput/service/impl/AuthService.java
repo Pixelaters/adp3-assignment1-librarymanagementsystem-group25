@@ -7,6 +7,7 @@ import za.ac.cput.repository.UserRepository;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 public class AuthService {
@@ -54,6 +55,10 @@ public class AuthService {
       return existingUser;
     }
     return null;
+  }
+
+  public List<User> getAll(){
+    return userRepository.findAll();
   }
 }
 
