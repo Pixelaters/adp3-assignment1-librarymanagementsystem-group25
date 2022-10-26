@@ -9,14 +9,28 @@ package za.ac.cput.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Embeddable
 public class Address {
 
+    @Size(min = 1,max = 5)
     private String unitNumber;
+
+    @Size(min = 2,max = 20)
     private String complexName;
+
+    @Size(min = 1,max = 4)
+    @NotEmpty
     private String streetNumber;
+
+    @Size(min = 2,max = 20)
+    @NotEmpty
     private String streetName;
+
+    @Size(min = 4,max = 4)
+    @NotEmpty
     private int postalCode;
 
     @ManyToOne(targetEntity = City.class,cascade = CascadeType.ALL)

@@ -4,10 +4,12 @@
  */
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -43,6 +45,7 @@ public class Client implements Serializable {
         // @JoinColumn(name= "clientId", referencedColumnName = "clientId")
     private List<ClientBook> clientBooks;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "client")
     private Set<ClientContact> clientContactSet;
 

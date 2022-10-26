@@ -39,7 +39,6 @@ class LibrarianGenderServiceTest {
         Gender genderUpdate = GenderFactory.createGender("m","male","boys and man");
         updatelibrarianGender = new LibrarianGender.Builder().copy(librarianGender).Gender(genderUpdate).build();
 
-
     }
 
     @Test
@@ -66,7 +65,6 @@ class LibrarianGenderServiceTest {
         System.out.println("genderid is updated");
         System.out.println(updatelibrarianGender.toString());
 
-
     }
 
     @Test
@@ -77,11 +75,9 @@ class LibrarianGenderServiceTest {
                 () -> assertSame("5694", librarianGender.getLibrarian().getStaffId()),
                 () -> assertSame("m", librarianGender.getGender().getGenderId())
 
-
         );
 
         System.out.println("updated");
-
 
     }
 

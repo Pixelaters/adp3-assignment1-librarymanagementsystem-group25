@@ -43,8 +43,4 @@ public class ClientContactService implements ClientContactIService{
         return this.clientContactIRepository.findAll().stream().toList();
     }
 
-    @Override
-    public ClientContact findClientContactByClientId(String clientId) {
-        return this.clientContactIRepository.findClientContactByClientId(clientId);
-    }
 }

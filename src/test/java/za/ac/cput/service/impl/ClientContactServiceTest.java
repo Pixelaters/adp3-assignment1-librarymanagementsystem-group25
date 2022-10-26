@@ -7,18 +7,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.ClientContact;
+import za.ac.cput.factory.ClientContactFactory;
+import za.ac.cput.factory.ClientFactory;
+import za.ac.cput.factory.ContactFactory;
+import za.ac.cput.factory.NameFactory;
 import za.ac.cput.repository.ClientContactIRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
-
-
 class ClientContactServiceTest {
 
     @Mock
-
     private ClientContactIRepository clientContactIRepository;
 
     @Autowired
@@ -30,23 +31,33 @@ class ClientContactServiceTest {
     void setUp() {
         clientContactService = new ClientContactService(clientContactIRepository);
 
-        contact1 = new ClientContact.Builder().ContactId("324").ClientId("4569").createClientCont();
+        contact1 = ClientContactFactory.createClientcontact("3456",
+                ClientFactory.createClient("1", NameFactory.createName("Ben","","James")),
+                ContactFactory.createContact("123456789","ben@gmail.com","0634048401","0713514211"));
+        assertNotNull(contact1);
 
-        contact2 = new ClientContact.Builder().ContactId("424").Copy(contact1).createClientCont();
+        contact2 = ClientContactFactory.createClientcontact("1011",
+                ClientFactory.createClient("2",NameFactory.createName("Yan","Rodriguez","Barry")),
+                ContactFactory.createContact("24681012","Yan@gmail.com","0862128401","0612151421"));
+        assertNotNull(contact2);
     }
-
 
     @Test
     void a_create() {
         clientContactService.create(contact1);
-        assertNotNull(contact1);
+
+        assertAll(
+                () -> assertSame("3456",contact1.getClientContactId()),
+                () -> assertSame("1011",contact2.getClientContactId())
+        );
+
         System.out.println("Contact created successfully!");
 
     }
 
     @Test
     void b_read() {
-        clientContactService.read(contact1.getContactId());
+        clientContactService.read(contact1.getClientContactId());
         assertNotNull(contact1);
         System.out.println(contact1);
     }
@@ -55,10 +66,8 @@ class ClientContactServiceTest {
     void c_update() {
         clientContactService.create(contact2);
 
+        assertNotSame(contact1.getClientContactId(),contact2.getClientContactId());
 
-                assertNotSame(contact1.getContactId(),contact2.getContactId());
-
-                assertSame("424",contact2.getContactId());
         System.out.println("contact id updated");
         System.out.println(contact2.toString());
 
@@ -66,11 +75,10 @@ class ClientContactServiceTest {
 
     @Test
     void e_delete() {
-        clientContactService.delete(contact2.getContactId());
+        clientContactService.delete(contact2.getClientContactId());
         assertAll(
-                () -> assertNotNull(contact2),
-                () -> assertSame("324",contact1.getContactId()),
-                () -> assertSame("4569",contact1.getClientId())
+                () -> assertSame("3456",contact1.getClientContactId()),
+                () -> assertSame("1011",contact2.getClientContactId())
         );
         System.out.println("Deleted successfully");
     }

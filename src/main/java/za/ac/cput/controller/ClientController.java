@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.Client;
@@ -32,13 +33,13 @@ public class ClientController {
     public ResponseEntity<Client> create(@Valid @RequestBody Client saveClient){
         log.info("Save request: {}", saveClient);
 
-        try{
-            Client newClient = this.clientIService.create(saveClient);
-            return ResponseEntity.ok(newClient);
+        try {
+              Client newClient = this.clientIService.create(saveClient);
+              return ResponseEntity.ok(newClient);
 
-        }catch(IllegalArgumentException exception){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,exception.getMessage());
-        }
+            }catch(IllegalArgumentException exception){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+            }
     }
 
     @GetMapping("readClient/{clientId}")

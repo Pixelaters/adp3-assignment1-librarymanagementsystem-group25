@@ -73,17 +73,17 @@ public class ClientContactController {
         return ResponseEntity.ok(clientContactList);
     }
 
-    @GetMapping("getClientContactByClientId/{clientId}")
-    public ResponseEntity<ClientContact> findClientContactByClientId(@PathVariable String clientId){
-        log.info("Read request: {}",clientId);
-
-        try{
-            ClientContact clientContact = this.clientContactIService.findClientContactByClientId(clientId);
-            return ResponseEntity.ok(clientContact);
-
-        }catch(IllegalArgumentException exception){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        }
-    }
+//    @GetMapping("getClientContactByClientId/{clientId}")
+//    public ResponseEntity<ClientContact> findClientContactByClientId(@PathVariable String clientId){
+//        log.info("Read request: {}",clientId);
+//
+//        try{
+//            ClientContact clientContact = this.clientContactIService.findClientContactByClientId(clientId);
+//            return ResponseEntity.ok(clientContact);
+//
+//        }catch(IllegalArgumentException exception){
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+//        }
+//    }
 
 }
